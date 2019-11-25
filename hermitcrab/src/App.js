@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import AppTab from './container/AppTab'
 
 function App() {
   return (
-    <div className="App">
-      寄居蟹
+    <div>
+      <AppTab />
     </div>
   );
 }
