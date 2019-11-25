@@ -43,7 +43,7 @@ export default class AppTab extends Component {
                         }}
                         data-seed="logId"
                     >
-                        首页
+                        Home
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
