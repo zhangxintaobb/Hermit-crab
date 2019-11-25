@@ -111,7 +111,7 @@ export default class AppTab extends Component {
                             });
                         }}
                     >
-                        我的
+                        person
                     </TabBar.Item>
                 </TabBar>
             </div>
