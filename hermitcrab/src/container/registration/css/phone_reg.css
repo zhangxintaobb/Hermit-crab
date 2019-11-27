@@ -1,0 +1,48 @@
+.phone_reg_eyes {
+    height: 30px;
+    width: 30px;
+}
+.phone_reg_eyec {
+    display: none;
+}
+.phone_reg_none {
+    display: none;
+}
+.phone_reg_psw {
+    display: block;
+    float: left;
+    margin-left: 37px;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+#code {
+    font-family: Arial, 宋体;
+    font-style: italic;
+    color: green;
+    border: 0;
+    padding: 2px 3px;
+    letter-spacing: 3px;
+    font-weight: bolder;
+}
+.phone_reg_zc {
+    background-color: rgb(84, 94, 230);
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 80px;
+    margin-bottom: 30px;
+    width: 200px;
+    height: 40px;
+}
+.else_reg_img {
+    cursor: pointer;
+    display: block;
+    float: left;
+    margin-top: 20px;
+    margin-left: 35px;
+    width: 50px;
+    height: 50px;
+}
