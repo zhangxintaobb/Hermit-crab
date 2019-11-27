@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { TabBar } from 'antd-mobile';
+import Home from '../components/Home'
 
 export default class AppTab extends Component {
 
@@ -43,7 +44,7 @@ export default class AppTab extends Component {
                         }}
                         data-seed="logId"
                     >
-                        Home
+                        <Home />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
