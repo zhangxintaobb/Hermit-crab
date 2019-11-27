@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
 import { TabBar } from 'antd-mobile';
-import Myself from './myself/Myself';
-
-
+import Myself from './myself/Myself'
+import Home from '../components/Home'
 export default class AppTab extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          selectedTab: 'blueTab',
+            selectedTab: 'blueTab',
         };
     }
 
-    
+
     render() {
         return (
-            <div style={{position: 'fixed', height: '100%', width: '100%', top: 0 }}>
+            <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
                 <TabBar
                     unselectedTintColor="#949494"
                     tintColor="#3fcccb"
@@ -28,14 +27,16 @@ export default class AppTab extends Component {
                         icon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(dock_icons/2.svg) center center /  21px 21px no-repeat' }}
-                            />
+                            background: 'url(dock_icons/2.svg) center center /  21px 21px no-repeat'
+                        }}
+                        />
                         }
                         selectedIcon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(dock_icons/2.svg) center center /  21px 21px no-repeat' }}
-                            />
+                            background: 'url(dock_icons/2.svg) center center /  21px 21px no-repeat'
+                        }}
+                        />
                         }
                         selected={this.state.selectedTab === 'blueTab'}
                         onPress={() => {
@@ -45,21 +46,23 @@ export default class AppTab extends Component {
                         }}
                         data-seed="logId"
                     >
-                        Home
+                        <Home />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(dock_icons/1.svg) center center /  21px 21px no-repeat' }}
+                                background: 'url(dock_icons/1.svg) center center /  21px 21px no-repeat'
+                            }}
                             />
                         }
                         selectedIcon={
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(dock_icons/1.svg) center center /  21px 21px no-repeat' }}
+                                background: 'url(dock_icons/1.svg) center center /  21px 21px no-repeat'
+                            }}
                             />
                         }
                         title="找房"
@@ -79,14 +82,16 @@ export default class AppTab extends Component {
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(dock_icons/3.svg) center center /  21px 21px no-repeat' }}
+                                background: 'url(dock_icons/3.svg) center center /  21px 21px no-repeat'
+                            }}
                             />
                         }
                         selectedIcon={
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(dock_icons/3.svg) center center /  21px 21px no-repeat' }}
+                                background: 'url(dock_icons/3.svg) center center /  21px 21px no-repeat'
+                            }}
                             />
                         }
                         title="消息"
