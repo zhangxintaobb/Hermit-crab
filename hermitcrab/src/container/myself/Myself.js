@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Flex, WhiteSpace, WingBlank, Switch } from 'antd-mobile';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Flex, WhiteSpace, WingBlank} from 'antd-mobile';
+import { BrowserRouter as Router, Route, Link, Switch  } from 'react-router-dom'
 
 export default class Myself extends Component {
     render() {
