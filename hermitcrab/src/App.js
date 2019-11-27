@@ -1,12 +1,19 @@
 import React from 'react';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
+import {Link, Switch} from 'react-router-dom';
 import './App.css';
 import AppTab from './container/AppTab'
-import Phone_Register from './container/registration/js/Phone_Register';
+import CityList from './components/CityList';
 
 function App() {
   return (
     <div>
-      <Phone_Register />
+      <Router>
+        <Switch>
+          <Route path='/' component={AppTab} exact/>
+          <Route path='/citylist' component={CityList} />
+        </Switch>
+      </Router>
     </div>
   );
 }
