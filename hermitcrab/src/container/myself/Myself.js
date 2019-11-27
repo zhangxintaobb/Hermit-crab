@@ -1,0 +1,134 @@
+import React, { Component } from 'react'
+import { Flex, WhiteSpace, WingBlank, Switch } from 'antd-mobile';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
+export default class Myself extends Component {
+    render() {
+        return (
+            <Router>
+                <div style={{
+                    backgroundImage: 'url(zxt_image/2.jpg)', width: '100%', height: '100%', backgroundSize: 'cover',
+                    filter: 'alpha(opacity=50)', MozOpacity: '0.5', opacity: '0.8'
+                }}>
+                    {/* 头部 */}
+                    <div className="flex-container" style={{ paddingTop: '20%', marginBottom: '20%' }}>
+                        <Flex>
+                            <Flex.Item></Flex.Item>
+                            <Flex.Item style={{ textAlign: 'right' }}>
+                                <img src="zxt_image/1.JPG" style={{
+                                    width: '60px',
+                                    height: '60px',
+                                    borderRadius: '30px',
+                                    margin: '0 auto'
+                                }}></img>
+                            </Flex.Item>
+                            <Flex.Item><h4 style={{ display: 'inline-block' }}>1309526743</h4></Flex.Item>
+                            <Flex.Item></Flex.Item>
+                        </Flex>
+                    </div>
+                    {/* 内容 */}
+                    <WingBlank size='xl'>
+                        <div className="flex-container">
+                            {/* 个人信息 */}
+                            <Flex style={{ borderTop: '2px solid #8a8a8a' }}>
+                                <Flex.Item>
+                                    <WhiteSpace size="sm" />
+                                    <img src="zxt_image/个人信息.png"
+                                        style={{
+                                            width: '30px',
+                                            height: '30px',
+                                            position: 'relative',
+                                            top: '10px',
+                                            marginRight: '5px'
+                                        }} />
+                                    <Link to='/myself/person'>
+                                        <p style={{ color: 'white', display: 'inline-block' }}>个人信息</p>
+                                    </Link>
+                                    <WhiteSpace size="sm" />
+                                </Flex.Item>
+                            </Flex>
+                            {/* 我的收藏 */}
+                            <Flex style={{ borderTop: '2px solid #8a8a8a' }}>
+                                <Flex.Item>
+                                    <WhiteSpace size="sm" />
+                                    <img src="zxt_image/收藏.png"
+                                        style={{
+                                            width: '30px',
+                                            height: '30px',
+                                            position: 'relative',
+                                            top: '10px',
+                                            marginRight: '5px'
+                                        }} />
+                                    <Link to='/myself/collection'>
+                                        <p style={{ color: 'white', display: 'inline-block' }}>我的收藏</p>
+                                    </Link>
+                                    <WhiteSpace size="sm" />
+                                </Flex.Item>
+                            </Flex>
+                            {/* 浏览记录 */}
+                            <Flex style={{ borderTop: '2px solid #8a8a8a' }}>
+                                <Flex.Item>
+                                    <WhiteSpace size="sm" />
+                                    <img src="zxt_image/记录.png"
+                                        style={{
+                                            width: '30px',
+                                            height: '30px',
+                                            position: 'relative',
+                                            top: '10px',
+                                            marginRight: '5px'
+                                        }} />
+                                    <Link to='/myself/record'>
+                                        <p style={{ color: 'white', display: 'inline-block' }}>浏览记录</p>
+                                    </Link>
+                                    <WhiteSpace size="sm" />
+                                </Flex.Item>
+                            </Flex>
+                            {/* 租赁记录 */}
+                            <Flex style={{ borderTop: '2px solid #8a8a8a' }}>
+                                <Flex.Item>
+                                    <WhiteSpace size="sm" />
+                                    <img src="zxt_image/订单.png"
+                                        style={{
+                                            width: '30px',
+                                            height: '30px',
+                                            position: 'relative',
+                                            top: '10px',
+                                            marginRight: '5px'
+                                        }} />
+                                    <Link to='/myself/order'>
+                                        <p style={{ color: 'white', display: 'inline-block' }}>租赁记录</p>
+                                    </Link>
+                                    <WhiteSpace size="sm" />
+                                </Flex.Item>
+                            </Flex>
+                            {/* 我的消息 */}
+                            <Flex style={{ borderTop: '2px solid #8a8a8a', borderBottom: '2px solid #8a8a8a' }}>
+                                <Flex.Item>
+                                    <WhiteSpace size="sm" />
+                                    <img src="zxt_image/我的消息icon.png"
+                                        style={{
+                                            width: '30px',
+                                            height: '30px',
+                                            position: 'relative',
+                                            top: '10px',
+                                            marginRight: '5px'
+                                        }} />
+                                    <Link to='/myself/message'>
+                                        <p style={{ color: 'white', display: 'inline-block' }}>我的消息</p>
+                                    </Link>
+                                    <WhiteSpace size="sm" />
+                                </Flex.Item>
+                            </Flex>
+                        </div>
+                    </WingBlank>
+                </div>
+                <Switch>
+                    <Route path="/myself/person" />
+                    <Route path="/myself/collection" />
+                    <Route path="/myself/record" />
+                    <Route path="/myself/order" />
+                </Switch>
+            </Router>
+        )
+    }
+}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { TabBar } from 'antd-mobile';
+import Myself from './myself/Myself';
+
 
 export default class AppTab extends Component {
 
@@ -111,7 +113,7 @@ export default class AppTab extends Component {
                             });
                         }}
                     >
-                        我的
+                        <Myself />
                     </TabBar.Item>
                 </TabBar>
             </div>
