@@ -4,19 +4,19 @@
 <head>
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="../layui/css/layui.css">
 </head>
 
 <body style="background: url(/images/login_background.png) no-repeat 100% ;">
-  <h1><%= title %></h1>
   <div style="margin-left: 35%;">
-    <form method="POST">
-      <input style="margin-top: 150px;;width: 360px;height: 50px;font-size: 24px;" type="text" name="username"
-        placeholder="用户名" autocomplete="off" class="layui-input" />
+    <form method="POST" action="http://localhost/login">
+      <input style="margin-top: 150px;;width: 360px;height: 40px;font-size: 22px;border-radius: 10px;" type="text"
+        name="username" placeholder="用户名" autocomplete="off" class="layui-input" />
       <br />
-      <input style="margin-top: 50px;;width: 360px;height: 50px;font-size: 24px;" type="password" name="password"
-        placeholder="密码" autocomplete="off" class="layui-input" />
+      <input style="margin-top: 50px;;width: 360px;height: 40px;font-size: 22px;border-radius: 10px;" type="password"
+        name="password" placeholder="密码" autocomplete="off" class="layui-input" />
+      <button type="submit" class="login_btn">登&nbsp;&nbsp;&nbsp;录</button>
     </form>
-    <button class="layui-btn layui-btn-normal">123</button>
   </div>
 
 </body>
