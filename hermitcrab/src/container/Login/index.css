@@ -1,0 +1,157 @@
+
+.Logincolor {
+    background-color: white;
+    height: 600px;
+}
+.Top {
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+.second {
+    margin-right: 30px;
+    float: right;
+}
+.button01 {
+    font-weight: bolder;
+    color: rgb(22, 22, 21);
+    background-color:white;
+    border-color: white;
+    outline: none;
+    border: none;
+}
+.img1 {
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 1px solid black;
+    text-align: center;
+}
+.crab {
+    text-align: center;
+    font-weight: 900;
+    font-size: 0.8em
+}
+.login1 {
+    margin-top: 20px;
+
+}
+.login11 {
+    margin-top: 10px;
+}
+.login12 {
+    margin-top: 10px;
+}
+input {
+    width: 80%;
+    height: 40px;
+    margin-left: 50px;
+    display: block;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid grey;
+}
+.button1 {
+    margin-top: 20px;
+}
+.button11 {
+    font-size:15px;
+    height: 50px;
+    color: beige;
+    background-color: black;
+    border-color: black;
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+.click1 {
+    margin-top: 10px;
+    height: 50px;
+}
+.button2 {
+    margin-left: 30px;
+    margin-top: 10px;
+    float: left;
+    width: 100px;
+    height: 40px;
+}
+.button3 {
+    margin-right: 0px;
+    margin-top: 10px;
+    float:right;
+    width: 100px;
+    height: 40px;
+}
+.button21 {
+    color: rgba(31, 31, 236, 0.842);
+    background-color: white;
+    border-color: white;
+    outline: none;
+    border: none;
+    font-size: 0.8em
+}
+.button31 {
+    color: rgba(31, 31, 236, 0.842);
+    background-color: white;
+    border-color: white;
+    outline: none;
+    border: none;
+    font-size: 0.8em
+}
+.zhaofangTop {
+    height: 50px;
+    background-color: rgb(211, 197, 197);
+    width: 100%;
+}
+.zixishi01 {
+    color: black;
+    background-color: white;
+    /* border-color: black; */
+    outline: none;
+    border: none;
+    border-radius:7px;
+    width: 100px;
+    margin-left: 25px;
+    height: 40px; 
+    margin-top: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: "宋体";
+}
+.gongxiangbangong01 {
+    color: black;
+    background-color: rgb(211, 197, 197);
+    border-color: black;
+    outline: none;
+    /* border: none; */
+    border-radius:7px;
+    width: 100px;
+    float: right;
+    margin-right: 25px;
+    height: 40px; 
+    margin-top: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: "宋体";
+}
+.shaixuan {
+    height: 40px;
+    margin-top: 3px;
+    width: 100%;
+    border-bottom:1px solid grey;
+}
+.choose01 {
+    outline: none;
+    /* border: none; */
+    border-radius:4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: "宋体";
+    color: black;
+    background-color: white;
+    border-color:grey;
+    margin-top: 7px;
+    margin-left: 20px;
+
+}

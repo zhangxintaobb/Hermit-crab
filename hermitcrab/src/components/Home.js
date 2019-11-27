@@ -87,7 +87,7 @@ export default class Home extends Component {
                         <p>热门区域</p>
                         <div className='area_box'>
                             {this.state.area.map(val => (
-                                <a className='e_area'>{val}</a>
+                                <a key={val} className='e_area'>{val}</a>
                             ))}
                         </div>
                     </div>
@@ -112,7 +112,7 @@ export default class Home extends Component {
                         <p>猜你喜欢</p>
                         <div className='like_box'>
                             {this.state.room.map(val => (
-                                <div className='room_box'>
+                                <div key={val} className='room_box'>
                                     <img src={val.indexImage}/>
                                     <div className='mes_box'>
                                         <div className='mes_box_top'>
@@ -129,7 +129,10 @@ export default class Home extends Component {
                                 </div>
                             ))}
                             <div class='like_more'>
-                                <Button className='more_btn'>查看更多自习室/办公室信息</Button>
+                                <Link to=''>
+                                    <Button className='more_btn'>查看更多自习室/办公室信息</Button>
+                                </Link>
+                                
                             </div>
                         </div>
                     </div>
