@@ -45,6 +45,7 @@ export default class Myself extends Component {
                                         <p style={{ color: 'white', display: 'inline-block' }}>个人信息</p>
                                     </Link>
                                     <WhiteSpace size="sm" />
+                                    <br />
                                 </Flex.Item>
                             </Flex>
                             {/* 我的收藏 */}
@@ -63,6 +64,7 @@ export default class Myself extends Component {
                                         <p style={{ color: 'white', display: 'inline-block' }}>我的收藏</p>
                                     </Link>
                                     <WhiteSpace size="sm" />
+                                    <br />
                                 </Flex.Item>
                             </Flex>
                             {/* 浏览记录 */}
@@ -81,6 +83,7 @@ export default class Myself extends Component {
                                         <p style={{ color: 'white', display: 'inline-block' }}>浏览记录</p>
                                     </Link>
                                     <WhiteSpace size="sm" />
+                                    <br />
                                 </Flex.Item>
                             </Flex>
                             {/* 租赁记录 */}
@@ -99,6 +102,7 @@ export default class Myself extends Component {
                                         <p style={{ color: 'white', display: 'inline-block' }}>租赁记录</p>
                                     </Link>
                                     <WhiteSpace size="sm" />
+                                    <br />
                                 </Flex.Item>
                             </Flex>
                             {/* 我的消息 */}
@@ -117,6 +121,7 @@ export default class Myself extends Component {
                                         <p style={{ color: 'white', display: 'inline-block' }}>我的消息</p>
                                     </Link>
                                     <WhiteSpace size="sm" />
+                                    <br />
                                 </Flex.Item>
                             </Flex>
                         </div>
