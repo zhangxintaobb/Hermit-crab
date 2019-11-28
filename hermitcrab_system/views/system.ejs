@@ -5,30 +5,105 @@
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel="stylesheet" href="../layui/css/layui.css">
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+  </script>
 </head>
 
-<body style="background: url(/images/login_background.png) no-repeat 100% ;">
-    <ul class="layui-nav layui-nav-tree" lay-filter="test">
-        <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-          <li class="layui-nav-item layui-nav-itemed">
-            <a href="javascript:;">默认展开</a>
-            <dl class="layui-nav-child">
-              <dd><a href="javascript:;">选项1</a></dd>
-              <dd><a href="javascript:;">选项2</a></dd>
-              <dd><a href="">跳转</a></dd>
-            </dl>
-          </li>
-          <li class="layui-nav-item">
-            <a href="javascript:;">解决方案</a>
-            <dl class="layui-nav-child">
-              <dd><a href="">移动模块</a></dd>
-              <dd><a href="">后台模版</a></dd>
-              <dd><a href="">电商平台</a></dd>
-            </dl>
-          </li>
-          <li class="layui-nav-item"><a href="">产品</a></li>
-          <li class="layui-nav-item"><a href="">大数据</a></li>
+<body class='layui-layout-body' style="background: url(/images/login_background.png) no-repeat 100% ;">
+  <div class="layui-layout layui-layout-admin">
+    <!--1.头部区域-->
+    <div class="layui-header">
+      <div class="layui-logo">HermitCrab</div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+      <ul class="layui-nav layui-layout-left">
+      </ul>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+            贤心
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">退出</a></li>
+      </ul>
+    </div>
+    <!--2.左侧导航-->
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item"><a href="#/fd">房东管理</a></li>
+          <li class="layui-nav-item"><a href="#/user">用户管理</a></li>
+          <li class="layui-nav-item"><a href="#/dd">订单管理</a></li>
+          <li class="layui-nav-item"><a href="#/zxs">自习室管理</a></li>
+          <li class="layui-nav-item"><a href="#/bgs">办公室管理</a></li>
         </ul>
+      </div>
+    </div>
+    <!--3.右侧主体内容区-->
+    <div class="layui-body" id='sys-container'>
+      
+    </div>
+
+    <!--4.底部固定区域-->
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      © 勤时明月
+    </div>
+  </div>
+  </div>
 </body>
 <script src="../layui/layui.all.js"></script>
+<script type="text/javascript">
+  hashChangeHandler(); //已进入页面就根据hash值显示，而不是等onchnage事件触发后显示
+
+  window.onhashchange = hashChangeHandler;
+
+  function hashChangeHandler() {
+    var hash = window.location.hash;
+    var pathname = hash.substr(1);
+    console.log(pathname);
+
+    if (pathname === '/zxs') {
+      // $("#sys-container").load('index.ejs');
+      $.ajax({
+        type: "GET",
+        url: "./",
+        async: true,
+        success: function (data) {
+          console.log(data);
+          $('#sys-container').html(data);
+        }
+      });
+
+    } else if (pathname === '/my') {
+      $.ajax({
+        type: "get",
+        // url: "./my.html",
+        async: true,
+        data: '123456',
+        dataType: "text",
+        success: function (data) {
+          console.log(data);
+          $('#sys-contanier').html(data)
+        }
+      });
+    } else if (pathname === '/friend') {
+      $.ajax({
+        type: "get",
+        url: "./friend.html",
+        async: true,
+        success: function (data) {
+          console.log(data);
+          $('#contanier').html(data)
+        }
+      });
+    }
+  }
+</script>
+
 </html>
