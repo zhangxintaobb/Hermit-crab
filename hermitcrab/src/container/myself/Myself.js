@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Flex, WhiteSpace, WingBlank} from 'antd-mobile';
-import { BrowserRouter as Router, Route, Link, Switch  } from 'react-router-dom'
+import { HashRouter as Router, Route, Link, Switch  } from 'react-router-dom'
 
 export default class Myself extends Component {
     render() {
@@ -127,12 +127,6 @@ export default class Myself extends Component {
                         </div>
                     </WingBlank>
                 </div>
-                <Switch>
-                    <Route path="/myself/person" />
-                    <Route path="/myself/collection" />
-                    <Route path="/myself/record" />
-                    <Route path="/myself/order" />
-                </Switch>
             </Router>
         )
     }

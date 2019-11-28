@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { TabBar } from 'antd-mobile';
 import Myself from './myself/Myself'
 import Home from '../components/Home'
+import Login from './Login/Login';
+import Foundhouse from './Foundhouse/Foundhouse';
+import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 export default class AppTab extends Component {
 
     constructor(props) {
@@ -13,6 +16,7 @@ export default class AppTab extends Component {
 
 
     render() {
+        console.log(window.location)
         return (
             <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
                 <TabBar
@@ -75,7 +79,7 @@ export default class AppTab extends Component {
                         }}
                         data-seed="logId1"
                     >
-                        找房
+                        <Foundhouse />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -118,7 +122,12 @@ export default class AppTab extends Component {
                             });
                         }}
                     >
-                        <Myself />
+                      <Router>
+                          <div>
+                              <Route exact path='/' component={Login} />
+                              <Route path='/login' component={Myself} />
+                          </div>
+                      </Router>
                     </TabBar.Item>
                 </TabBar>
             </div>
