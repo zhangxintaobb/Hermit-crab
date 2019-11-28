@@ -46,7 +46,7 @@
     </div>
     <!--3.右侧主体内容区-->
     <div class="layui-body" id='sys-container'>
-      
+
     </div>
 
     <!--4.底部固定区域-->
@@ -68,11 +68,10 @@
     var pathname = hash.substr(1);
     console.log(pathname);
 
-    if (pathname === '/zxs') {
-      // $("#sys-container").load('index.ejs');
+    if (pathname === '/fd') {
       $.ajax({
         type: "GET",
-        url: "./",
+        url: "./system/lanmanage",
         async: true,
         success: function (data) {
           console.log(data);
@@ -80,29 +79,47 @@
         }
       });
 
-    } else if (pathname === '/my') {
+    } else if (pathname === '/user') {
       $.ajax({
         type: "get",
-        // url: "./my.html",
-        async: true,
-        data: '123456',
-        dataType: "text",
-        success: function (data) {
-          console.log(data);
-          $('#sys-contanier').html(data)
-        }
-      });
-    } else if (pathname === '/friend') {
-      $.ajax({
-        type: "get",
-        url: "./friend.html",
+        url: "./system/usermanage",
         async: true,
         success: function (data) {
           console.log(data);
-          $('#contanier').html(data)
+          $('#sys-container').html(data)
         }
       });
-    }
+    } else if (pathname === '/dd') {
+      $.ajax({
+        type: "get",
+        url: "./system/ordermanage",
+        async: true,
+        success: function (data) {
+          console.log(data);
+          $('#sys-container').html(data)
+        }
+      });
+    } else if (pathname === '/zxs') {
+      $.ajax({
+        type: "get",
+        url: "./system/srmanage",
+        async: true,
+        success: function (data) {
+          console.log(data);
+          $('#sys-container').html(data)
+        }
+      });
+    } else if (pathname === '/bgs') {
+      $.ajax({
+        type: "get",
+        url: "./system/officemanage",
+        async: true,
+        success: function (data) {
+          console.log(data);
+          $('#sys-container').html(data)
+        }
+      });
+    } 
   }
 </script>
 
