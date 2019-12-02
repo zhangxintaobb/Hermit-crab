@@ -50,4 +50,30 @@ router.get('/getdata/user', function (req, res, next) {
   )
 });
 
+router.get('/getdata/lan', function (req, res, next) {
+  res.json(
+    {
+      "code": 0,
+      "msg": "",
+      "count": 1000,
+      "data": [
+        {
+          "id": 1,
+          "name": "张三",
+          "sex": "男",
+          "phone": "13365875369",
+          "number": 5
+        },
+        {
+          "id": 2,
+          "name": "李四",
+          "sex": "男",
+          "phone": "13365875369",
+          "number": 2
+        }
+      ]
+    }
+  )
+});
+
 module.exports = router;
