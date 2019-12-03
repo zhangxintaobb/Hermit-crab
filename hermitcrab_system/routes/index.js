@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var data = require('../data.json');
+var mysql = require('mysql');
+var dbconfig = require('../config/dbconfig.json');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -9,71 +10,65 @@ router.get('/', function (req, res, next) {
 
 router.post('/system', function (req, res, next) {
   var i = 0;
-  while (i < data.users.length) {
-    if (data.users[i].username === req.body.username && data.users[i].password === req.body.pwd) {
-      console.log("success");
-      res.render('system', {
-        title: 'System'
-      });
-      break;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from manager", function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      while (i < result.length) {
+        if (result[i].username === req.body.username && result[i].pwd === req.body.pwd) {
+          console.log("success");
+          res.render('system', {
+            title: 'System'
+          });
+          break;
+        }
+        i++;
+      }
+      if (i == result.length) {
+        res.end("login error");
+      }
     }
-    i++;
-  }
-  if (i == data.users.length) {
-    res.end("login error");
-  }
+  });
 })
 
 router.get('/getdata/user', function (req, res, next) {
-  res.json(
-    {
-      "code": 0,
-      "msg": "",
-      "count": 1000,
-      "data": [
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from userinfo", function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
         {
-          "id": 1,
-          "username": "user-00",
-          "sex": "女",
-          "phone": "13365875369",
-          "address": "河北省石家庄市裕华区河北师范大学"
-        },
-        {
-          "id": 2,
-          "username": "user-01",
-          "sex": "男",
-          "phone": "13365875369",
-          "address": "河北省石家庄市裕华区河北师范大学"
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
         }
-      ]
+      )
     }
-  )
+  });
 });
 
 router.get('/getdata/lan', function (req, res, next) {
-  res.json(
-    {
-      "code": 0,
-      "msg": "",
-      "count": 1000,
-      "data": [
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from fdinfo", function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
         {
-          "id": 1,
-          "name": "张三",
-          "sex": "男",
-          "phone": "13365875369",
-          "number": 5
-        },
-        {
-          "id": 2,
-          "name": "李四",
-          "sex": "男",
-          "phone": "13365875369",
-          "number": 2
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
         }
-      ]
+      )
     }
-  )
+  });
 });
 
 module.exports = router;
