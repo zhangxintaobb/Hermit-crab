@@ -17,8 +17,6 @@
   <div class="fd_body">
     <div class="fd_head">
       <div class="fd_head_title">用户管理</div>
-      <div class="fd_head_tj"><span style="font-weight: bolder;cursor: pointer;">+ </span><span
-          style="font-size: 14px;font-weight: bold;cursor: pointer;"> 新建用户 </span></div>
     </div>
     <table class="layui-table" lay-data="{height: 'full-200', cellMinWidth: 80, page: true, 
     url:'/getdata/user', 
@@ -26,7 +24,7 @@
       <thead>
         <tr>
           <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-          <th lay-data="{field:'id', width:200, sort: true, fixed: true}">ID</th>
+          <th lay-data="{field:'userid', width:200, sort: true, fixed: true}">ID</th>
           <th lay-data="{field:'username', width:200}">用户名</th>
           <th lay-data="{field:'sex', width:200, sort: true}">性别</th>
           <th lay-data="{field:'phone', width:200}">电话</th>
@@ -45,6 +43,7 @@
 
   
   <script src="../layui/layui.all.js" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script>
     layui.use('table', function () {
       var table = layui.table;
@@ -59,8 +58,10 @@
           layer.alert(JSON.stringify(data))
         } else if (obj.event === 'del') {
           layer.confirm('真的删除行么', function (index) {
+            var userId = obj.data.userid;
             obj.del();
             layer.close(index);
+            $.get("http://localhost:3000/system/deluser?userid="+userId);
           });
         } else if (obj.event === 'edit') {
           layer.msg('ID：' + data.id + ' 的编辑操作');

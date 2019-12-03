@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
+var dbconfig = require('../config/dbconfig.json');
 
 /* GET home page. */
 router.get('/system', function(req, res, next) {
@@ -73,6 +75,28 @@ router.post('/system/addzxs', function (req, res, next) {
 
 router.post('/system/addbgs', function (req, res, next) {
   console.log(req.body);
+})
+
+router.get('/system/deluser', function(req, res, next) {
+  let userId = req.query.userid;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from userinfo where userid=?", [userId], function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+  });
+})
+
+router.get('/system/delfd', function(req, res, next) {
+  let Id = req.query.id;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from fdinfo where id=?", [Id], function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+  });
 })
 
 module.exports = router;
