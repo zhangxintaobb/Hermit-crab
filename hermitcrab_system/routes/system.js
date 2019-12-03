@@ -30,6 +30,15 @@ router.get('/system/fd_addlist', function(req, res, next) {
   res.render('fd_addlist', { title: 'System' });
 });
 
+router.get('/system/zxs_addlist', function(req, res, next) {
+  res.render('zxs_addlist', { title: 'System' });
+});
+
+router.get('/system/bgs_addlist', function(req, res, next) {
+  res.render('bgs_addlist', { title: 'System' });
+});
+
+
 router.get('/userlist', function(req, res, next) {
   res.json(
     {
@@ -55,6 +64,14 @@ router.get('/userlist', function(req, res, next) {
 });
 
 router.post('/system/addfd', function (req, res, next) {
+  console.log(req.body);
+})
+
+router.post('/system/addzxs', function (req, res, next) {
+  console.log(req.body);
+})
+
+router.post('/system/addbgs', function (req, res, next) {
   console.log(req.body);
 })
 
