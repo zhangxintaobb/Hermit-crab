@@ -26,5 +26,36 @@ router.get('/system/srmanage', function(req, res, next) {
   res.render('srmanage', { title: 'System' });
 });
 
+router.get('/system/fd_addlist', function(req, res, next) {
+  res.render('fd_addlist', { title: 'System' });
+});
+
+router.get('/userlist', function(req, res, next) {
+  res.json(
+    {
+      "code":0,
+      "msg":"",
+      "count":1000,
+      "data":[
+        {
+          "id":10000,
+          "username":"user-0",
+          "sex":"女",
+          "city":"城市-0",
+          "sign":"签名-0",
+          "experience":255,
+          "logins":24,
+          "wealth":82830700,
+          "classify":"作家",
+          "score":57
+        }
+      ]
+    }
+  );
+});
+
+router.post('/system/addfd', function (req, res, next) {
+  console.log(req.body);
+})
 
 module.exports = router;
