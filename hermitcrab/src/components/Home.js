@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { Link, Switch } from 'react-router-dom';
 import './Home.css'
 import CityList from './CityList'
