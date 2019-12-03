@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.css'
+import './login.css'
 import {useEffect,useState} from 'react'
 import {HashRouter as Router,Route,Link} from 'react-router-dom'
 import Myself from '../myself/Myself';

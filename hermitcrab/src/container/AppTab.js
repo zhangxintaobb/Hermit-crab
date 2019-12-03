@@ -4,6 +4,7 @@ import Myself from './myself/Myself'
 import Home from '../components/Home'
 import Login from './Login/Login';
 import Foundhouse from './Foundhouse/Foundhouse';
+// import Information from './Foundhouse/Information';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 export default class AppTab extends Component {
 
@@ -126,6 +127,7 @@ export default class AppTab extends Component {
                           <div>
                               <Route exact path='/' component={Login} />
                               <Route path='/login' component={Myself} />
+                              
                           </div>
                       </Router>
                     </TabBar.Item>
