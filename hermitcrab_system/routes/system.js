@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
+var dbconfig = require('../config/dbconfig.json');
 
 /* GET home page. */
 router.get('/system', function(req, res, next) {
@@ -26,6 +28,19 @@ router.get('/system/srmanage', function(req, res, next) {
   res.render('srmanage', { title: 'System' });
 });
 
+router.get('/system/fd_addlist', function(req, res, next) {
+  res.render('fd_addlist', { title: 'System' });
+});
+
+router.get('/system/zxs_addlist', function(req, res, next) {
+  res.render('zxs_addlist', { title: 'System' });
+});
+
+router.get('/system/bgs_addlist', function(req, res, next) {
+  res.render('bgs_addlist', { title: 'System' });
+});
+
+
 router.get('/userlist', function(req, res, next) {
   res.json(
     {
@@ -49,5 +64,39 @@ router.get('/userlist', function(req, res, next) {
     }
   );
 });
+
+router.post('/system/addfd', function (req, res, next) {
+  console.log(req.body);
+})
+
+router.post('/system/addzxs', function (req, res, next) {
+  console.log(req.body);
+})
+
+router.post('/system/addbgs', function (req, res, next) {
+  console.log(req.body);
+})
+
+router.get('/system/deluser', function(req, res, next) {
+  let userId = req.query.userid;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from userinfo where userid=?", [userId], function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+  });
+})
+
+router.get('/system/delfd', function(req, res, next) {
+  let Id = req.query.id;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from fdinfo where id=?", [Id], function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+  });
+})
 
 module.exports = router;

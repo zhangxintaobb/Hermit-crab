@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title><%= title %></title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/lanmanage.css' />
   <link rel="stylesheet" href="../layui/css/layui.css">
 </head>
 
 <body>
-    <div>自习室管理</div>
+  <div class="fd_body">
+    <div class="fd_head">
+      <div class="fd_head_title">自习室</div>
+      <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal"
+        style="margin-top: 15px;margin-left: 50px;">＋新建自习室</button>
+    </div>
+  </div>
 </body>
+<script src="../layui/layui.all.js" charset="utf-8"></script>
+<script>
+  var active = {
+    offset: function () {
+      layer.open({
+        type: 2
+        , title: '新建自习室'
+        , content: 'http://localhost:3000/system/zxs_addlist'
+        , area: ['500px', '480px']
+        , shade: 0.5 //遮罩半透明
+      });
+    }
+  };
+
+  $('.layui-btn').on('click', function () {
+    var othis = $(this), method = othis.data('method');
+    active[method] ? active[method].call(this, othis) : '';
+  });
+</script>
 
 </html>
