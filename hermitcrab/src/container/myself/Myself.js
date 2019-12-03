@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import { Flex, WhiteSpace, WingBlank} from 'antd-mobile';
+import { Flex, WhiteSpace, WingBlank,Button} from 'antd-mobile';
 import { HashRouter as Router, Route, Link, Switch  } from 'react-router-dom'
 
 export default class Myself extends Component {
+    //退出登录
+  warning = () => {
+    window.location.href = "/"
+  }
+
     render() {
         return (
             <Router>
@@ -106,7 +111,8 @@ export default class Myself extends Component {
                                 </Flex.Item>
                             </Flex>
                             {/* 我的消息 */}
-                            <Flex style={{ borderTop: '2px solid #8a8a8a', borderBottom: '2px solid #8a8a8a' }}>
+                            <Flex style={{ borderTop: '2px solid #8a8a8a', 
+                            borderBottom: '2px solid #8a8a8a' }}>
                                 <Flex.Item>
                                     <WhiteSpace size="sm" />
                                     <img src="zxt_image/我的消息icon.png"
@@ -122,6 +128,11 @@ export default class Myself extends Component {
                                     </Link>
                                     <WhiteSpace size="sm" />
                                     <br />
+                                </Flex.Item>
+                            </Flex>
+                            <Flex >
+                                <Flex.Item>
+                                    <Button type="warning" onClick={() => { this.warning() }}>退出登录</Button><WhiteSpace />
                                 </Flex.Item>
                             </Flex>
                         </div>
