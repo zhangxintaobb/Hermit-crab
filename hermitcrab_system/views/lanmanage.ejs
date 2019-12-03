@@ -59,8 +59,10 @@
           layer.alert(JSON.stringify(data))
         } else if (obj.event === 'del') {
           layer.confirm('真的删除行么', function (index) {
+            var Id = obj.data.id;
             obj.del();
             layer.close(index);
+            $.get("http://localhost:3000/system/delfd?id="+Id);
           });
         } else if (obj.event === 'edit') {
           layer.msg('ID：' + data.id + ' 的编辑操作');

@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
+var dbconfig = require('../config/dbconfig.json');
 
 /* GET home page. */
 router.get('/system', function(req, res, next) {
@@ -30,32 +32,30 @@ router.get('/system/fd_addlist', function(req, res, next) {
   res.render('fd_addlist', { title: 'System' });
 });
 
-router.get('/userlist', function(req, res, next) {
-  res.json(
-    {
-      "code":0,
-      "msg":"",
-      "count":1000,
-      "data":[
-        {
-          "id":10000,
-          "username":"user-0",
-          "sex":"女",
-          "city":"城市-0",
-          "sign":"签名-0",
-          "experience":255,
-          "logins":24,
-          "wealth":82830700,
-          "classify":"作家",
-          "score":57
-        }
-      ]
-    }
-  );
-});
-
 router.post('/system/addfd', function (req, res, next) {
   console.log(req.body);
+})
+
+router.get('/system/deluser', function(req, res, next) {
+  let userId = req.query.userid;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from userinfo where userid=?", [userId], function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+  });
+})
+
+router.get('/system/delfd', function(req, res, next) {
+  let Id = req.query.id;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from fdinfo where id=?", [Id], function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+  });
 })
 
 module.exports = router;
