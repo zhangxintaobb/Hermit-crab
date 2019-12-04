@@ -8,7 +8,7 @@ export default function Login(props){
     const [pwd,setPwd]=useState("")
     // useEffect((e) => {
          function log(e){
-             console.log(window.location.hash="/login")
+             window.location.hash="/login"
         }
     // }, [])
   

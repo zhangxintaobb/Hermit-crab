@@ -7,6 +7,7 @@ import Foundhouse from './Foundhouse/Foundhouse';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 import Person from './myself/Person'
 import Collection from './myself/Collection';
+import Order from './myself/Order';
 export default class AppTab extends Component {
 
     constructor(props) {
@@ -129,7 +130,8 @@ export default class AppTab extends Component {
                               <Route exact path='/' component={Login} />
                               <Route path='/login' component={Myself} />
                               <Route path='/myself/person' component={Person} />
-                              <Route path='/myself/collection' component={Collection} />   
+                              <Route path='/myself/collection' component={Collection} />
+                              <Route path='/myself/order' component={Order} />   
                     </TabBar.Item>
                 </TabBar>
             </div>

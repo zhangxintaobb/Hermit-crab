@@ -19,6 +19,7 @@ router.post('/system', function (req, res, next) {
       while (i < result.length) {
         if (result[i].username === req.body.username && result[i].pwd === req.body.pwd) {
           console.log("success");
+          res.cookie('authorized', req.body.username);
           res.render('system', {
             title: 'System'
           });

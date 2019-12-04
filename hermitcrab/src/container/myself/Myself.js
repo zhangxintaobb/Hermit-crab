@@ -7,7 +7,6 @@ export default class Myself extends Component {
   warning = () => {
     window.location.href = "/"
   }
-
     render() {
         return (
             <Router>
@@ -72,7 +71,7 @@ export default class Myself extends Component {
                                     <br />
                                 </Flex.Item>
                             </Flex>
-                            {/* 浏览记录 */}
+                            {/* 我的评价 */}
                             <Flex style={{ borderTop: '2px solid #8a8a8a' }}>
                                 <Flex.Item>
                                     <WhiteSpace size="sm" />
@@ -85,7 +84,7 @@ export default class Myself extends Component {
                                             marginRight: '5px'
                                         }} />
                                     <Link to='/myself/record'>
-                                        <p style={{ color: 'white', display: 'inline-block' }}>浏览记录</p>
+                                        <p style={{ color: 'white', display: 'inline-block' }}>我的评价</p>
                                     </Link>
                                     <WhiteSpace size="sm" />
                                     <br />

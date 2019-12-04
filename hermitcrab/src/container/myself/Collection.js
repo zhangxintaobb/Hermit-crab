@@ -1,32 +1,37 @@
 import React, { Component } from 'react'
 import { NavBar, Icon, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
 const collection = [{
-    img: '/zxt_image/1.JPG',
+    id:0,
+    img: '/zxt_image/room1.jpg',
     name: '师大自习室',
     price: 100,
     address: '河北师范大学西门科技楼',
     type: '自习室'
 }, {
-    img: '/zxt_image/1.JPG',
-    name: '师大自习室',
+    id:1,
+    img: '/zxt_image/room2.jpg',
+    name: '国大自习室',
     price: 200,
     address: '河北师范大学西门科技楼',
     type: '自习室'
 }, {
-    img: '/zxt_image/1.JPG',
-    name: '师大自习室',
+    id:2,
+    img: '/zxt_image/room3.jpg',
+    name: '北大自习室',
     price: 300,
     address: '河北师范大学西门科技楼',
     type: '自习室'
 }, {
-    img: '/zxt_image/1.JPG',
-    name: '师大自习室',
+    id:3,
+    img: '/zxt_image/room4.jpg',
+    name: '阿猫自习室',
     price: 400,
     address: '河北师范大学西门科技楼',
     type: '自习室'
 }, {
-    img: '/zxt_image/1.JPG',
-    name: '师大自习室',
+    id:4,
+    img: '/zxt_image/room5.jpg',
+    name: '阿狗自习室',
     price: 500,
     address: '河北师范大学西门科技楼',
     type: '自习室'
@@ -35,6 +40,7 @@ export default class extends Component {
     constructor() {
         super()
         this.state = {
+            data:collection,
             currentIndex: 0,
         }
     }
@@ -53,11 +59,13 @@ export default class extends Component {
             })
         }
     }
-    delete = () => {
-        console.log("123")
+    delete = (item) => {
+        console.log(item.item.id)
+        
     }
 
     render() {
+        console.log(this.state.data)
         return (
             <div>
                 {/* 头部 */}
@@ -71,11 +79,11 @@ export default class extends Component {
                     style={{borderBottom:'1px solid rgb(123, 137, 143)'}}
                 >我的收藏</NavBar>
                 <div className="flex-container">
-                    {collection.map((item) => (
-                        <div>
+                    {this.state.data.map((item) => (
+                        <div key={item.id}>
                             <Flex>
                                 {/* 删除小块 */}
-                                <div ref="delete" onClick={() => { this.delete() }}
+                                <div ref="delete" onClick={() => { this.delete({item}) }}
                                     style={{
                                         width: '40px',
                                         height: '150px',
@@ -104,7 +112,7 @@ export default class extends Component {
                                         padding: '15px',
                                         backgroundColor: 'white'
                                     }}>
-                                        <img style={{ height: '72px', marginRight: '15px' }} src={item.img} alt="" />
+                                        <img style={{width:'72px', height: '72px', marginRight: '15px' }} src={item.img} alt="" />
                                         <div style={{ lineHeight: 1 }}>
                                             <div style={{ marginBottom: '14px', fontWeight: 'bold' }}>{item.name}</div>
                                             <div style={{ marginBottom: '12px' }}>地址：{item.address}</div>
