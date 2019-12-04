@@ -10,6 +10,9 @@ export default function Login(props){
          function log(e){
              window.location.hash="/login"
         }
+        function register(e){
+            window.location.hash='/register'
+        }
     // }, [])
   
         return(
@@ -38,7 +41,7 @@ export default function Login(props){
                         <button  className="button21">忘记密码？</button>
                     </div>
                     <div class="button3">
-                        <button  className="button31">立即注册</button>
+                        <button  className="button31" onClick={(e)=>{register()}}>立即注册</button>
                     </div>
                 </div>
             </div>

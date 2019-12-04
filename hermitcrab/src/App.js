@@ -17,7 +17,7 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route path='/' component={AppTab} exact/>
+          
           <Route path='/citylist' component={CityList} />
           <Route path='/study-room-infor' component={Information} />
           <Route path='/userword' component={Userword} />
@@ -27,6 +27,7 @@ function App() {
           <Route path='/form' component={Form} />
           <Route path='/prise' component={Prise} />
           <Route path='/foundroom' component={Foundroom} />
+          <Route path='/' component={AppTab} />
         </Switch>
       </Router>
     </div>
