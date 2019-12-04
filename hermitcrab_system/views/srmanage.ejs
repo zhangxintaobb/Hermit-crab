@@ -76,7 +76,7 @@
         });
       } else if (obj.event === 'del') {
         layer.confirm('真的删除行么', function (index) {
-          var Id = obj.data.id;
+          var Id = obj.data.srid;
           obj.del();
           layer.close(index);
           $.get("http://localhost:3000/system/delsr?id=" + Id);

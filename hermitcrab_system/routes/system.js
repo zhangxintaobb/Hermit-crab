@@ -137,4 +137,26 @@ router.get('/system/delfd', function (req, res, next) {
   });
 })
 
+router.get('/system/delsr', function (req, res, next) {
+  let Id = req.query.id;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from srinfo where srid=?", [Id], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+})
+
+router.get('/system/deloffice', function (req, res, next) {
+  let Id = req.query.id;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from officeinfo where officeid=?", [Id], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+})
+
 module.exports = router;
