@@ -1,32 +1,32 @@
 import React, { Component } from 'react'
 import { NavBar, Icon, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
 const collection = [{
-    img: '/zxt_image/1.JPG',
+    img: '/zxt_image/room1.jpg',
     name: '师大自习室',
     price: 100,
     address: '河北师范大学西门科技楼',
     type: '自习室'
 }, {
-    img: '/zxt_image/1.JPG',
-    name: '师大自习室',
+    img: '/zxt_image/room2.jpg',
+    name: '国大自习室',
     price: 200,
     address: '河北师范大学西门科技楼',
     type: '自习室'
 }, {
-    img: '/zxt_image/1.JPG',
-    name: '师大自习室',
+    img: '/zxt_image/room3.jpg',
+    name: '北大自习室',
     price: 300,
     address: '河北师范大学西门科技楼',
     type: '自习室'
 }, {
-    img: '/zxt_image/1.JPG',
-    name: '师大自习室',
+    img: '/zxt_image/room4.jpg',
+    name: '阿猫自习室',
     price: 400,
     address: '河北师范大学西门科技楼',
     type: '自习室'
 }, {
-    img: '/zxt_image/1.JPG',
-    name: '师大自习室',
+    img: '/zxt_image/room5.jpg',
+    name: '阿狗自习室',
     price: 500,
     address: '河北师范大学西门科技楼',
     type: '自习室'
@@ -104,7 +104,7 @@ export default class extends Component {
                                         padding: '15px',
                                         backgroundColor: 'white'
                                     }}>
-                                        <img style={{ height: '72px', marginRight: '15px' }} src={item.img} alt="" />
+                                        <img style={{width:'72px', height: '72px', marginRight: '15px' }} src={item.img} alt="" />
                                         <div style={{ lineHeight: 1 }}>
                                             <div style={{ marginBottom: '14px', fontWeight: 'bold' }}>{item.name}</div>
                                             <div style={{ marginBottom: '12px' }}>地址：{item.address}</div>

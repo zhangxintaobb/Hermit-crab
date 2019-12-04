@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom';
+import {HashRouter as Router,Route,Link,Switch} from 'react-router-dom';
 import './App.css';
 import AppTab from './container/AppTab'
 import CityList from './components/CityList';
@@ -9,8 +9,8 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route path='/' component={AppTab} exact/>
-          <Route path='/citylist' component={CityList} />
+          <Route  path='/citylist' component={CityList} />
+          <Route path='/' component={AppTab} />
         </Switch>
       </Router>
     </div>
