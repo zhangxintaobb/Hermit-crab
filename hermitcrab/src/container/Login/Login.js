@@ -22,7 +22,7 @@ export default function Login(props){
                     <button  className="button01">取消</button>
                 </div>
                 <div className="img1">
-                    <img className="img11" src="" alt="头像" title="头像" />
+                    <img className="img11" src="q_images/logo001.jpg" alt="头像" title="头像" />
                 </div>
                 <div className="crab"><p>寄居蟹</p></div>
                 <div className="login1">

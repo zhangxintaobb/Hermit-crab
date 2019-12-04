@@ -25,8 +25,13 @@
     width: 100px;
     margin: 0 auto;
     margin-top: 50px;
-    border: 1px solid black;
+    border: 1px solid white;
     text-align: center;
+}
+.img11 {
+    height: 100px;
+    width: 100px;
+
 }
 .crab {
     text-align: center;
@@ -194,8 +199,8 @@ input {
     border-bottom: 1px solid grey;
 }
 .pic01 {
-    margin-top: 30px;
-    margin-left: 20px;
+    margin-top: 6px;
+    margin-left: 10px;
     float: left;
 }
 .but01 {
@@ -215,5 +220,15 @@ input {
 .txt01 {
     float: right;
     margin-right: 85px;
+    margin-top: 10px;
+}
+.txt03 {
+    float: right;
+    margin-right: 55px;
+    margin-top: 10px;
+}
+.txt003 {
+    float: left;
+    margin-left: 15px;
     margin-top: 10px;
 }

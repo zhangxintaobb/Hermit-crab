@@ -1,21 +1,8 @@
 import React, { Component } from 'react'
 import './information.css'
 import ReactDOM from 'react-dom';
-import {Link} from 'react-router-dom';
+import {Link,Route,Router} from 'react-router-dom';
 
-// export default class Prise extends Component {
-//     render() {
-//         return (
-//             <div>
-//                 <div className="topExit animate-route">
-//                     <Link to='/'>
-//                         <button className="exit1">返回</button>
-//                     </Link>
-//                 </div>
-//             </div>
-//         )
-//     }
-// }
 export default class Prise extends React.Component {
     constructor(props) {
         super(props);
