@@ -23,7 +23,19 @@ export default function Foundroom(){
                         }}></img>
                     </div>
                     <div className="but01">
-                        <button className="but001">办公室</button>
+                        <button className="but001">办公室A</button>
+                    </div>
+                    <div className="txt03"><p>蜂巢办公室合租</p></div>
+                </div>
+                <div className="room01">
+                    <div className="pic01">
+                        <img src="q_images/office03.jpg" style={{
+                            height:'120px',
+                            width: '200px',
+                        }}></img>
+                    </div>
+                    <div className="but01">
+                        <button className="but001">办公室B</button>
                     </div>
                     <div className="txt03"><p>蜂巢办公室合租</p></div>
                 </div>
@@ -37,7 +49,7 @@ export default function Foundroom(){
                     <div className="but01">
                         <button className="but001">办公室</button>
                     </div>
-                    <div className="txt03"><p>包间</p></div>
+                    <div className="txt003"><p>包间</p></div>
                 </div>
             </div>
         </div>
