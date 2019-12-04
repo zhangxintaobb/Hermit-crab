@@ -9,6 +9,7 @@ import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 import Person from './myself/Person'
 import Collection from './myself/Collection';
 import Order from './myself/Order';
+import Phone_Register from './registration/js/Phone_Register';
 export default class AppTab extends Component {
 
     constructor(props) {
@@ -20,7 +21,6 @@ export default class AppTab extends Component {
 
 
     render() {
-        console.log(window.location)
         return (
             <Router>
             <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
@@ -130,9 +130,11 @@ export default class AppTab extends Component {
                 
                               <Route exact path='/' component={Login} />
                               <Route path='/login' component={Myself} />
+                              <Route path='/register' component={Phone_Register} />
                               <Route path='/myself/person' component={Person} />
                               <Route path='/myself/collection' component={Collection} />
-                              <Route path='/myself/order' component={Order} />   
+                              <Route path='/myself/order' component={Order} />
+
                     </TabBar.Item>
                 </TabBar>
             </div>
