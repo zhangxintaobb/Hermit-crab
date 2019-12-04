@@ -4,8 +4,33 @@ import { HashRouter as Router, Route, Link, Switch  } from 'react-router-dom'
 
 export default class Myself extends Component {
     //退出登录
+    constructor(){
+        super()
+        this.state={
+            img:'./zxt_image/1.JPG',
+            phone:'15960266038'
+        }
+    }
   warning = () => {
     window.location.href = "/"
+  }
+  componentDidMount(){
+    const data=this.props.idx;
+    const id=this.props.id
+    console.log(data);
+    if(id=="person"){
+    
+    this.setState({
+        img:data.files[0].url,
+        phone:data.phoneNumber
+    })}
+    
+    // else{
+    // console.log(data.idx.files.url)
+    // this.setState({
+    //     img:data.idx.files[0].url,
+    //     phone:data.idx.phoneNumber
+    // })}
   }
     render() {
         return (
@@ -19,14 +44,14 @@ export default class Myself extends Component {
                         <Flex>
                             <Flex.Item></Flex.Item>
                             <Flex.Item style={{ textAlign: 'right' }}>
-                                <img src="zxt_image/1.JPG" style={{
+                                <img src={this.state.img} style={{
                                     width: '60px',
                                     height: '60px',
                                     borderRadius: '30px',
                                     margin: '0 auto'
                                 }}></img>
                             </Flex.Item>
-                            <Flex.Item><h4 style={{ display: 'inline-block' }}>1309526743</h4></Flex.Item>
+                            <Flex.Item><h4 style={{ display: 'inline-block' }}>{this.state.phone}</h4></Flex.Item>
                             <Flex.Item></Flex.Item>
                         </Flex>
                     </div>

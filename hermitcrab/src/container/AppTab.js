@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component,Space } from 'react'
 import { TabBar } from 'antd-mobile';
 import Myself from './myself/Myself'
 import Home from '../components/Home'
@@ -6,24 +6,36 @@ import Login from './Login/Login';
 import Foundhouse from './Foundhouse/Foundhouse';
 // import Information from './Foundhouse/Information';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom'
-import Person from './myself/Person'
-import Collection from './myself/Collection';
-import Order from './myself/Order';
+
 import Phone_Register from './registration/js/Phone_Register';
 import Foundroom from './Foundhouse/Foundroom'
 export default class AppTab extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor(props,context) {
+        super(props,context);
         this.state = {
+            id:"",
             selectedTab: 'blueTab',
         };
     }
+    componentDidMount(){
+        const link=this.props.location.state;
+        console.log(link)
+        if(link==undefined){
 
+        }
+        else {
+
+            this.setState({
+                selectedTab:'yellowTab',
+                id:link.id
+            })
+        }
+    }
 
     render() {
         return (
-            <Router>
+            <Router  >
             <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
                 <TabBar
                     unselectedTintColor="#949494"
@@ -86,8 +98,9 @@ export default class AppTab extends Component {
                         }}
                         data-seed="logId1"
                     >
-                        <Route exact path="/" component={Foundhouse} />
-                        <Route path='/foundroom' component={Foundroom} />
+                        
+                        <Route exact path="/login/" component={Foundhouse} />
+                        <Route path='/login/foundroom' component={Foundroom} />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -132,11 +145,8 @@ export default class AppTab extends Component {
                     >
                 
                               <Route exact path='/' component={Login} />
-                              <Route path='/login' component={Myself} />
+                              <Route path='/login' render={() => (<Myself idx={this.props.location.state} id={this.state.id}/>)}/>
                               <Route path='/register' component={Phone_Register} />
-                              <Route path='/myself/person' component={Person} />
-                              <Route path='/myself/collection' component={Collection} />
-                              <Route path='/myself/order' component={Order} />
 
                     </TabBar.Item>
                 </TabBar>

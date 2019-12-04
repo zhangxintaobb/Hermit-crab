@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, NavBar, Icon, Flex, WhiteSpace, WingBlank, List } from 'antd-mobile';
-
+import {Redirect} from "react-router-dom"
 var order = [
     {
         img: '/zxt_image/room2.jpg',
@@ -18,6 +18,14 @@ var order = [
     }
 ]
 export default class Order extends Component {
+    constructor(){
+        super()
+        this.state={
+            id:'order',
+          link:"4",
+          back:false
+        }
+      }
     pay = () => {
         window.location.href="#/pay"
     }
@@ -25,12 +33,20 @@ export default class Order extends Component {
         window.location.hash='/myself/comment'
     }
     render() {
+        if(this.state.back){
+            return (<Redirect to={{
+              pathname:'/login',
+              state:this.state
+            }} />)
+          }
         return (
             <div>
                 <NavBar
                     mode="light"
                     icon={<Icon type="left" />}
-                    onLeftClick={() => { window.location.hash = "/login" }}
+                    onLeftClick={() => {this.setState({
+                        back:true
+                    }) }}
                 >租赁记录</NavBar>
                 {order.map(item => (
                     <div style={{ borderRadius: '20px', width: '100%', backgroundColor: 'white' }}>

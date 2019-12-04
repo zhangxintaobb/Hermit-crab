@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter as Router,Route,Link,Switch} from 'react-router-dom';
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import AppTab from './container/AppTab'
 import CityList from './components/CityList';
@@ -11,14 +11,19 @@ import Badword from './container/Foundhouse/Badword';
 import Location from './container/Foundhouse/Location';
 import Form from './container/Foundhouse/Form';
 import Prise from './container/Foundhouse/Prise';
-
+import Person from './container/myself/Person'
+import Collection from './container/myself/Collection';
+import Order from './container/myself/Order';
 function App() {
   return (
     <div>
       <Router>
         <Switch>
-          
+
           <Route path='/citylist' component={CityList} />
+          <Route path='/myself/person' component={Person} />
+          <Route path='/myself/collection' component={Collection} />
+          <Route path='/myself/order' component={Order} />
           <Route path='/study-room-infor' component={Information} />
           <Route path='/userword' component={Userword} />
           <Route path='/importantinfor' component={Importantinfor} />

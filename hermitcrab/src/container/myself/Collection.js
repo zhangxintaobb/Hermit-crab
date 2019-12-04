@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavBar, Icon, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
+import {Redirect} from "react-router-dom"
 const collection = [{
     id:0,
     img: '/zxt_image/room1.jpg',
@@ -42,6 +43,9 @@ export default class extends Component {
         this.state = {
             data:collection,
             currentIndex: 0,
+            id:'order',
+            link:"4",
+            back:false
         }
     }
     infor = () => {
@@ -65,6 +69,12 @@ export default class extends Component {
     }
 
     render() {
+        if(this.state.back){
+            return (<Redirect to={{
+              pathname:'/login',
+              state:this.state
+            }} />)
+          }
         console.log(this.state.data)
         return (
             <div>
@@ -72,7 +82,9 @@ export default class extends Component {
                 <NavBar
                     mode="light"
                     icon={<Icon type="left" />}
-                    onLeftClick={() => { window.location.hash = "/login" }}
+                    onLeftClick={() => {this.setState({
+                        back:true
+                    }) }}
                     rightContent={[
                         <Icon type="ellipsis" onClick={() => this.showDiv()} />,
                     ]}

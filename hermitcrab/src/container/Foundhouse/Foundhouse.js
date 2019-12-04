@@ -6,7 +6,7 @@ export default function Foundhouse(){
         <div>
             <div className="zhaofangTop animate-route">
                 <button onclick="foundhouse" className="zixishi01">自习室</button>
-                <Link to='/foundroom'><button onclick="foundhouse" className="gongxiangbangong01">共享办公</button></Link>
+                <Link to='/login/foundroom'><button onclick="foundhouse" className="gongxiangbangong01">共享办公</button></Link>
             </div>
             <div className="shaixuan animate-route">
                 <Link to='/location'><button className="choose01">位置  ></button></Link>

@@ -42,19 +42,18 @@ const sex = [
 ];
 
 export default class Person extends Component {
-  // state = {
-  //   files: data,
-  //   sValue: [person.sex],
-  // }
   constructor(){
     super()
     this.state={
+      id:'person',
       files: data,
       sValue: [person.sex],
       username:person.uername,
       phoneNumber:person.phoneNumber,
       email:person.email,
-      redirect:false
+      redirect:false,
+      link:"4",
+      back:false
     }
   }
   //头像修改
@@ -97,13 +96,21 @@ export default class Person extends Component {
         state:this.state
       }} />)
     }
+    if(this.state.back){
+      return (<Redirect to={{
+        pathname:'/login',
+        state:this.state.link
+      }} />)
+    }
     // const { getFieldProps } = this.props.form;
     return (
       <div className="flex-container">
         <NavBar
           mode="light"
           icon={<Icon type="left" />}
-          onLeftClick={() => { window.location.hash = "/login" }}
+          onLeftClick={() => {this.setState({
+              back:true
+          }) }}
           style={{borderBottom:'1px solid rgb(136, 136, 136)'}}
         >个人信息</NavBar>
         {/* 修改头像 */}
