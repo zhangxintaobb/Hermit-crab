@@ -7,7 +7,6 @@ export default class Myself extends Component {
   warning = () => {
     window.location.href = "/"
   }
-
     render() {
         return (
             <Router>
