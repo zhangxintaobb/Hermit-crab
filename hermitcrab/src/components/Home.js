@@ -3,7 +3,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import { Link, Switch } from 'react-router-dom';
 import './Home.css'
 import CityList from './CityList'
-import { Carousel, WingBlank, Flex, Button } from 'antd-mobile';
+import { Carousel, WingBlank, Flex, Button, WhiteSpace } from 'antd-mobile';
 
 const city = [
     '北京', '上海', '广州', '深圳', '成都', '武汉', '重庆', '杭州', '天津', '南京', '厦门', '石家庄', '沈阳', '青岛', '郑州'
@@ -11,23 +11,23 @@ const city = [
 
 const roomMes = [
     {
-        indexImage:'z_images/c1.jpg',
-        name:'自习室A',
-        type:'自习室',
-        price:'500',
+        indexImage: 'z_images/c1.jpg',
+        name: '自习室A',
+        type: '自习室',
+        price: '500',
 
     },
     {
-        indexImage:'z_images/c2.jpg',
-        name:'办公室A',
-        type:'办公室',
-        price:'5000',
+        indexImage: 'z_images/c2.jpg',
+        name: '办公室A',
+        type: '办公室',
+        price: '5000',
     },
     {
-        indexImage:'z_images/c3.jpg',
-        name:'办公室B',
-        type:'办公室',
-        price:'6000',
+        indexImage: 'z_images/c3.jpg',
+        name: '办公室B',
+        type: '办公室',
+        price: '6000',
     }
 ]
 
@@ -55,10 +55,12 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <div className='top_bar animate-route' style={{height:'25px'}}>
+                <WhiteSpace />
+                <div className='top_bar animate-route' style={{ height: '25px' }}>
                     <Link to='/citylist' className='area'>地区</Link>
-                    <input type='text' style={{top:'-16px',marginLeft:'50px'}} placeholder='请输入你要查找的自习室/办公室信息' />
+                    <input type='text' style={{ top: '-16px', marginLeft: '50px' }} placeholder='请输入你要查找的自习室/办公室信息' />
                 </div>
+                <WhiteSpace />
                 <Carousel
                     autoplay={true}
                     infinite
@@ -113,16 +115,16 @@ export default class Home extends Component {
                         <div className='like_box'>
                             {this.state.room.map(val => (
                                 <div key={val} className='room_box'>
-                                    <img src={val.indexImage}/>
+                                    <img src={val.indexImage} />
                                     <div className='mes_box'>
                                         <div className='mes_box_top'>
-                                            <p style={{fontSize:'20px'}}>{val.type}</p>
-                                            <p style={{marginTop:'10px'}}>{val.name}</p>
+                                            <p style={{ fontSize: '20px' }}>{val.type}</p>
+                                            <p style={{ marginTop: '10px' }}>{val.name}</p>
                                         </div>
                                         <div className='mes_box_bottom'>
                                             <p>
-                                                <span style={{color:'#ef6f0d',fontSize:'20px'}}>{val.price}</span>
-                                                <span style={{fontSize:'12px'}}>元/月</span>
+                                                <span style={{ color: '#ef6f0d', fontSize: '20px' }}>{val.price}</span>
+                                                <span style={{ fontSize: '12px' }}>元/月</span>
                                             </p>
                                         </div>
                                     </div>
@@ -132,7 +134,7 @@ export default class Home extends Component {
                                 <Link to=''>
                                     <Button className='more_btn'>查看更多自习室/办公室信息</Button>
                                 </Link>
-                                
+
                             </div>
                         </div>
                     </div>

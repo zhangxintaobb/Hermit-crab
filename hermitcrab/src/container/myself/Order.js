@@ -19,7 +19,7 @@ var order = [
 ]
 export default class Order extends Component {
     pay = () => {
-        window.location.href="pay"
+        window.location.href="#/pay"
     }
     comment=()=>{
         window.location.hash='/myself/comment'
