@@ -71,4 +71,42 @@ router.get('/getdata/lan', function (req, res, next) {
   });
 });
 
+router.get('/getdata/sr', function (req, res, next) {
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from srinfo", function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )
+    }
+  });
+});
+
+router.get('/getdata/office', function (req, res, next) {
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from officeinfo", function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )
+    }
+  });
+});
+
 module.exports = router;
