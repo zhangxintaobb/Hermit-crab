@@ -65,9 +65,7 @@ export default class extends Component {
     }
     delete = (item) => {
         console.log(item.item.id)
-        
     }
-
     render() {
         if(this.state.back){
             return (<Redirect to={{
@@ -98,7 +96,7 @@ export default class extends Component {
                                 <div ref="delete" onClick={() => { this.delete({item}) }}
                                     style={{
                                         width: '40px',
-                                        height: '150px',
+                                        height: '90px',
                                         backgroundColor: 'red',
                                         paddingTop:'17%',
                                         display: (1 === this.state.currentIndex) ? "block" : "none"
