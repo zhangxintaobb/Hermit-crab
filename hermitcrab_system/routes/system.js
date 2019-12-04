@@ -6,7 +6,9 @@ var dbconfig = require('../config/dbconfig.json');
 /* GET home page. */
 router.get('/system', function (req, res, next) {
   if (req.cookies.authorized) {
-    res.render('system');
+    res.render('system', {
+      name: req.cookies.authorized.value
+    });
   } else {
     res.redirect('/');
   }
@@ -70,7 +72,6 @@ router.get('/userlist', function (req, res, next) {
 });
 
 router.post('/system/addfd', function (req, res, next) {
-  console.log(req.body);
   let name = req.body.fd_name;
   let sex = req.body.fd_sex;
   let phone = req.body.fd_tel;
@@ -85,11 +86,33 @@ router.post('/system/addfd', function (req, res, next) {
 })
 
 router.post('/system/addzxs', function (req, res, next) {
-  console.log(req.body);
+  let name = req.body.zxs_name;
+  let address = req.body.zxs_address;
+  let price = req.body.zxs_price;
+  let ownerid = req.body.zxs_ownerid;
+  let type = req.body.zxs_kind;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("insert into srinfo(srname, sraddress, price, ownerid, type) values(?, ?, ?, ?, ?)",[name, address, price, ownerid, type], function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+  });
 })
 
 router.post('/system/addbgs', function (req, res, next) {
-  console.log(req.body);
+  let name = req.body.bgs_name;
+  let address = req.body.bgs_address;
+  let price = req.body.bgs_price;
+  let ownerid = req.body.bgs_ownerid;
+  let area = req.body.bgs_area;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("insert into officeinfo(officename, officeaddress, price, ownerid, area) values(?, ?, ?, ?, ?)",[name, address, price, ownerid, area], function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+  });
 })
 
 router.get('/system/deluser', function (req, res, next) {

@@ -45,7 +45,7 @@
         type: 2,
         title: '新建办公室',
         content: 'http://localhost:3000/system/bgs_addlist',
-        area: ['500px', '480px'],
+        area: ['500px', '500px'],
         shade: 0.5 //遮罩半透明
       });
     }
@@ -58,33 +58,39 @@
   });
 
   layui.use('table', function () {
-      var table = layui.table;
-      //监听表格复选框选择
-      table.on('checkbox(demo)', function (obj) {
-        console.log(obj)
-      });
-      //监听工具条
-      table.on('tool(demo)', function (obj) {
-        var data = obj.data;
-        if (obj.event === 'detail') {
-          layer.alert(JSON.stringify(data))
-        } else if (obj.event === 'del') {
-          layer.confirm('真的删除行么', function (index) {
-            var Id = obj.data.id;
-            obj.del();
-            layer.close(index);
-            $.get("http://localhost:3000/system/deloffice?id="+Id);
-          });
-        } else if (obj.event === 'edit') {
-          layer.msg('ID：' + data.id + ' 的编辑操作');
-        }
-      });
-
-      $('.demoTable .layui-btn').on('click', function () {
-        var type = $(this).data('type');
-        active[type] ? active[type].call(this) : '';
-      });
+    var table = layui.table;
+    //监听表格复选框选择
+    table.on('checkbox(demo)', function (obj) {
+      console.log(obj)
     });
+    //监听工具条
+    table.on('tool(demo)', function (obj) {
+      var data = obj.data;
+      if (obj.event === 'detail') {
+        layer.open({
+          type: 1
+          , title: '办公室信息'
+          , content: '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '办公室 I D ：' + data.officeid + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '办公室名称：' + data.officename + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '办公室地址：' + data.officeaddress + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '办公室面积：' + data.area + ' 平方米' +'</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '办公室价格：' + data.price + ' 元/天' + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '拥有者 I D ：' + data.ownerid + '</span>'
+          , area: ['500px', '400px']
+          , shade: 0.5 //遮罩半透明
+        });
+      } else if (obj.event === 'del') {
+        layer.confirm('真的删除行么', function (index) {
+          var Id = obj.data.id;
+          obj.del();
+          layer.close(index);
+          $.get("http://localhost:3000/system/deloffice?id=" + Id);
+        });
+      } else if (obj.event === 'edit') {
+        layer.msg('ID：' + data.id + ' 的编辑操作');
+      }
+    });
+
+    $('.demoTable .layui-btn').on('click', function () {
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
+  });
 </script>
 
 </html>

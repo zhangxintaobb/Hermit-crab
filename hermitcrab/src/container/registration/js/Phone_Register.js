@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tabs } from 'antd-mobile';
+import { NavBar, Icon } from 'antd-mobile';
 import '../css/phone_reg.css';
 var code;
 
@@ -65,53 +65,55 @@ export default class Phone_Register extends Component {
         }
     }
     render() {
-        const tabs = [
-            { title: '用户注册' }
-        ];
         return (
             <div>
-                <Tabs tabs={tabs} initialPage={0} animated={false} useOnPan={false}>
-                    <div>
-                        <div style={{ fontSize: '18px', marginLeft: '30px', marginTop: '60px' }}>
-                            <span>+86</span>
-                            <input placeholder={"请输入手机号"} style={{ marginLeft: '45px', width: '200px', height: '30px', borderRadius: '5px', fontSize: '14px' }} />
-                        </div>
-                        <div style={{ fontSize: '18px', marginLeft: '30px', marginTop: '60px' }}>
-                            <input placeholder="请输入验证码" style={{ marginLeft: '73px', width: '100px', height: '30px', borderRadius: '5px', fontSize: '14px' }} />
-                            <button style={{ fontSize: '12px', marginLeft: '30px', height: '25px', width: '70px', borderRadius: '5px', backgroundColor: 'green', color: 'white' }} onClick={() => alert("验证码已发送，请注意查收")}>发送验证码</button>
-                        </div>
-                        <div style={{ fontSize: '18px', marginLeft: '30px', marginTop: '60px' }}>
-                            <span style={{ display: 'block', float: 'left', marginTop: '5px' }}>密码</span>
-                            <input type="password" placeholder={"请输入密码"} className="phone_reg_psw" />
-                            <div className="phone_reg_eye">
-                                <img src="/g_images/view_off.png" className="phone_reg_eyes" onClick={this.checkEye} />
-                                <img src="/g_images/view.png" className="phone_reg_eyec" onClick={this.checkEye} />
-                            </div>
-                        </div>
-                        <div style={{ fontSize: '18px', marginLeft: '30px', marginTop: '60px' }}>
-                            <span>验证码</span>
-                            <input type="text" id="input" placeholder={"请输入验证码"} style={{ marginLeft: '20px', width: '120px', height: '30px', borderRadius: '5px', fontSize: '14px' }} />
-                            <input type="button" onClick={this.createCode} id="code" style={{ width: '70px', marginLeft: '10px' }} />
-                        </div>
-                        <button className="phone_reg_zc" onClick={this.valiDate}>注册</button>
-                        <hr />
-                        <br />
-                        <span style={{ fontSize: '14px', color: 'grey', marginLeft: '75px' }}>(您也可以通过以下方式来快捷注册)</span>
-                        <div>
-                            <img src="/g_images/QQ.png" className="else_reg_img" onClick={() => alert('该方式尚未开通')} />
-                        </div>
-                        <div>
-                            <img src="/g_images/wechat.png" className="else_reg_img" onClick={() => alert('该方式尚未开通')} />
-                        </div>
-                        <div>
-                            <img src="/g_images/weibo.png" className="else_reg_img" onClick={() => alert('该方式尚未开通')} />
-                        </div>
-                        <div>
-                            <img src="/g_images/taobao.png" className="else_reg_img" onClick={() => alert('该方式尚未开通')} />
+                <NavBar
+                    mode="light"
+                    icon={<Icon type="left" />}
+                    onLeftClick={() => { window.location.hash = "/" }}
+                    style={{ borderBottom: '1px solid rgb(136, 136, 136)' }}
+                >个人信息
+                </NavBar>
+                <div>
+                    <div style={{ fontSize: '18px', marginLeft: '30px', marginTop: '60px' }}>
+                        <span style={{ display: 'block', float: 'left', marginTop: '5px' }}>+86</span>
+                        <input placeholder={"请输入手机号"} style={{ marginLeft: '80px', width: '200px', height: '30px', borderRadius: '5px', fontSize: '14px' }} />
+                    </div>
+                    <div style={{ fontSize: '18px', marginLeft: '30px', marginTop: '60px' }}>
+                        <button style={{ marginRight: '10px', display: 'block', float: 'left', fontSize: '12px', height: '25px', width: '70px', borderRadius: '5px', backgroundColor: 'green', color: 'white' }} onClick={() => alert("验证码已发送，请注意查收")}>发送验证码</button>
+                        <input placeholder="请输入验证码" style={{ marginLeft: '3px', width: '100px', height: '30px', borderRadius: '5px', fontSize: '14px' }} />
+                    </div>
+                    <div style={{ fontSize: '18px', marginLeft: '30px', marginTop: '60px' }}>
+                        <span style={{ display: 'block', float: 'left', marginTop: '5px' }}>密码</span>
+                        <input type="password" placeholder={"请输入密码"} className="phone_reg_psw" />
+                        <div className="phone_reg_eye">
+                            <img src="/g_images/view_off.png" className="phone_reg_eyes" onClick={this.checkEye} />
+                            <img src="/g_images/view.png" className="phone_reg_eyec" onClick={this.checkEye} />
                         </div>
                     </div>
-                </Tabs>
-            </div>
+                    <div style={{ fontSize: '18px', marginLeft: '30px', marginTop: '60px' }}>
+                        <span style={{ display: 'block', float: 'left', marginTop: '5px' }}>验证码</span>
+                        <input type="text" id="input" placeholder={"请输入验证码"} style={{ display: 'block', float: 'left', marginLeft: '30px', width: '120px', height: '30px', borderRadius: '5px', fontSize: '14px' }} />
+                        <input type="button" onClick={this.createCode} id="code" style={{ width: '70px', marginLeft: '10px' }} />
+                    </div>
+                    <button className="phone_reg_zc" onClick={this.valiDate}>注册</button>
+                    <hr />
+                    <br />
+                    <span style={{ fontSize: '14px', color: 'grey', marginLeft: '75px' }}>(您也可以通过以下方式来快捷注册)</span>
+                    <div>
+                        <img src="/g_images/QQ.png" className="else_reg_img" onClick={() => alert('该方式尚未开通')} />
+                    </div>
+                    <div>
+                        <img src="/g_images/wechat.png" className="else_reg_img" onClick={() => alert('该方式尚未开通')} />
+                    </div>
+                    <div>
+                        <img src="/g_images/weibo.png" className="else_reg_img" onClick={() => alert('该方式尚未开通')} />
+                    </div>
+                    <div>
+                        <img src="/g_images/taobao.png" className="else_reg_img" onClick={() => alert('该方式尚未开通')} />
+                    </div>
+                </div>
+            </div >
         )
     }
 }

@@ -21,7 +21,8 @@ router.post('/system', function (req, res, next) {
           console.log("success");
           res.cookie('authorized', req.body.username);
           res.render('system', {
-            title: 'System'
+            title: 'System',
+            name: req.body.username
           });
           break;
         }
