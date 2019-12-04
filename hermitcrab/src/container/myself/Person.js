@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Flex, Button, Picker, WhiteSpace, WingBlank, NavBar, Icon, ImagePicker, SegmentedControl, List, InputItem } from 'antd-mobile';
 import arrayTreeFilter from 'array-tree-filter';
 import { district, provinceLite } from 'antd-mobile-demo-data';
+import {Redirect} from "react-router-dom"
 // 个人信息接口
 const person =
 {
@@ -41,9 +42,20 @@ const sex = [
 ];
 
 export default class Person extends Component {
-  state = {
-    files: data,
-    sValue: [person.sex],
+  // state = {
+  //   files: data,
+  //   sValue: [person.sex],
+  // }
+  constructor(){
+    super()
+    this.state={
+      files: data,
+      sValue: [person.sex],
+      username:person.uername,
+      phoneNumber:person.phoneNumber,
+      email:person.email,
+      redirect:false
+    }
   }
   //头像修改
   onChange = (files) => {
@@ -58,8 +70,14 @@ export default class Person extends Component {
     });
   }
   //点击提交
+  //将修改后的信息传给state
   handleClick = () => {
-    window.location.href = "/#/login"
+    this.setState({
+      username:this.refs.user.state.value,
+      phoneNumber:this.refs.phoneNumber.state.value,
+      email:this.refs.email.state.value,
+      redirect:true
+    })
   }
 
   性别选择
@@ -73,6 +91,12 @@ export default class Person extends Component {
   }
   render() {
     const { files } = this.state;
+    if(this.state.redirect){
+      return (<Redirect to={{
+        pathname:'/login',
+        state:this.state
+      }} />)
+    }
     // const { getFieldProps } = this.props.form;
     return (
       <div className="flex-container">
@@ -108,29 +132,28 @@ export default class Person extends Component {
               width: '100%',
               height: '100%',
               backgroundColor: 'white',
-              // borderBottom: '1px solid #7B898F'
             }}>
               <List>
                 <List.Item>
                 {/* 名称修改 */}
                 <InputItem
                   clear
-                  placeholder={person.uername}
-                  ref={el => this.autoFocusInst = el}
+                  placeholder={this.state.username}
+                  ref="user"
                   style={{textAlign:"right"}}
                 >名称</InputItem>
                 {/* 手机号码修改 */}
                 <InputItem
                   clear
-                  placeholder={person.phoneNumber}
-                  ref={el => this.inputRef = el}
+                  placeholder={this.state.phoneNumber}
+                  ref="phoneNumber"
                   style={{textAlign:"right"}}
                 >手机号码</InputItem>
                 {/* 邮箱修改 */}
                 <InputItem
                   clear
-                  placeholder={person.email}
-                  ref={el => this.inputRef = el}
+                  placeholder={this.state.email}
+                  ref="email"
                   style={{textAlign:"right"}}
                 >电子邮箱</InputItem>
                 {/* 性别修改 */}
