@@ -199,8 +199,8 @@ input {
     border-bottom: 1px solid grey;
 }
 .pic01 {
-    margin-top: 30px;
-    margin-left: 20px;
+    margin-top: 6px;
+    margin-left: 10px;
     float: left;
 }
 .but01 {
@@ -220,5 +220,10 @@ input {
 .txt01 {
     float: right;
     margin-right: 85px;
+    margin-top: 10px;
+}
+.txt03 {
+    float: right;
+    margin-right: 55px;
     margin-top: 10px;
 }
