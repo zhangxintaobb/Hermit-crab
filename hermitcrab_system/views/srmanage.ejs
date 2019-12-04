@@ -67,11 +67,10 @@
       var data = obj.data;
       // console.log(data);
       if (obj.event === 'detail') {
-        let zxs_type = data.type === '0' ? '大厅' : '包间';
         layer.open({
           type: 1
           , title: '自习室信息'
-          , content: '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室 I D ：' + data.srid + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室名称：' + data.srname + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室地址：' + data.sraddress + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室类型：' + zxs_type + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室价格：' + data.price + ' 元/小时' + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '拥有者 I D ：' + data.ownerid + '</span>'
+          , content: '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室 I D ：' + data.srid + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室名称：' + data.srname + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室地址：' + data.sraddress + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室类型：' + data.type + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室价格：' + data.price + ' 元/小时' + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '拥有者 I D ：' + data.ownerid + '</span>'
           , area: ['500px', '400px']
           , shade: 0.5 //遮罩半透明
         });
