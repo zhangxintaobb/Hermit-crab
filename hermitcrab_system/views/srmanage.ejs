@@ -57,33 +57,41 @@
   });
 
   layui.use('table', function () {
-      var table = layui.table;
-      //监听表格复选框选择
-      table.on('checkbox(demo)', function (obj) {
-        console.log(obj)
-      });
-      //监听工具条
-      table.on('tool(demo)', function (obj) {
-        var data = obj.data;
-        if (obj.event === 'detail') {
-          layer.alert(JSON.stringify(data))
-        } else if (obj.event === 'del') {
-          layer.confirm('真的删除行么', function (index) {
-            var Id = obj.data.id;
-            obj.del();
-            layer.close(index);
-            $.get("http://localhost:3000/system/delsr?id="+Id);
-          });
-        } else if (obj.event === 'edit') {
-          layer.msg('ID：' + data.id + ' 的编辑操作');
-        }
-      });
-
-      $('.demoTable .layui-btn').on('click', function () {
-        var type = $(this).data('type');
-        active[type] ? active[type].call(this) : '';
-      });
+    var table = layui.table;
+    //监听表格复选框选择
+    table.on('checkbox(demo)', function (obj) {
+      console.log(obj)
     });
+    //监听工具条
+    table.on('tool(demo)', function (obj) {
+      var data = obj.data;
+      // console.log(data);
+      if (obj.event === 'detail') {
+        let zxs_type = data.type === '0' ? '大厅' : '包间';
+        layer.open({
+          type: 1
+          , title: '自习室信息'
+          , content: '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室 I D ：' + data.srid + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室名称：' + data.srname + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室地址：' + data.sraddress + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室类型：' + zxs_type + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '自习室价格：' + data.price + ' 元/小时' + '</span>' + '</br>' + '</br>' + '<span style="margin-left: 30px;font-size:20px">' + '拥有者 I D ：' + data.ownerid + '</span>'
+          , area: ['500px', '400px']
+          , shade: 0.5 //遮罩半透明
+        });
+      } else if (obj.event === 'del') {
+        layer.confirm('真的删除行么', function (index) {
+          var Id = obj.data.id;
+          obj.del();
+          layer.close(index);
+          $.get("http://localhost:3000/system/delsr?id=" + Id);
+        });
+      } else if (obj.event === 'edit') {
+        layer.msg('ID：' + data.id + ' 的编辑操作');
+      }
+    });
+
+    $('.demoTable .layui-btn').on('click', function () {
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
+  });
 </script>
 
 </html>
