@@ -4,6 +4,7 @@ import Myself from './myself/Myself'
 import Home from '../components/Home'
 import Login from './Login/Login';
 import Foundhouse from './Foundhouse/Foundhouse';
+// import Information from './Foundhouse/Information';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 import Person from './myself/Person'
 import Collection from './myself/Collection';
