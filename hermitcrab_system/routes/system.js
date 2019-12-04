@@ -71,6 +71,17 @@ router.get('/userlist', function (req, res, next) {
 
 router.post('/system/addfd', function (req, res, next) {
   console.log(req.body);
+  let name = req.body.fd_name;
+  let sex = req.body.fd_sex;
+  let phone = req.body.fd_tel;
+  let avatar = req.body.file;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("insert into fdinfo(name, sex, phone, avatar) values(?, ?, ?, ?)",[name, sex, phone, avatar], function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+  });
 })
 
 router.post('/system/addzxs', function (req, res, next) {
