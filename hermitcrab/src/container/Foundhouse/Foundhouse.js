@@ -63,30 +63,6 @@ export default function Foundhouse(){
                     </div>
                     <div className="txt01"><p>自习室B类</p></div>
                 </div>
-                <div className="room01">
-                    <div className="pic01">
-                        <img src="q_images/office01.jpg" style={{
-                            height:'60px',
-                            width: '100px',
-                        }}></img>
-                    </div>
-                    <div className="but01">
-                        <button className="but001">办公室</button>
-                    </div>
-                    <div className="txt01"><p>蜂巢办公室合租</p></div>
-                </div>
-                <div className="room01">
-                    <div className="pic01">
-                        <img src="q_images/office02.jpg" style={{
-                            height:'60px',
-                            width: '100px',
-                        }}></img>
-                    </div>
-                    <div className="but01">
-                        <button className="but001">办公室</button>
-                    </div>
-                    <div className="txt01"><p>包间</p></div>
-                </div>
             </div>
         </div>
     )
