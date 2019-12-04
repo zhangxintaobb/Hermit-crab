@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { Link, Switch } from 'react-router-dom';
 import './Home.css'
 import CityList from './CityList'
@@ -55,9 +55,9 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <div className='top_bar animate-route'>
+                <div className='top_bar animate-route' style={{height:'25px'}}>
                     <Link to='/citylist' className='area'>地区</Link>
-                    <input type='text' placeholder='请输入你要查找的自习室/办公室信息' />
+                    <input type='text' style={{top:'-16px',marginLeft:'50px'}} placeholder='请输入你要查找的自习室/办公室信息' />
                 </div>
                 <Carousel
                     autoplay={true}

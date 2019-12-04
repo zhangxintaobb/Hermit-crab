@@ -1,6 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router,Route} from 'react-router-dom';
-import {Link, Switch} from 'react-router-dom';
+import {HashRouter as Router,Route,Link,Switch} from 'react-router-dom';
 import './App.css';
 import AppTab from './container/AppTab'
 import CityList from './components/CityList';

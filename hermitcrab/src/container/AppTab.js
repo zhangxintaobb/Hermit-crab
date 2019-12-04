@@ -6,6 +6,9 @@ import Login from './Login/Login';
 import Foundhouse from './Foundhouse/Foundhouse';
 // import Information from './Foundhouse/Information';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom'
+import Person from './myself/Person'
+import Collection from './myself/Collection';
+import Order from './myself/Order';
 export default class AppTab extends Component {
 
     constructor(props) {
@@ -19,6 +22,7 @@ export default class AppTab extends Component {
     render() {
         console.log(window.location)
         return (
+            <Router>
             <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
                 <TabBar
                     unselectedTintColor="#949494"
@@ -123,16 +127,16 @@ export default class AppTab extends Component {
                             });
                         }}
                     >
-                      <Router>
-                          <div>
+                
                               <Route exact path='/' component={Login} />
                               <Route path='/login' component={Myself} />
-                              
-                          </div>
-                      </Router>
+                              <Route path='/myself/person' component={Person} />
+                              <Route path='/myself/collection' component={Collection} />
+                              <Route path='/myself/order' component={Order} />   
                     </TabBar.Item>
                 </TabBar>
             </div>
+            </Router>
         )
     }
 }

@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import { Flex, WhiteSpace, WingBlank} from 'antd-mobile';
-import { BrowserRouter as Router, Route, Link, Switch  } from 'react-router-dom'
+import { Flex, WhiteSpace, WingBlank,Button} from 'antd-mobile';
+import { HashRouter as Router, Route, Link, Switch  } from 'react-router-dom'
 
 export default class Myself extends Component {
+    //退出登录
+  warning = () => {
+    window.location.href = "/"
+  }
+
     render() {
         return (
             <Router>
@@ -67,7 +72,7 @@ export default class Myself extends Component {
                                     <br />
                                 </Flex.Item>
                             </Flex>
-                            {/* 浏览记录 */}
+                            {/* 我的评价 */}
                             <Flex style={{ borderTop: '2px solid #8a8a8a' }}>
                                 <Flex.Item>
                                     <WhiteSpace size="sm" />
@@ -80,7 +85,7 @@ export default class Myself extends Component {
                                             marginRight: '5px'
                                         }} />
                                     <Link to='/myself/record'>
-                                        <p style={{ color: 'white', display: 'inline-block' }}>浏览记录</p>
+                                        <p style={{ color: 'white', display: 'inline-block' }}>我的评价</p>
                                     </Link>
                                     <WhiteSpace size="sm" />
                                     <br />
@@ -106,7 +111,8 @@ export default class Myself extends Component {
                                 </Flex.Item>
                             </Flex>
                             {/* 我的消息 */}
-                            <Flex style={{ borderTop: '2px solid #8a8a8a', borderBottom: '2px solid #8a8a8a' }}>
+                            <Flex style={{ borderTop: '2px solid #8a8a8a', 
+                            borderBottom: '2px solid #8a8a8a' }}>
                                 <Flex.Item>
                                     <WhiteSpace size="sm" />
                                     <img src="zxt_image/我的消息icon.png"
@@ -124,15 +130,14 @@ export default class Myself extends Component {
                                     <br />
                                 </Flex.Item>
                             </Flex>
+                            <Flex >
+                                <Flex.Item>
+                                    <Button type="warning" onClick={() => { this.warning() }}>退出登录</Button><WhiteSpace />
+                                </Flex.Item>
+                            </Flex>
                         </div>
                     </WingBlank>
                 </div>
-                <Switch>
-                    <Route path="/myself/person" />
-                    <Route path="/myself/collection" />
-                    <Route path="/myself/record" />
-                    <Route path="/myself/order" />
-                </Switch>
             </Router>
         )
     }
