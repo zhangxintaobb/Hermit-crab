@@ -10,6 +10,7 @@ import Person from './myself/Person'
 import Collection from './myself/Collection';
 import Order from './myself/Order';
 import Phone_Register from './registration/js/Phone_Register';
+import Foundroom from './Foundhouse/Foundroom'
 export default class AppTab extends Component {
 
     constructor(props) {
@@ -56,6 +57,7 @@ export default class AppTab extends Component {
                         data-seed="logId"
                     >
                         <Home />
+
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -84,7 +86,8 @@ export default class AppTab extends Component {
                         }}
                         data-seed="logId1"
                     >
-                        <Foundhouse />
+                        <Route exact path="/" component={Foundhouse} />
+                        <Route path='/foundroom' component={Foundroom} />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={

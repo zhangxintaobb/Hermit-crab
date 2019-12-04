@@ -26,7 +26,6 @@ function App() {
           <Route path='/location' component={Location} />
           <Route path='/form' component={Form} />
           <Route path='/prise' component={Prise} />
-          <Route path='/foundroom' component={Foundroom} />
           <Route path='/' component={AppTab} />
         </Switch>
       </Router>
