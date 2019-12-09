@@ -14,6 +14,8 @@ import Prise from './container/Foundhouse/Prise';
 import Person from './container/myself/Person'
 import Collection from './container/myself/Collection';
 import Order from './container/myself/Order';
+import Record from './container/myself/Record';
+import Comment from './container/myself/Comment';
 function App() {
   return (
     <div>
@@ -22,6 +24,8 @@ function App() {
 
           <Route path='/citylist' component={CityList} />
           <Route path='/myself/person' component={Person} />
+          <Route path='/myself/record' component={Record} />
+          <Route path='/myself/comment' component={Comment} />
           <Route path='/myself/collection' component={Collection} />
           <Route path='/myself/order' component={Order} />
           <Route path='/study-room-infor' component={Information} />

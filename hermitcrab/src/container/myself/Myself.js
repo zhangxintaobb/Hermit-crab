@@ -3,7 +3,8 @@ import { Flex, WhiteSpace, WingBlank,Button} from 'antd-mobile';
 import { HashRouter as Router, Route, Link, Switch  } from 'react-router-dom'
 
 export default class Myself extends Component {
-    //退出登录
+    
+    //登录默认头像和手机号码
     constructor(){
         super()
         this.state={
@@ -11,30 +12,15 @@ export default class Myself extends Component {
             phone:'15960266038'
         }
     }
+    //退出登录
   warning = () => {
     window.location.href = "/"
   }
-  componentDidMount(){
-    const data=this.props.idx;
-    const id=this.props.id
-    console.log(data);
-    if(id=="person"){
-    
-    this.setState({
-        img:data.files[0].url,
-        phone:data.phoneNumber
-    })}
-    
-    // else{
-    // console.log(data.idx.files.url)
-    // this.setState({
-    //     img:data.idx.files[0].url,
-    //     phone:data.idx.phoneNumber
-    // })}
-  }
+
     render() {
         return (
             <Router>
+
                 <div style={{
                     backgroundImage: 'url(zxt_image/2.jpg)', width: '100%', height: '100%', backgroundSize: 'cover',
                     filter: 'alpha(opacity=50)', MozOpacity: '0.5', opacity: '0.8'
@@ -43,6 +29,7 @@ export default class Myself extends Component {
                     <div className="flex-container" style={{ paddingTop: '20%', marginBottom: '20%' }}>
                         <Flex>
                             <Flex.Item></Flex.Item>
+                            {/* 头像 */}
                             <Flex.Item style={{ textAlign: 'right' }}>
                                 <img src={this.state.img} style={{
                                     width: '60px',
@@ -51,6 +38,7 @@ export default class Myself extends Component {
                                     margin: '0 auto'
                                 }}></img>
                             </Flex.Item>
+                            {/* 手机号码 */}
                             <Flex.Item><h4 style={{ display: 'inline-block' }}>{this.state.phone}</h4></Flex.Item>
                             <Flex.Item></Flex.Item>
                         </Flex>
@@ -154,6 +142,7 @@ export default class Myself extends Component {
                                     <br />
                                 </Flex.Item>
                             </Flex>
+                            {/* 退出登录按钮，点击后跳回主页面 */}
                             <Flex >
                                 <Flex.Item>
                                     <Button type="warning" onClick={() => { this.warning() }}>退出登录</Button><WhiteSpace />

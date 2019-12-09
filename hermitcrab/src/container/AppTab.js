@@ -14,22 +14,39 @@ export default class AppTab extends Component {
     constructor(props,context) {
         super(props,context);
         this.state = {
-            id:"",
+            //初始默认第一个下标页
             selectedTab: 'blueTab',
         };
     }
     componentDidMount(){
-        const link=this.props.location.state;
-        console.log(link)
-        if(link==undefined){
-
+        //查看是否是由其他页面跳转而来
+        const jump=this.props.location.state;
+        console.log(jump)
+        //如果不是，返回的是第一个下标页
+        if(jump==undefined){
         }
+        //或者，查看jump携带的link值
         else {
-
+            //link值为1时，跳转到默认下标页
+            if(jump.link=='1'){
+                this.setState({
+                    selectedTab:'buleTab',
+                })}
+            //link值为2时，跳转到下标为2的页面
+            else if(jump.link=='2'){
+                this.setState({
+                    selectedTab:'redTab',
+                })}
+            //link值为3时，跳转到下标为3的页面
+            else if(jump.link=='3'){
+                this.setState({
+                    selectedTab:'greenTab',
+            })}
+            //link值为4时，跳转到下标为4的页面
+            else if(jump.link=='4'){
             this.setState({
                 selectedTab:'yellowTab',
-                id:link.id
-            })
+            })}
         }
     }
 
@@ -145,7 +162,7 @@ export default class AppTab extends Component {
                     >
                 
                               <Route exact path='/' component={Login} />
-                              <Route path='/login' render={() => (<Myself idx={this.props.location.state} id={this.state.id}/>)}/>
+                              <Route path='/login' component={Myself}/>
                               <Route path='/register' component={Phone_Register} />
 
                     </TabBar.Item>
