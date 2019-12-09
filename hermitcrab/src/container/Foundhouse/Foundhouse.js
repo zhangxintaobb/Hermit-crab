@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link, Switch } from 'react-router-dom';
 import information from './Information';
-export default function Foundhouse(){
-    return(
+export default function Foundhouse() {
+    return (
         <div>
             <div className="zhaofangTop animate-route">
-                <button onclick="foundhouse" className="zixishi01">自习室</button>
-                <Link to='/login/foundroom'><button onclick="foundhouse" className="gongxiangbangong01">共享办公</button></Link>
+                <button onClick="foundhouse" className="zixishi01">自习室</button>
+                <Link to='/login/foundroom'><button onClick="foundhouse" className="gongxiangbangong01">共享办公</button></Link>
             </div>
             <div className="shaixuan animate-route">
                 <button className="choose01">位置  ></button>
@@ -18,7 +18,7 @@ export default function Foundhouse(){
                 <div className="room01">
                     <div className="pic01">
                         <img src="q_images/zixishi01.jpg" style={{
-                            height:'120px',
+                            height: '120px',
                             width: '200px',
                         }}></img>
                     </div>
@@ -30,7 +30,7 @@ export default function Foundhouse(){
                 <div className="room01">
                     <div className="pic01">
                         <img src="q_images/zixishi02.jpg" style={{
-                            height:'120px',
+                            height: '120px',
                             width: '200px',
                         }}></img>
                     </div>
@@ -42,7 +42,7 @@ export default function Foundhouse(){
                 <div className="room01">
                     <div className="pic01">
                         <img src="q_images/zixishi01.jpg" style={{
-                            height:'120px',
+                            height: '120px',
                             width: '200px',
                         }}></img>
                     </div>
@@ -54,7 +54,7 @@ export default function Foundhouse(){
                 <div className="room01">
                     <div className="pic01">
                         <img src="q_images/zixishi02.jpg" style={{
-                            height:'120px',
+                            height: '120px',
                             width: '200px',
                         }}></img>
                     </div>
