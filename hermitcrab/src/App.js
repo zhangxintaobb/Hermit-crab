@@ -21,7 +21,6 @@ function App() {
     <div>
       <Router>
         <Switch>
-
           <Route path='/citylist' component={CityList} />
           <Route path='/myself/person' component={Person} />
           <Route path='/myself/record' component={Record} />

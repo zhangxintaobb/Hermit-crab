@@ -4,7 +4,8 @@ import arrayTreeFilter from 'array-tree-filter';
 import { district, provinceLite } from 'antd-mobile-demo-data';
 import { Redirect } from "react-router-dom"
 import axios from '../../model/axios'
-
+import store from '../../store';
+import {login} from '../../actions';
 // 个人信息接口
 const person =
 {
@@ -48,6 +49,7 @@ export default class Person extends Component {
   constructor() {
     super()
     this.state = {
+      user:store.getState().login,
       // 设置页面id
       id: 'person',
       //图片地址
@@ -120,6 +122,7 @@ export default class Person extends Component {
   }
   componentWillMount(){
     this.getData();
+    console.log(this.props)
   }
   render() {
     const { files } = this.state;

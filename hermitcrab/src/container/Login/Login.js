@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './login.css'
+import store from '../../store';
+import {login} from '../../actions';
 import { useEffect, useState } from 'react'
 import { HashRouter as Router, Route, Link,Redirect } from 'react-router-dom'
-import Myself from '../myself/Myself';
 import axios from '../../model/axios'
 export default function Login(props) {
     //接受数据库传来的数据
@@ -38,6 +39,7 @@ export default function Login(props) {
         for (var i = 0; i < dat.length; i++) {
             if (user == dat[i].phonenumber && pwd == dat[i].password) {
                 setData(dat[i])
+                store.dispatch(login(dat[i]))
                 setJump(true)
             }
             else{console.log("err")}//待修改

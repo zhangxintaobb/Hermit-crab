@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Flex, WhiteSpace, WingBlank,Button} from 'antd-mobile';
 import { HashRouter as Router, Route, Link, Switch  } from 'react-router-dom'
 
+
+
 export default class Myself extends Component {
     
     //登录默认头像
@@ -9,7 +11,7 @@ export default class Myself extends Component {
         super()
         this.state={
             img:'./zxt_image/1.JPG',
-            data:{}
+            data:{},
         }
     }
     //退出登录
@@ -21,11 +23,12 @@ export default class Myself extends Component {
       this.setState({
         data:this.props.location.state
       })
+      
   }
     render() {
         return (
             <Router>
-
+            
                 <div style={{
                     backgroundImage: 'url(zxt_image/2.jpg)', width: '100%', height: '100%', backgroundSize: 'cover',
                     filter: 'alpha(opacity=50)', MozOpacity: '0.5', opacity: '0.8'
@@ -63,10 +66,7 @@ export default class Myself extends Component {
                                             top: '10px',
                                             marginRight: '5px'
                                         }} />
-                                    <Link to={{
-                                        pathname: '/myself/person',
-                                        state:this.state.data  
-                                    }}>
+                                    <Link to="myself/person">
                                         <p style={{ color: 'white', display: 'inline-block' }}>个人信息</p>
                                     </Link>
                                     <WhiteSpace size="sm" />
