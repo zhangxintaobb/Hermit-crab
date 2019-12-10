@@ -1,0 +1,6 @@
+{
+    "host":"localhost",
+    "database":"hermit-crab",
+    "user":"root",
+    "password":""
+}
