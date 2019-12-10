@@ -10,14 +10,12 @@ export default function Login(props) {
     const [dat, setDat] = useState([])
     //将登录信息传给个人页的数据
     const[data,setData]=useState({})
-    const [user, setUser] = useState("")
-    const [pwd, setPwd] = useState("")
+    const [user, setUser] = useState("88888888888")
+    const [pwd, setPwd] = useState("888888")
     const [jump,setJump]=useState(false)
-    // useEffect((e) => {
     function register(e) {
         window.location.hash = '/register'
     }
-    // }, [])
     function getnumber(e){
         setUser(e.target.value)
     }
@@ -32,8 +30,6 @@ export default function Login(props) {
                 setDat(data.data)
             }
         )
-
-
     }, [])
     function loginIt() {
         for (var i = 0; i < dat.length; i++) {

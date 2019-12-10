@@ -6,18 +6,9 @@ import { Redirect } from "react-router-dom"
 import axios from '../../model/axios'
 import store from '../../store';
 import {login} from '../../actions';
-// 个人信息接口
-const person =
-{
-  uername: '张鑫涛',
-  phoneNumber: '18078896320',
-  headPic: '/zxt_image/1.JPG',
-  sex: "男",
-  email: '1308745987@qq.com',
-};
 // 修改头像
 const data = [{
-  url: person.headPic,
+  url: "/zxt_image/1.JPG",
 }];
 //性别选择
 const CustomChildren = props => (
@@ -55,13 +46,7 @@ export default class Person extends Component {
       //图片地址
       files: data,
       //性别
-      sValue: [person.sex],
-      //用户名称
-      username: person.uername,
-      //用户手机号
-      phoneNumber: person.phoneNumber,
-      //用户邮箱
-      email: person.email,
+      sValue: [store.getState().login.sex],
       //提交按钮
       redirect: false,
       // 设置返回时跳转的页面
@@ -71,22 +56,22 @@ export default class Person extends Component {
     }
   }
   // 数据请求
-  getData(){ //请求数据函数
-    fetch(`http://127.0.0.1:8081/myself/person`,{
-    method: 'GET'
-    }).then(res => res.json()).then(
-    data => {
-      console.log(data)
-      this.setState({
-        sValue: [data.sex],
-        username: data.username,
-        email: data.email,
-        phoneNumber: data.phoneNumber
+  // getData(){ //请求数据函数
+  //   fetch(`http://127.0.0.1:8081/myself/person`,{
+  //   method: 'GET'
+  //   }).then(res => res.json()).then(
+  //   data => {
+  //     console.log(data)
+  //     this.setState({
+  //       sValue: [data.sex],
+  //       username: data.username,
+  //       email: data.email,
+  //       phoneNumber: data.phoneNumber
 
-      })
-    }
-    )
-    }
+  //     })
+  //   }
+  //   )
+  //   }
   //头像修改
   onChange = (files) => {
     this.setState({
@@ -120,11 +105,8 @@ export default class Person extends Component {
     const treeChildren = arrayTreeFilter(district, (c, level) => c.value === value[level]);
     return treeChildren.map(v => v.label).join(',');
   }
-  componentWillMount(){
-    this.getData();
-    console.log(this.props)
-  }
   render() {
+    console.log(this.state.user)
     const { files } = this.state;
     //如果提交，跳转页面到个人信息页
     if (this.state.redirect) {
@@ -187,21 +169,21 @@ export default class Person extends Component {
                   {/* 名称修改 */}
                   <InputItem
                     clear
-                    placeholder={this.state.username}
+                    placeholder={this.state.user.username}
                     ref="user"
                     style={{ textAlign: "right" }}
                   >名称</InputItem>
                   {/* 手机号码修改 */}
                   <InputItem
                     clear
-                    placeholder={this.state.phoneNumber}
+                    placeholder={this.state.user.phonenumber}
                     ref="phoneNumber"
                     style={{ textAlign: "right" }}
                   >手机号码</InputItem>
                   {/* 邮箱修改 */}
                   <InputItem
                     clear
-                    placeholder={this.state.email}
+                    placeholder={this.state.user.email}
                     ref="email"
                     style={{ textAlign: "right" }}
                   >电子邮箱</InputItem>

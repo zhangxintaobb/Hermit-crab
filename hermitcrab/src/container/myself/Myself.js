@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Flex, WhiteSpace, WingBlank,Button} from 'antd-mobile';
 import { HashRouter as Router, Route, Link, Switch  } from 'react-router-dom'
+import store from '../../store';
+import {login} from '../../actions';
 
 
 
@@ -11,19 +13,12 @@ export default class Myself extends Component {
         super()
         this.state={
             img:'./zxt_image/1.JPG',
-            data:{},
+            data:store.getState().login,
         }
     }
     //退出登录
   warning = () => {
     window.location.href = "/"
-  }
-  componentDidMount(){
-      //将登录页面登录的手机传给个人信息
-      this.setState({
-        data:this.props.location.state
-      })
-      
   }
     render() {
         return (
