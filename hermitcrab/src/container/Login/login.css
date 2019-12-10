@@ -104,73 +104,6 @@ input {
     border: none;
     font-size: 0.8em
 }
-.zhaofangTop {
-    height: 50px;
-    background-color: rgb(211, 197, 197);
-    width: 100%;
-}
-.zixishi01 {
-    color: rgb(14, 14, 148);
-    background-color: white;
-    /* border-color: black; */
-    outline: none;
-    border: none;
-    border-radius:7px;
-    width: 100px;
-    margin-left: 25px;
-    height: 40px; 
-    margin-top: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    font-family: "宋体";
-}
-.zixishi02 {
-    color: black;
-    background-color: rgb(211, 197, 197);
-    border-color: black;
-    outline: none;
-    /* border: none; */
-    border-radius:7px;
-    width: 100px;
-    margin-left: 25px;
-    height: 40px; 
-    margin-top: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    font-family: "宋体";
-}
-.gongxiangbangong01 {
-    color: black;
-    background-color: rgb(211, 197, 197);
-    border-color: black;
-    outline: none;
-    /* border: none; */
-    border-radius:7px;
-    width: 100px;
-    float: right;
-    margin-right: 25px;
-    height: 40px; 
-    margin-top: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    font-family: "宋体";
-}
-.gongxiangbangong02 {
-    color:rgb(14, 14, 148);
-    background-color:white;
-    /* border-color: black; */
-    outline: none;
-    border: none;
-    border-radius:7px;
-    width: 100px;
-    float: right;
-    margin-right: 25px;
-    height: 40px; 
-    margin-top: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    font-family: "宋体";
-}
 .shaixuan {
     height: 40px;
     margin-top: 3px;
@@ -195,11 +128,13 @@ input {
 .room01 {
     width: 100%;
     height: 150px;
-    margin-top: 20px;
+    margin-top: 10px;
+    float: left;
+    margin-left: 10px;
     border-bottom: 1px solid grey;
 }
 .pic01 {
-    margin-top: 6px;
+    margin-top: 0px;
     margin-left: 10px;
     float: left;
 }
@@ -231,4 +166,7 @@ input {
     float: left;
     margin-left: 15px;
     margin-top: 10px;
+}
+.qjx001 {
+    width: 100%;
 }

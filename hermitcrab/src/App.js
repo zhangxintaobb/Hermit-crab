@@ -3,7 +3,7 @@ import {HashRouter as Router,Route,Link,Switch} from 'react-router-dom';
 import './App.css';
 import AppTab from './container/AppTab'
 import CityList from './components/CityList';
-import Foundroom from './container/Foundhouse/Foundroom'
+import Foundhouse from './container/Foundhouse/Foundhouse';
 import Information from './container/Foundhouse/Information';
 import Userword from './container/Foundhouse/Userword';
 import Importantinfor from './container/Foundhouse/Importantinfor';

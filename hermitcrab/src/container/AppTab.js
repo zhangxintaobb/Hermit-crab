@@ -10,7 +10,7 @@ import Person from './myself/Person'
 import Collection from './myself/Collection';
 import Order from './myself/Order';
 import Phone_Register from './registration/js/Phone_Register';
-import Foundroom from './Foundhouse/Foundroom'
+// import Foundroom from './Foundhouse/Foundroom'
 export default class AppTab extends Component {
 
     constructor(props) {
@@ -87,7 +87,7 @@ export default class AppTab extends Component {
                         data-seed="logId1"
                     >
                         <Route exact path="/" component={Foundhouse} />
-                        <Route path='/foundroom' component={Foundroom} />
+                        {/* <Route path='/foundroom' component={Foundroom} /> */}
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -137,7 +137,6 @@ export default class AppTab extends Component {
                               <Route path='/myself/person' component={Person} />
                               <Route path='/myself/collection' component={Collection} />
                               <Route path='/myself/order' component={Order} />
-
                     </TabBar.Item>
                 </TabBar>
             </div>
