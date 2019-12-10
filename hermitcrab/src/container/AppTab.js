@@ -8,7 +8,6 @@ import Foundhouse from './Foundhouse/Foundhouse';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 
 import Phone_Register from './registration/js/Phone_Register';
-// import Foundroom from './Foundhouse/Foundroom'
 export default class AppTab extends Component {
 
     constructor(props,context) {
@@ -115,14 +114,14 @@ export default class AppTab extends Component {
                         }}
                         data-seed="logId1"
                     >
-<<<<<<< HEAD
+
                         <Route exact path="/" component={Foundhouse} />
                         {/* <Route path='/foundroom' component={Foundroom} /> */}
-=======
+
                         
                         <Route exact path="/login/" component={Foundhouse} />
-                        <Route path='/login/foundroom' component={Foundroom} />
->>>>>>> d1a3d3415fa9ba8dd8062f2dc0e85a8ec453ebaa
+                        
+
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -169,13 +168,6 @@ export default class AppTab extends Component {
                               <Route exact path='/' component={Login} />
                               <Route path='/login' component={Myself}/>
                               <Route path='/register' component={Phone_Register} />
-<<<<<<< HEAD
-                              <Route path='/myself/person' component={Person} />
-                              <Route path='/myself/collection' component={Collection} />
-                              <Route path='/myself/order' component={Order} />
-=======
-
->>>>>>> d1a3d3415fa9ba8dd8062f2dc0e85a8ec453ebaa
                     </TabBar.Item>
                 </TabBar>
             </div>

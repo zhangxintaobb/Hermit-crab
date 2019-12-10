@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Switch } from 'react-router-dom';
 import information from './Information';
-<<<<<<< HEAD
 import { SegmentedControl, WingBlank } from 'antd-mobile';
 import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
 // export default function Foundhouse(){
@@ -183,22 +182,6 @@ export default class Foundhouse extends Component {
                     1
                 </div> */}
                 <div className="roomestyle">
-=======
-export default function Foundhouse() {
-    return (
-        <div>
-            <div className="zhaofangTop animate-route">
-                <button onClick="foundhouse" className="zixishi01">自习室</button>
-                <Link to='/login/foundroom'><button onClick="foundhouse" className="gongxiangbangong01">共享办公</button></Link>
-            </div>
-            <div className="shaixuan animate-route">
-                <button className="choose01">位置  ></button>
-                <button className="choose01">形式  ></button>
-                <button className="choose01">价格  ></button>
-                <button className="choose01">...  ></button>
-            </div>
-            <div className="roomestyle">
->>>>>>> d1a3d3415fa9ba8dd8062f2dc0e85a8ec453ebaa
                 <div className="room01">
                     <div className="pic01">
                         <img src="q_images/zixishi01.jpg" style={{
