@@ -9,8 +9,8 @@ export default function Login(props) {
     const [dat, setDat] = useState([])
     //将登录信息传给个人页的数据
     const[data,setData]=useState({})
-    const [user, setUser] = useState("15960266038")
-    const [pwd, setPwd] = useState("666666")
+    const [user, setUser] = useState("")
+    const [pwd, setPwd] = useState("")
     const [jump,setJump]=useState(false)
     // useEffect((e) => {
     function register(e) {
@@ -28,7 +28,6 @@ export default function Login(props) {
             method: 'GET'
         }).then(res => res.json()).then(
             data => {
-                console.log(data.data)
                 setDat(data.data)
             }
         )
@@ -36,7 +35,6 @@ export default function Login(props) {
 
     }, [])
     function loginIt() {
-        console.log(user)
         for (var i = 0; i < dat.length; i++) {
             if (user == dat[i].phonenumber && pwd == dat[i].password) {
                 setData(dat[i])

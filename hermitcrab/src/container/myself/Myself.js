@@ -4,19 +4,24 @@ import { HashRouter as Router, Route, Link, Switch  } from 'react-router-dom'
 
 export default class Myself extends Component {
     
-    //登录默认头像和手机号码
+    //登录默认头像
     constructor(){
         super()
         this.state={
             img:'./zxt_image/1.JPG',
-            phone:'15960266038'
+            data:{}
         }
     }
     //退出登录
   warning = () => {
     window.location.href = "/"
   }
-
+  componentDidMount(){
+      //将登录页面登录的手机传给个人信息
+      this.setState({
+        data:this.props.location.state
+      })
+  }
     render() {
         return (
             <Router>
@@ -39,7 +44,7 @@ export default class Myself extends Component {
                                 }}></img>
                             </Flex.Item>
                             {/* 手机号码 */}
-                            <Flex.Item><h4 style={{ display: 'inline-block' }}>{this.state.phone}</h4></Flex.Item>
+                            <Flex.Item><h4 style={{ display: 'inline-block' }}>{this.state.data.phonenumber}</h4></Flex.Item>
                             <Flex.Item></Flex.Item>
                         </Flex>
                     </div>
@@ -58,7 +63,10 @@ export default class Myself extends Component {
                                             top: '10px',
                                             marginRight: '5px'
                                         }} />
-                                    <Link to='/myself/person'>
+                                    <Link to={{
+                                        pathname: '/myself/person',
+                                        state:this.state.data  
+                                    }}>
                                         <p style={{ color: 'white', display: 'inline-block' }}>个人信息</p>
                                     </Link>
                                     <WhiteSpace size="sm" />
