@@ -4,88 +4,7 @@ import information from './Information';
 import { SegmentedControl, WingBlank } from 'antd-mobile';
 import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
 import $ from 'jquery';
-// export default function Foundhouse(){
-//     return(
-//         <div>
-//             <div className="zhaofangTop animate-route">
-//                 <button onclick="foundhouse" className="zixishi01">自习室</button>
-//                 <Link to='/foundroom'><button onclick="foundhouse" className="gongxiangbangong01">共享办公</button></Link>
-//             </div>
-//             <div className="shaixuan animate-route">
-//                 <button className="choose01">位置  ></button>
-//                 <Link to='/form'><button className="choose01">形式  ></button></Link>
-//                 <button className="choose01">价格  ></button>
-//                 <button className="choose01">...  ></button>
-//             </div>
-// <div className="roomestyle">
-//     <div className="room01">
-//         <div className="pic01">
-//             <img src="q_images/zixishi01.jpg" style={{
-//                 height:'120px',
-//                 width: '200px',
-//             }}></img>
-//         </div>
-//         <div className="but01 animate-route">
-//             <Link to='/study-room-infor' className='but001'>自习室</Link>
-//         </div>
-//         <div className="txt01"><p>自习室A类</p></div>
-//     </div>
-//     <div className="room01">
-//         <div className="pic01">
-//             <img src="q_images/zixishi02.jpg" style={{
-//                 height:'120px',
-//                 width: '200px',
-//             }}></img>
-//         </div>
-//         <div className="but01">
-//             <Link to='/study-room-infor' className='but001'>自习室</Link>
-//         </div>
-//         <div className="txt01"><p>自习室A类</p></div>
-//     </div>
-//     <div className="room01">
-//         <div className="pic01">
-//             <img src="q_images/zixishi01.jpg" style={{
-//                 height:'120px',
-//                 width: '200px',
-//             }}></img>
-//         </div>
-//         <div className="but01">
-//             <Link to='/study-room-infor' className='but001'>自习室</Link>
-//         </div>
-//         <div className="txt01"><p>自习室B类</p></div>
-//     </div>
-//     <div className="room01">
-//         <div className="pic01">
-//             <img src="q_images/zixishi02.jpg" style={{
-//                 height:'120px',
-//                 width: '200px',
-//             }}></img>
-//         </div>
-//         <div className="but01">
-//             <Link to='/study-room-infor' className='but001'>自习室</Link>
-//         </div>
-//         <div className="txt01"><p>自习室B类</p></div>
-//     </div>
-// </div>
-//         </div>
-//     )
-// }
-
-// export default class SegmentedControlExample extends React.Component {
-//   onChange = (e) => {
-//     console.log(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
-//   }
-//   onValueChange = (value) => {
-//     console.log(value);
-//   }
-//   render() {
-//     return (
-//       <WingBlank size="lg" className="sc-example">
-//         <SegmentedControl values={['自习室', '办公室']} />
-//       </WingBlank>
-//     );
-//   }
-// }
+// import { Carousel, WingBlank, Flex, Button, WhiteSpace } from 'antd-mobile';
 
 const tabs = [
     { title: '自习室' },
@@ -96,6 +15,70 @@ const tabs1 = [
     { title: '形式' },
     { title: '价格' },
 ];
+const roomstyle = [
+    {
+        indexImage: 'q_images/zixishi01.jpg',
+        name: '自习室',
+        type: '自习室A类',
+    },
+    {
+        indexImage: 'q_images/zixishi02.jpg',
+        name: '自习室',
+        type: '自习室B类',
+    },
+    {
+        indexImage: 'q_images/zixishi02.jpg',
+        name: '自习室',
+        type: '自习室C类',
+    },
+    {
+        indexImage: 'q_images/zixishi01.jpg',
+        name: '自习室',
+        type: '自习室A类',
+    },
+    {
+        indexImage: 'q_images/zixishi02.jpg',
+        name: '自习室',
+        type: '自习室B类',
+    },
+    {
+        indexImage: 'q_images/zixishi02.jpg',
+        name: '自习室',
+        type: '自习室C类',
+    }
+]
+const officestyle = [
+    {
+        indexImage: 'q_images/office01.jpg',
+        name: '办公室',
+        type: '办公室A类',
+    },
+    {
+        indexImage: 'q_images/office02.jpg',
+        name: '办公室',
+        type: '办公室B类',
+    },
+    {
+        indexImage: 'q_images/office03.jpg',
+        name: '办公室',
+        type: '办公室C类',
+    },
+    {
+        indexImage: 'q_images/office01.jpg',
+        name: '办公室',
+        type: '办公室A类',
+    },
+    {
+        indexImage: 'q_images/office02.jpg',
+        name: '办公室',
+        type: '办公室B类',
+    },
+    {
+        indexImage: 'q_images/office03.jpg',
+        name: '办公室',
+        type: '办公室C类',
+    }
+]
 
 export default class Foundhouse extends Component {
     constructor(props) {
@@ -104,7 +87,9 @@ export default class Foundhouse extends Component {
             value1: 'yuhuaqu',
             value2: 'all',
             value3: '0-3',
-            data: []
+            data: [],
+            room: roomstyle,
+            office: officestyle
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
@@ -193,7 +178,7 @@ export default class Foundhouse extends Component {
             }}>
                     1
                 </div> */}
-                            <div className="roomestyle">
+                            {/* <div className="roomestyle">
                                 <div className="room01">
                                     <div className="pic01">
                                         <img src="q_images/zixishi01.jpg" style={{
@@ -254,8 +239,21 @@ export default class Foundhouse extends Component {
                                     </div>
                                     <div className="txt01"><p>自习室B类</p></div>
                                 </div>
+                            </div>*/}
+                            <div className="roomstyleonly">
+                            {this.state.room.map(val => (
+                                <div key={val} className="roome">
+                                    <img src={val.indexImage} />
+                                    <div className="roomeA">
+                                        <div className="roominfor">
+                                            <Link to='/study-room-infor'><p style={{ fontSize: '20px' }}>{val.type}</p></Link>
+                                            <p style={{ marginTop: '10px' }}>{val.name}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                             </div>
-                        </div>
+                        </div> 
 
                     </div>
 
@@ -310,7 +308,7 @@ export default class Foundhouse extends Component {
                                 </div>
                             </Tabs>
                             <WhiteSpace />
-                            <div>
+                            {/* <div>
                                 <div className="room01">
                                     <div className="pic01">
                                         <img src="q_images/office01.jpg" style={{
@@ -371,9 +369,22 @@ export default class Foundhouse extends Component {
                                     </div>
                                     <div className="txt003"><p>包间</p></div>
                                 </div>
+                            </div> */}
+                            <div className="roomstyleonly">
+                            {this.state.office.map(val => (
+                                <div key={val} className="roome">
+                                    <img src={val.indexImage} />
+                                    <div className="roomeA">
+                                        <div className="roominfor">
+                                            <p style={{ fontSize: '20px' }}>{val.type}</p>
+                                            <p style={{ marginTop: '10px' }}>{val.name}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                             </div>
-                        </div>
-                    </div>
+                        </div> 
+                    </div> 
                 </Tabs>
                 <WhiteSpace />
 
