@@ -7,3 +7,9 @@ export function login(value){
         value
     }
 }
+export function change(value){
+    return {
+        type: types.CHANGE_DATA,
+        value
+    }
+}

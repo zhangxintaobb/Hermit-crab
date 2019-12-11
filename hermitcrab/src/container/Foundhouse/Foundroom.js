@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link, Switch } from 'react-router-dom';
 import information from './Information';
-export default function Foundroom(){
-    return(
+export default function Foundroom() {
+    return (
         <div>
             <div className="zhaofangTop animate-route">
                 <Link to='/login'><button onclick="foundhouse" className="zixishi02">自习室</button></Link>
@@ -18,7 +18,7 @@ export default function Foundroom(){
                 <div className="room01">
                     <div className="pic01">
                         <img src="q_images/office01.jpg" style={{
-                            height:'120px',
+                            height: '120px',
                             width: '200px',
                         }}></img>
                     </div>
@@ -30,7 +30,7 @@ export default function Foundroom(){
                 <div className="room01">
                     <div className="pic01">
                         <img src="q_images/office03.jpg" style={{
-                            height:'120px',
+                            height: '120px',
                             width: '200px',
                         }}></img>
                     </div>
@@ -42,7 +42,7 @@ export default function Foundroom(){
                 <div className="room01">
                     <div className="pic01">
                         <img src="q_images/office02.jpg" style={{
-                            height:'120px',
+                            height: '120px',
                             width: '200px',
                         }}></img>
                     </div>

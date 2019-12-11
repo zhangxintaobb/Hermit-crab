@@ -22,7 +22,6 @@ export default class AppTab extends Component {
     componentDidMount(){
         //查看是否是由其他页面跳转而来
         const jump=this.props.location.state;
-        console.log(jump)
         //如果不是，返回的是第一个下标页
         if(jump==undefined){
         }
