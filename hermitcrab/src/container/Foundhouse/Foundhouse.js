@@ -15,70 +15,70 @@ const tabs1 = [
     { title: '形式' },
     { title: '价格' },
 ];
-const roomstyle = [
-    {
-        indexImage: 'q_images/zixishi01.jpg',
-        name: '自习室',
-        type: '自习室A类',
-    },
-    {
-        indexImage: 'q_images/zixishi02.jpg',
-        name: '自习室',
-        type: '自习室B类',
-    },
-    {
-        indexImage: 'q_images/zixishi02.jpg',
-        name: '自习室',
-        type: '自习室C类',
-    },
-    {
-        indexImage: 'q_images/zixishi01.jpg',
-        name: '自习室',
-        type: '自习室A类',
-    },
-    {
-        indexImage: 'q_images/zixishi02.jpg',
-        name: '自习室',
-        type: '自习室B类',
-    },
-    {
-        indexImage: 'q_images/zixishi02.jpg',
-        name: '自习室',
-        type: '自习室C类',
-    }
-]
-const officestyle = [
-    {
-        indexImage: 'q_images/office01.jpg',
-        name: '办公室',
-        type: '办公室A类',
-    },
-    {
-        indexImage: 'q_images/office02.jpg',
-        name: '办公室',
-        type: '办公室B类',
-    },
-    {
-        indexImage: 'q_images/office03.jpg',
-        name: '办公室',
-        type: '办公室C类',
-    },
-    {
-        indexImage: 'q_images/office01.jpg',
-        name: '办公室',
-        type: '办公室A类',
-    },
-    {
-        indexImage: 'q_images/office02.jpg',
-        name: '办公室',
-        type: '办公室B类',
-    },
-    {
-        indexImage: 'q_images/office03.jpg',
-        name: '办公室',
-        type: '办公室C类',
-    }
-]
+// const roomstyle = [
+//     {
+//         indexImage: 'q_images/zixishi01.jpg',
+//         name: '自习室',
+//         type: '自习室A类',
+//     },
+//     {
+//         indexImage: 'q_images/zixishi02.jpg',
+//         name: '自习室',
+//         type: '自习室B类',
+//     },
+//     {
+//         indexImage: 'q_images/zixishi02.jpg',
+//         name: '自习室',
+//         type: '自习室C类',
+//     },
+//     {
+//         indexImage: 'q_images/zixishi01.jpg',
+//         name: '自习室',
+//         type: '自习室A类',
+//     },
+//     {
+//         indexImage: 'q_images/zixishi02.jpg',
+//         name: '自习室',
+//         type: '自习室B类',
+//     },
+//     {
+//         indexImage: 'q_images/zixishi02.jpg',
+//         name: '自习室',
+//         type: '自习室C类',
+//     }
+// ]
+// const officestyle = [
+//     {
+//         indexImage: 'q_images/office01.jpg',
+//         name: '办公室',
+//         type: '办公室A类',
+//     },
+//     {
+//         indexImage: 'q_images/office02.jpg',
+//         name: '办公室',
+//         type: '办公室B类',
+//     },
+//     {
+//         indexImage: 'q_images/office03.jpg',
+//         name: '办公室',
+//         type: '办公室C类',
+//     },
+//     {
+//         indexImage: 'q_images/office01.jpg',
+//         name: '办公室',
+//         type: '办公室A类',
+//     },
+//     {
+//         indexImage: 'q_images/office02.jpg',
+//         name: '办公室',
+//         type: '办公室B类',
+//     },
+//     {
+//         indexImage: 'q_images/office03.jpg',
+//         name: '办公室',
+//         type: '办公室C类',
+//     }
+// ]
 
 export default class Foundhouse extends Component {
     constructor(props) {
@@ -87,20 +87,26 @@ export default class Foundhouse extends Component {
             value1: 'yuhuaqu',
             value2: 'all',
             value3: '0-3',
-            data: [],
-            room: roomstyle,
-            office: officestyle
+            data1: [],
+            data2: [],
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
         this.handleChange3 = this.handleChange3.bind(this);
     }
     componentDidMount() {
+        fetch('http://zy.eatclub.wang:3000/list/sr')
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    data1: res.data
+                })
+            })
         fetch('http://zy.eatclub.wang:3000/list/office')
             .then(res => res.json())
             .then(res => {
                 this.setState({
-                    data: res.data
+                    data2: res.data
                 })
             })
     }
@@ -119,7 +125,6 @@ export default class Foundhouse extends Component {
                 <WhiteSpace />
                 <Tabs tabs={tabs} initialPage={2} animated={false} useOnPan={false} >
                     <div style={{ display: 'flex', alignItems: 'top', justifyContent: 'center', height: '100px', backgroundColor: '#fff' }}>
-
                         <div className="qjx001">
                             <WhiteSpace />
                             <Tabs tabs={tabs1} initialPage={2} animated={false} useOnPan={false} >
@@ -241,15 +246,21 @@ export default class Foundhouse extends Component {
                                 </div>
                             </div>*/}
                             <div className="roomstyleonly">
-                            {this.state.room.map(val => (
-                                <div key={val} className="roome">
-                                    <img src={val.indexImage} />
+                            {this.state.data1.map((value) => (
+                                <div key={value.id} className="roome">
+                                    <Link to='/study-room-infor'>
+                                    <img src="q_images/logo001.jpg" />
                                     <div className="roomeA">
                                         <div className="roominfor">
-                                            <Link to='/study-room-infor'><p style={{ fontSize: '20px' }}>{val.type}</p></Link>
-                                            <p style={{ marginTop: '10px' }}>{val.name}</p>
+                                            <p style={{ marginTop: '10px' }}>编号：{value.srid}</p>
+                                            <p style={{ marginTop: '' }}>名称：{value.srname}</p>
+                                            <p style={{}}>位置：{value.sraddress}</p>
+                                            <p style={{ fontSize: '' }}>类型：{value.type}</p>
+                                            <p>价格：{value.price}元/小时</p>
+                                            <p>房东id：{value.ownerid}</p>
                                         </div>
                                     </div>
+                                    </Link>
                                 </div>
                             ))}
                             </div>
@@ -371,15 +382,21 @@ export default class Foundhouse extends Component {
                                 </div>
                             </div> */}
                             <div className="roomstyleonly">
-                            {this.state.office.map(val => (
-                                <div key={val} className="roome">
-                                    <img src={val.indexImage} />
+                            {this.state.data2.map((value) => (
+                                <div key={value.id} className="roome">
+                                    <Link to=''>
+                                    <img src="q_images/logo001.jpg" />
                                     <div className="roomeA">
                                         <div className="roominfor">
-                                            <p style={{ fontSize: '20px' }}>{val.type}</p>
-                                            <p style={{ marginTop: '10px' }}>{val.name}</p>
+                                            <p>编号：{value.officeid}</p>
+                                            <p style={{}}>名称：{value.officename}</p>
+                                            <p style={{}}>地址：{value.officeaddress}</p>
+                                            <p>价格：{value.price}元/m²/小时</p>
+                                            <p style={{}}>房东id：{value.owner}</p>
+                                            <p>办公室面积：{value.area}</p>
                                         </div>
                                     </div>
+                                    </Link>
                                 </div>
                             ))}
                             </div>
