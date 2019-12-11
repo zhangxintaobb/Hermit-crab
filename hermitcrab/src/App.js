@@ -8,9 +8,6 @@ import Information from './container/Foundhouse/Information';
 import Userword from './container/Foundhouse/Userword';
 import Importantinfor from './container/Foundhouse/Importantinfor';
 import Badword from './container/Foundhouse/Badword';
-import Location from './container/Foundhouse/Location';
-import Form from './container/Foundhouse/Form';
-import Prise from './container/Foundhouse/Prise';
 import Person from './container/myself/Person'
 import Collection from './container/myself/Collection';
 import Order from './container/myself/Order';
@@ -31,9 +28,6 @@ function App() {
           <Route path='/userword' component={Userword} />
           <Route path='/importantinfor' component={Importantinfor} />
           <Route path='/badword' component={Badword} />
-          <Route path='/location' component={Location} />
-          <Route path='/form' component={Form} />
-          <Route path='/prise' component={Prise} />
           <Route path='/' component={AppTab} />
         </Switch>
       </Router>
