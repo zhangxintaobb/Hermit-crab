@@ -103,7 +103,8 @@ export default class Foundhouse extends Component {
         this.state = {
             value1: 'yuhuaqu',
             value2: 'all',
-            value3: '0-3'
+            value3: '0-3',
+            data: []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
@@ -113,7 +114,9 @@ export default class Foundhouse extends Component {
         fetch('http://zy.eatclub.wang:3000/list/office')
             .then(res => res.json())
             .then(res => {
-                console.log(res)
+                this.setState({
+                    data: res.data
+                })
             })
     }
     handleChange(event) {
@@ -195,7 +198,7 @@ export default class Foundhouse extends Component {
                                     <div className="pic01">
                                         <img src="q_images/zixishi01.jpg" style={{
                                             height: '120px',
-                                            width: '200px',
+                                            width: '200px'
                                         }}></img>
                                     </div>
                                     <div className="but01 animate-route">
