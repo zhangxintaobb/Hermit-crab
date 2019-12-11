@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { NavBar, Icon, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
 import {Redirect} from "react-router-dom"
+import axios from '../../model/axios'
+import store from '../../store';
 const collection = [{
     id:0,
     img: '/zxt_image/room1.jpg',
@@ -41,6 +43,7 @@ export default class extends Component {
     constructor() {
         super()
         this.state = {
+            sr:[],
             //收藏信息
             data:collection,
             //设置删除按钮状态，0未不显示，1为显示
@@ -53,6 +56,26 @@ export default class extends Component {
             back:false
         }
     }
+    componentDidMount(){
+        axios({
+            url: 'http://127.0.0.1:8081/collection',
+            method: 'get',
+            responsetype:'json',
+            params: {
+                userid:store.getState().login.userid
+            }
+          })
+          .then((response)=> {
+            this.setState(()=>({
+                data:response.data
+            }))
+            console.log(this.state.sr)
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    }
+    
     //跳转详情页
     infor = () => {
         window.location.hash = '/infor'
@@ -75,9 +98,24 @@ export default class extends Component {
     }
     //删除对应的收藏项
     delete = (item) => {
-        console.log(item.item.id)
+        axios({
+            url: 'http://127.0.0.1:8081/collection/delete',
+            method: 'get',
+            responsetype:'json',
+            params: {
+                sr_id:item.item.sr_id
+            }
+          })
+          .then((response)=> {
+            console.log(response)
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+        console.log(item.item.sr_id)
     }
     render() {
+        console.log(this.state.data)
         //如果返回，跳转到个人信息页
         if(this.state.back){
             return (<Redirect to={{
@@ -105,7 +143,7 @@ export default class extends Component {
                 >我的收藏</NavBar>
                 <div className="flex-container">
                     {this.state.data.map((item) => (
-                        <div key={item.id}>
+                        <div key={item.sr_id}>
                             <Flex>
                                 {/* 删除小块 */}
                                 <div ref="delete" onClick={() => { this.delete({item}) }}
@@ -130,7 +168,7 @@ export default class extends Component {
                                             borderBottom: '1px solid #F6F6F6',
                                         }}
                                     >
-                                        <WingBlank>{item.name}</WingBlank>
+                                        <WingBlank>{item.sr_name}</WingBlank>
                                     </div>
                                     <div style={{
                                         display: '-webkit-box',
@@ -138,11 +176,11 @@ export default class extends Component {
                                         padding: '15px',
                                         backgroundColor: 'white'
                                     }}>
-                                        <img style={{width:'72px', height: '72px', marginRight: '15px' }} src={item.img} alt="" />
+                                        <img style={{width:'72px', height: '72px', marginRight: '15px' }} src={item.sr_img} alt="" />
                                         <div style={{ lineHeight: 1 }}>
-                                            <div style={{ marginBottom: '14px', fontWeight: 'bold' }}>{item.name}</div>
-                                            <div style={{ marginBottom: '12px' }}>地址：{item.address}</div>
-                                            <div><span style={{ fontSize: '20px', color: '#FF6E27' }}>¥{item.price}</span>&emsp; {item.type}</div>
+                                            <div style={{ marginBottom: '14px', fontWeight: 'bold' }}>{item.sr_name}</div>
+                                            <div style={{ marginBottom: '12px' }}>地址：{item.sr_address}</div>
+                                            <div><span style={{ fontSize: '20px', color: '#FF6E27' }}>¥{item.sr_price}</span>&emsp; {item.sr_type}</div>
                                         </div>
                                     </div>
                                 </Flex.Item>
