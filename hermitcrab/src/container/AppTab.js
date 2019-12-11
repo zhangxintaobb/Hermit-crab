@@ -8,6 +8,7 @@ import Foundhouse from './Foundhouse/Foundhouse';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 
 import Phone_Register from './registration/js/Phone_Register';
+import Beforeloading from './Foundhouse/Beforeloading';
 // import Foundroom from './Foundhouse/Foundroom'
 export default class AppTab extends Component {
 
@@ -115,7 +116,7 @@ export default class AppTab extends Component {
                         }}
                         data-seed="logId1"
                     >
-                        
+                        <Beforeloading />
                         <Route exact path="/login/" component={Foundhouse} />
                     </TabBar.Item>
                     <TabBar.Item
