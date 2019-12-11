@@ -170,3 +170,71 @@ input {
 .qjx001 {
     width: 100%;
 }
+.wordintop {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(26, 127, 241, 0.445);
+    border-radius:5px;
+}
+.wordintop p {
+    text-align: center;
+    font-weight: bolder;
+    padding-top: 10px;
+    font-size: 1.2em;
+}
+.jumptxt {
+    width: 100%;
+    height: 50px;
+}
+.jumptxt p {
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 100px;
+    padding-top: 10px;
+}
+.jump {
+    margin-top: 10px;
+    width: 100%;
+}
+.jumpbut {
+    outline: none;
+    border: none;
+    background-color: rgba(26, 127, 241, 0.445);
+    font-family: '宋体';
+    font-weight: bolder;
+    width: 10%;
+    height: 20px;
+    margin-left: 45%; 
+    border-radius:5px;
+}
+.roomstyleonly{
+    margin-top: 10px;
+}
+.roome{
+    /* background-color: burlywood; */
+    height:160px;
+    margin-top: 10px;
+    border-bottom: solid 1px #998f8f;
+}
+.roome img{
+    margin-left: 20px;
+    height: 80%;
+    width: 200px;
+    float: left;
+}
+.roomA{
+    /* background: cornflowerblue; */
+    height: 80%;
+    width: 100px;
+    margin-left: 40px;
+    float: left;
+    margin-top: 100px;
+}
+.roominfor{
+    height: 80%;
+}
+.roominfor p {
+    font-size: 0.8em;
+    font-family: '宋体';
+    font-weight: bolder;
+}

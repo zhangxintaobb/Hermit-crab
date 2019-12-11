@@ -8,7 +8,7 @@ import Foundhouse from './Foundhouse/Foundhouse';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 
 import Phone_Register from './registration/js/Phone_Register';
-// import Foundroom from './Foundhouse/Foundroom'
+import Beforeloading from './Foundhouse/Beforeloading';
 export default class AppTab extends Component {
 
     constructor(props,context) {
@@ -21,7 +21,6 @@ export default class AppTab extends Component {
     componentDidMount(){
         //查看是否是由其他页面跳转而来
         const jump=this.props.location.state;
-        console.log(jump)
         //如果不是，返回的是第一个下标页
         if(jump==undefined){
         }
@@ -115,7 +114,7 @@ export default class AppTab extends Component {
                         }}
                         data-seed="logId1"
                     >
-                        
+                        <Foundhouse />
                         <Route exact path="/login/" component={Foundhouse} />
                     </TabBar.Item>
                     <TabBar.Item

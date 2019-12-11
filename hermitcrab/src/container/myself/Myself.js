@@ -13,9 +13,25 @@ export default class Myself extends Component {
         super()
         this.state={
             img:'./zxt_image/1.JPG',
-            data:store.getState().login,
+            data:{}
         }
     }
+    componentDidMount(){
+        fetch(`http://127.0.0.1:8081/login`, {
+            method: 'GET'
+        }).then(res => res.json()).then(
+            data => {
+                console.log(data.data)
+                for(var i=0;i<data.data.length;i++){
+                if(store.getState().login.userid==data.data[i].userid){
+                    this.setState({
+                        data:data.data[i]
+                    })
+                }
+            }
+            }
+        )}
+    
     //退出登录
   warning = () => {
     window.location.href = "/"

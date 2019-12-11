@@ -5,7 +5,6 @@ import { district, provinceLite } from 'antd-mobile-demo-data';
 import { Redirect } from "react-router-dom"
 import axios from '../../model/axios'
 import store from '../../store';
-import {login} from '../../actions';
 // 修改头像
 const data = [{
   url: "/zxt_image/1.JPG",
@@ -40,13 +39,13 @@ export default class Person extends Component {
   constructor() {
     super()
     this.state = {
-      user:store.getState().login,
+      user:{},
       // 设置页面id
       id: 'person',
       //图片地址
       files: data,
       //性别
-      sValue: [store.getState().login.sex],
+      sValue: [],
       //提交按钮
       redirect: false,
       // 设置返回时跳转的页面
@@ -55,23 +54,23 @@ export default class Person extends Component {
       back: false
     }
   }
-  // 数据请求
-  // getData(){ //请求数据函数
-  //   fetch(`http://127.0.0.1:8081/myself/person`,{
-  //   method: 'GET'
-  //   }).then(res => res.json()).then(
-  //   data => {
-  //     console.log(data)
-  //     this.setState({
-  //       sValue: [data.sex],
-  //       username: data.username,
-  //       email: data.email,
-  //       phoneNumber: data.phoneNumber
-
-  //     })
-  //   }
-  //   )
-  //   }
+  componentDidMount(){
+    fetch(`http://127.0.0.1:8081/login`, {
+            method: 'GET'
+        }).then(res => res.json()).then(
+            data => {
+                console.log(data.data)
+                for(var i=0;i<data.data.length;i++){
+                if(store.getState().login.userid==data.data[i].userid){
+                    this.setState({
+                        user:data.data[i],
+                        sValue:[data.data[i].sex]
+                    })
+                }
+            }
+            }
+        )
+  }
   //头像修改
   onChange = (files) => {
     this.setState({
@@ -88,12 +87,29 @@ export default class Person extends Component {
   //点击提交
   //将修改后的信息传给state
   handleClick = () => {
+  
+axios({
+  url: 'http://127.0.0.1:8081/myself/person',
+  method: 'post',
+  responsetype:'json',
+  params: {
+        username: this.refs.user.state.value || this.state.user.username,
+      email: this.refs.email.state.value || this.state.user.email,
+      sex:this.state.sValue[0] || this.state.user.sex,
+      password:this.refs.password.state.value || this.state.user.password,
+      userid:this.state.user.userid
+  }
+})
+.then(function (response) {
+  console.log(response);
+})
+.catch(function (error) {
+  console.log(error);
+})
     this.setState({
-      username: this.refs.user.state.value,
-      phoneNumber: this.refs.phoneNumber.state.value,
-      email: this.refs.email.state.value,
       redirect: true
     })
+    
   }
 
   // 性别选择
@@ -173,13 +189,13 @@ export default class Person extends Component {
                     ref="user"
                     style={{ textAlign: "right" }}
                   >名称</InputItem>
-                  {/* 手机号码修改 */}
+                  {/* 密码修改 */}
                   <InputItem
                     clear
-                    placeholder={this.state.user.phonenumber}
-                    ref="phoneNumber"
+                    placeholder={this.state.user.password}
+                    ref="password"
                     style={{ textAlign: "right" }}
-                  >手机号码</InputItem>
+                  >用户密码</InputItem>
                   {/* 邮箱修改 */}
                   <InputItem
                     clear

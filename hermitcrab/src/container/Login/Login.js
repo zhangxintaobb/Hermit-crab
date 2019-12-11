@@ -10,8 +10,8 @@ export default function Login(props) {
     const [dat, setDat] = useState([])
     //将登录信息传给个人页的数据
     const[data,setData]=useState({})
-    const [user, setUser] = useState("88888888888")
-    const [pwd, setPwd] = useState("888888")
+    const [user, setUser] = useState("15960266038")
+    const [pwd, setPwd] = useState("666666")
     const [jump,setJump]=useState(false)
     function register(e) {
         window.location.hash = '/register'

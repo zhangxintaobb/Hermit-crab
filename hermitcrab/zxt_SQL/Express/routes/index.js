@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 /* GET home page. */
 
 router.get('/json', function (req, res, next) { //添加的代码
-  console.log(req.query);
+  // console.log(req.query);
   let myjson = {
   name : '123456',
   price : '3元',
