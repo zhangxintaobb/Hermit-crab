@@ -68,11 +68,54 @@ router.get('/list/sr', function (req, res, next) {
   });
 });
 
+// 获取自习室详细信息
+router.get('/list/sr/detail', function (req, res, next) {
+  // console.log(req.query.id);
+  let id = req.query.id;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from srinfo where srid = " + id, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )
+    }
+  });
+});
+
 // 办公室列表
 router.get('/list/office', function (req, res, next) {
   let con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("select * from officeinfo", function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )
+    }
+  });
+});
+
+// 获取办公室详细信息
+router.get('/list/office/detail', function (req, res, next) {
+  let id = req.query.id;
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from officeinfo where officeid = " + id, function (err, result) {
     if (err) {
       console.log(err);
     } else {
