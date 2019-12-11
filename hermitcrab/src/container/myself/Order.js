@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Button, NavBar, Icon, Flex, WhiteSpace, WingBlank, List } from 'antd-mobile';
 import {Redirect} from "react-router-dom"
+import axios from '../../model/axios'
+import store from '../../store';
 var order = [
     {
         id:0,
@@ -23,6 +25,7 @@ export default class Order extends Component {
     constructor(){
         super()
         this.state={
+            data:[],
         // 设置页面id
           id:'order',
         // 设置返回时跳转的页面
@@ -40,6 +43,25 @@ export default class Order extends Component {
         console.log(item.item.id)
         var id=item.item.id
         window.location.hash='/myself/comment?'+id
+    }
+    componentDidMount() {
+        axios({
+            url: 'http://127.0.0.1:8081/order',
+            method: 'get',
+            responsetype:'json',
+            params: {
+                userid:store.getState().login.userid
+            }
+          })
+          .then((response)=> {
+            this.setState(()=>({
+                data:response.data
+            }))
+            console.log(response)
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
     }
     render() {
         //如果back为真，跳回个人信息页面

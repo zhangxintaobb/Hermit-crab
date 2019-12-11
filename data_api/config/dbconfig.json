@@ -1,6 +1,6 @@
 {
     "host" : "localhost",
     "database" : "hermitcrab",
-    "user" : "zhouyang",
-    "password" : "zhouyang1999"
+    "user" : "root",
+    "password" : ""
 }

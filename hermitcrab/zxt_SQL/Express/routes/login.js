@@ -10,7 +10,7 @@ const bodyParser = require('body-parser')
 router.get('/login', function (req, res, next) { //添加的代码
   let con = mysql.createConnection(dbconfig);
   con.connect();
-  con.query("select * from user", function (err, result) {
+  con.query("select * from userinfo", function (err, result) {
     if (err) {
       console.log(err);
     } else {
