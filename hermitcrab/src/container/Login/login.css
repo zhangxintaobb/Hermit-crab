@@ -170,3 +170,40 @@ input {
 .qjx001 {
     width: 100%;
 }
+.wordintop {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(26, 127, 241, 0.445);
+    border-radius:5px;
+}
+.wordintop p {
+    text-align: center;
+    font-weight: bolder;
+    padding-top: 10px;
+    font-size: 1.2em;
+}
+.jumptxt {
+    width: 100%;
+    height: 50px;
+}
+.jumptxt p {
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 100px;
+    padding-top: 10px;
+}
+.jump {
+    margin-top: 10px;
+    width: 100%;
+}
+.jumpbut {
+    outline: none;
+    border: none;
+    background-color: rgba(26, 127, 241, 0.445);
+    font-family: '宋体';
+    font-weight: bolder;
+    width: 10%;
+    height: 20px;
+    margin-left: 45%; 
+    border-radius:5px;
+}

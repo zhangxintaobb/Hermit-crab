@@ -8,26 +8,6 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-// 管理员列表
-router.get('/list/manager', function (req, res, next) {
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("select * from manager", function (err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(
-        {
-          "code": 0,
-          "msg": "",
-          "count": 1000,
-          "data": result
-        }
-      )
-    }
-  });
-});
-
 // 用户列表
 router.get('/list/user', function (req, res, next) {
   let con = mysql.createConnection(dbconfig);
