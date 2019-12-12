@@ -133,18 +133,20 @@ router.get('/list/office/detail', function (req, res, next) {
 
 // 添加用户
 router.post('/adduser', function (req, res, next) {
-  let name = req.body.zxs_name;
-  let address = req.body.zxs_address;
-  let price = req.body.zxs_price;
-  let ownerid = req.body.zxs_ownerid;
-  let type = req.body.zxs_kind;
+  let name = req.body.username;
+  let pwd = req.body.pwd;
+  let address = req.body.address;
+  let sex = req.body.sex;
+  let phone = req.body.phone;
+  let email = req.body.email;
   let con = mysql.createConnection(dbconfig);
   con.connect();
-  con.query("insert into srinfo(srname, sraddress, price, ownerid, type) values(?, ?, ?, ?, ?)",[name, address, price, ownerid, type], function(err, result) {
+  con.query("insert into userinfo(username, sex, phone, address, email, password) values(?, ?, ?, ?, ?, ?)",[name, sex, phone, address, email, pwd], function(err, result) {
     if(err) {
       console.log(err);
     }
   });
+  res.end('注册成功！！');
 })
 
 module.exports = router;

@@ -78,8 +78,8 @@ router.post('/system/addfd', function (req, res, next) {
   let avatar = req.body.file;
   let con = mysql.createConnection(dbconfig);
   con.connect();
-  con.query("insert into fdinfo(name, sex, phone, avatar) values(?, ?, ?, ?)",[name, sex, phone, avatar], function(err, result) {
-    if(err) {
+  con.query("insert into fdinfo(name, sex, phone, avatar) values(?, ?, ?, ?)", [name, sex, phone, avatar], function (err, result) {
+    if (err) {
       console.log(err);
     }
   });
@@ -91,10 +91,12 @@ router.post('/system/addzxs', function (req, res, next) {
   let price = req.body.zxs_price;
   let ownerid = req.body.zxs_ownerid;
   let type = req.body.zxs_kind;
+  let city = req.body.zxs_city;
+  let quyu = req.body.zxs_quyu;
   let con = mysql.createConnection(dbconfig);
   con.connect();
-  con.query("insert into srinfo(srname, sraddress, price, ownerid, type) values(?, ?, ?, ?, ?)",[name, address, price, ownerid, type], function(err, result) {
-    if(err) {
+  con.query("insert into srinfo(srname, sraddress, price, ownerid, type, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, type, city, quyu], function (err, result) {
+    if (err) {
       console.log(err);
     }
   });
@@ -106,10 +108,12 @@ router.post('/system/addbgs', function (req, res, next) {
   let price = req.body.bgs_price;
   let ownerid = req.body.bgs_ownerid;
   let area = req.body.bgs_area;
+  let city = req.body.bgs_city;
+  let quyu = req.body.bgs_quyu;
   let con = mysql.createConnection(dbconfig);
   con.connect();
-  con.query("insert into officeinfo(officename, officeaddress, price, ownerid, area) values(?, ?, ?, ?, ?)",[name, address, price, ownerid, area], function(err, result) {
-    if(err) {
+  con.query("insert into officeinfo(officename, officeaddress, price, ownerid, area, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, area, city, quyu], function (err, result) {
+    if (err) {
       console.log(err);
     }
   });
