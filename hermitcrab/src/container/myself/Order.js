@@ -1,28 +1,32 @@
 import React, { Component } from 'react'
 import { Button, NavBar, Icon, Flex, WhiteSpace, WingBlank, List } from 'antd-mobile';
 import {Redirect} from "react-router-dom"
-var order = [
-    {
-        id:0,
-        img: '/zxt_image/room2.jpg',
-        name: '我想静静自习室（万象城店）',
-        price: '200',
-        status: true,
-        num: 2
-    },
-    {
-        id:1,
-        img: '/zxt_image/room1.jpg',
-        name: '阿猫自习室',
-        price: '1000',
-        status: false,
-        num: 1
-    }
-]
+import axios from '../../model/axios'
+import store from '../../store';
+// var order = [
+//     {
+//         id:0,
+//         img: '/zxt_image/room2.jpg',
+//         name: '我想静静自习室（万象城店）',
+//         price: '200',
+//         status: true,
+//         num: 2
+//     },
+//     {
+//         id:1,
+//         img: '/zxt_image/room1.jpg',
+//         name: '阿猫自习室',
+//         price: '1000',
+//         status: false,
+//         num: 1
+//     }
+// ]
 export default class Order extends Component {
     constructor(){
         super()
         this.state={
+        unpay:[],
+        uncommit:[],
         // 设置页面id
           id:'order',
         // 设置返回时跳转的页面
@@ -37,11 +41,55 @@ export default class Order extends Component {
     }
     //跳转评价页面
     comment=(item)=>{
-        console.log(item.item.id)
-        var id=item.item.id
+        console.log(item.item.srid)
+        var id=item.item.srid
         window.location.hash='/myself/comment?'+id
     }
+    componentDidMount() {
+        axios({
+            url: 'http://127.0.0.1:8081/order/unpay',
+            method: 'get',
+            responsetype:'json',
+            params: {
+                userid:store.getState().login.userid
+            }
+          })
+          .then((response)=> {
+            this.setState(() => ({
+                unpay: response.data
+            }))
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+
+          axios({
+            url: 'http://127.0.0.1:8081/order/uncommit',
+            method: 'get',
+            responsetype:'json',
+            params: {
+                userid:store.getState().login.userid
+            }
+          })
+          .then((response)=> {
+            this.setState(() => ({
+                uncommit: response.data
+            }))
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+          
+    }
     render() {
+        for(var i=0;i<this.state.uncommit.length;i++){
+            this.state.uncommit[i].status=true
+        }
+        for(var i=0;i<this.state.unpay.length;i++){
+            this.state.unpay[i].status=false
+        }
+        const order=this.state.unpay.concat(this.state.uncommit)
+        console.log(order)
         //如果back为真，跳回个人信息页面
         if(this.state.back){
             return (<Redirect to={{
@@ -77,7 +125,7 @@ export default class Order extends Component {
                                     }}
                                 >
                                     <WingBlank>
-                                        <h4 style={{ display: 'inline-block' }}>{item.name}</h4>
+                                        <h4 style={{ display: 'inline-block' }}>{item.srname}</h4>
                                         <p style={{ display: 'inline-block', float: 'right' }}>待付款</p>
                                     </WingBlank>
                                 </div>
@@ -95,9 +143,9 @@ export default class Order extends Component {
                                                 float:'left'
                                             }} src={item.img} alt="" />
                                             <List.Item.Brief style={{display:'inline-block',float:'left'}}>
-                                            <h6>总价：{item.price}</h6>
+                                            <h6>单价：{item.price}</h6>
                                             <List.Item.Brief style={{display:'inline-block'}}>
-                                            <h6>数量：{item.num}</h6>
+                                            <h6>类型：{item.type}</h6>
                                             </List.Item.Brief>
                                             </List.Item.Brief>
                                         </List.Item>
@@ -116,7 +164,7 @@ export default class Order extends Component {
                                     }}
                                 >
                                     <WingBlank>
-                                        <h4 style={{ display: 'inline-block' }}>{item.name}</h4>
+                                        <h4 style={{ display: 'inline-block' }}>{item.srname}</h4>
                                         <p style={{ display: 'inline-block', float: 'right' }}>待评价</p>
                                     </WingBlank>
                                 </div>
@@ -134,9 +182,9 @@ export default class Order extends Component {
                                                 float:'left'
                                             }} src={item.img} alt="" />
                                             <List.Item.Brief style={{display:'inline-block',float:'left'}}>
-                                            <h6>总价：{item.price}</h6>
+                                            <h6>单价：{item.price}</h6>
                                             <List.Item.Brief style={{display:'inline-block'}}>
-                                            <h6>数量：{item.num}</h6>
+                                            <h6>类型：{item.type}</h6>
                                             </List.Item.Brief>
                                             </List.Item.Brief>
                                         </List.Item>

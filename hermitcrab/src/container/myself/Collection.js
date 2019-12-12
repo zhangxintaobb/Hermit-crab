@@ -1,81 +1,45 @@
 import React, { Component } from 'react'
 import { NavBar, Icon, Flex, WhiteSpace, WingBlank } from 'antd-mobile';
-import {Redirect} from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import axios from '../../model/axios'
 import store from '../../store';
-const collection = [{
-    id:0,
-    img: '/zxt_image/room1.jpg',
-    name: '师大自习室',
-    price: 100,
-    address: '河北师范大学西门科技楼',
-    type: '自习室'
-}, {
-    id:1,
-    img: '/zxt_image/room2.jpg',
-    name: '国大自习室',
-    price: 200,
-    address: '河北师范大学西门科技楼',
-    type: '自习室'
-}, {
-    id:2,
-    img: '/zxt_image/room3.jpg',
-    name: '北大自习室',
-    price: 300,
-    address: '河北师范大学西门科技楼',
-    type: '自习室'
-}, {
-    id:3,
-    img: '/zxt_image/room4.jpg',
-    name: '阿猫自习室',
-    price: 400,
-    address: '河北师范大学西门科技楼',
-    type: '自习室'
-}, {
-    id:4,
-    img: '/zxt_image/room5.jpg',
-    name: '阿狗自习室',
-    price: 500,
-    address: '河北师范大学西门科技楼',
-    type: '自习室'
-},]
 export default class extends Component {
     constructor() {
         super()
         this.state = {
-            sr:[],
+            sr: [],
             //收藏信息
-            data:collection,
+            data: [],
             //设置删除按钮状态，0未不显示，1为显示
             currentIndex: 0,
             //设置页面id
-            id:'order',
+            id: 'order',
             // 设置返回时跳转的页面
-            link:"4",
+            link: "4",
             // 设置是否返回跳转
-            back:false
+            back: false
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         axios({
             url: 'http://127.0.0.1:8081/collection',
             method: 'get',
-            responsetype:'json',
+            responsetype: 'json',
             params: {
-                userid:store.getState().login.userid
+                userid: store.getState().login.userid
             }
-          })
-          .then((response)=> {
-            this.setState(()=>({
-                data:response.data
-            }))
-            console.log(this.state.sr)
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
+        })
+            .then((response) => {
+                this.setState(() => ({
+                    data: response.data
+                }))
+                console.log(this.state.sr)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
-    
+
     //跳转详情页
     infor = () => {
         window.location.hash = '/infor'
@@ -101,28 +65,36 @@ export default class extends Component {
         axios({
             url: 'http://127.0.0.1:8081/collection/delete',
             method: 'get',
-            responsetype:'json',
+            responsetype: 'json',
             params: {
-                sr_id:item.item.sr_id
+                srid: item.item.srid
             }
-          })
-          .then((response)=> {
-            console.log(response)
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-        console.log(item.item.sr_id)
+        })
+            .then((response) => {
+                console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        for(var index=0;index<this.state.data.length;index++){
+            if(this.state.data[index].srid==item.item.srid){
+                console.log(index)
+                this.setState({
+                    data: this.state.data.filter((_, i) => i !== index)
+                  })              
+            }
+        }
+
     }
     render() {
         console.log(this.state.data)
         //如果返回，跳转到个人信息页
-        if(this.state.back){
+        if (this.state.back) {
             return (<Redirect to={{
-              pathname:'/login',
-              state:this.state
+                pathname: '/login',
+                state: this.state
             }} />)
-          }
+        }
         // console.log(this.state.data)
         //否则显示如下
         return (
@@ -132,33 +104,35 @@ export default class extends Component {
                     mode="light"
                     icon={<Icon type="left" />}
                     //左边返回按钮
-                    onLeftClick={() => {this.setState({
-                        back:true
-                    }) }}
+                    onLeftClick={() => {
+                        this.setState({
+                            back: true
+                        })
+                    }}
                     //右边是否出现删除按钮
                     rightContent={[
                         <Icon type="ellipsis" onClick={() => this.showDiv()} />,
                     ]}
-                    style={{borderBottom:'1px solid rgb(123, 137, 143)'}}
+                    style={{ borderBottom: '1px solid rgb(123, 137, 143)' }}
                 >我的收藏</NavBar>
                 <div className="flex-container">
                     {this.state.data.map((item) => (
-                        <div key={item.sr_id}>
+                        <div key={item.srid}>
                             <Flex>
                                 {/* 删除小块 */}
-                                <div ref="delete" onClick={() => { this.delete({item}) }}
+                                <div ref="delete" onClick={() => { this.delete({ item }) }}
                                     style={{
                                         width: '40px',
                                         height: '90px',
                                         backgroundColor: 'red',
-                                        paddingTop:'17%',
+                                        paddingTop: '17%',
                                         display: (1 === this.state.currentIndex) ? "block" : "none"
                                     }}
-                                ><p style={{color:'white',fontWeight:'bold',textAlign:'center'}}>删除</p>
+                                ><p style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>删除</p>
                                 </div>
                                 {/* 跳转详情页面 */}
                                 <Flex.Item onClick={() => { this.infor() }}
-                                style={{marginLeft:'0px'}}>
+                                    style={{ marginLeft: '0px' }}>
                                     <div
                                         style={{
                                             backgroundColor: 'white',
@@ -168,7 +142,7 @@ export default class extends Component {
                                             borderBottom: '1px solid #F6F6F6',
                                         }}
                                     >
-                                        <WingBlank>{item.sr_name}</WingBlank>
+                                        <WingBlank>{item.srname}</WingBlank>
                                     </div>
                                     <div style={{
                                         display: '-webkit-box',
@@ -176,11 +150,11 @@ export default class extends Component {
                                         padding: '15px',
                                         backgroundColor: 'white'
                                     }}>
-                                        <img style={{width:'72px', height: '72px', marginRight: '15px' }} src={item.sr_img} alt="" />
+                                        <img style={{ width: '72px', height: '72px', marginRight: '15px' }} src={item.srimg} alt="" />
                                         <div style={{ lineHeight: 1 }}>
-                                            <div style={{ marginBottom: '14px', fontWeight: 'bold' }}>{item.sr_name}</div>
-                                            <div style={{ marginBottom: '12px' }}>地址：{item.sr_address}</div>
-                                            <div><span style={{ fontSize: '20px', color: '#FF6E27' }}>¥{item.sr_price}</span>&emsp; {item.sr_type}</div>
+                                            <div style={{ marginBottom: '14px', fontWeight: 'bold' }}>{item.srname}</div>
+                                            <div style={{ marginBottom: '12px' }}>地址：{item.sraddress}</div>
+                                            <div><span style={{ fontSize: '20px', color: '#FF6E27' }}>¥{item.srprice}</span>&emsp; {item.srtype}</div>
                                         </div>
                                     </div>
                                 </Flex.Item>
