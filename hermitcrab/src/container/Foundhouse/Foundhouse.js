@@ -273,7 +273,7 @@ export default class Foundhouse extends Component {
                         <div className="qjx001">
                             <WhiteSpace />
                             <Tabs tabs={tabs1} initialPage={2} animated={false} useOnPan={false} >
-                                <div style={{ display: 'flex', alignItems: 'top', justifyContent: 'left', height: '100px', backgroundColor: '#fff', width: '100%' }}>
+                                <div style={{ display: 'flex', alignItems: 'top', justifyContent: 'left', height: '50px', backgroundColor: '#fff', width: '100%' }}>
                                     <div>
                                         <label>
                                             <select value={this.state.value} onChange={this.handleChange} className="choose02">
@@ -384,7 +384,7 @@ export default class Foundhouse extends Component {
                             <div className="roomstyleonly">
                             {this.state.data2.map((value) => (
                                 <div key={value.id} className="roome">
-                                    <Link to=''>
+                                    <Link to='/office-infor'>
                                     <img src="q_images/logo001.jpg" />
                                     <div className="roomeA">
                                         <div className="roominfor">
