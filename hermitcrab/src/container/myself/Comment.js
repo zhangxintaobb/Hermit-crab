@@ -47,7 +47,7 @@ export default class Comment extends Component {
             // 设置页面id
             id: 'comment',
             //
-            name: order[this.props.location.search.charAt(1)].name,
+            // name: order[this.props.location.search.charAt(1)].name,
         }
     }
     
