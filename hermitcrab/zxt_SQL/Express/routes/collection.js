@@ -6,7 +6,6 @@ var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser')
 router.get('/collection', function (req, res, next) { //添加的代码
-    console.log(req.query)
     let con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("select * from srinfo where srid in (select roomid from usercollect where userid = ? )",[req.query.userid] , function (err, result) {

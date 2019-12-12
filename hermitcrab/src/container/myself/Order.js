@@ -3,24 +3,7 @@ import { Button, NavBar, Icon, Flex, WhiteSpace, WingBlank, List } from 'antd-mo
 import {Redirect} from "react-router-dom"
 import axios from '../../model/axios'
 import store from '../../store';
-// var order = [
-//     {
-//         id:0,
-//         img: '/zxt_image/room2.jpg',
-//         name: '我想静静自习室（万象城店）',
-//         price: '200',
-//         status: true,
-//         num: 2
-//     },
-//     {
-//         id:1,
-//         img: '/zxt_image/room1.jpg',
-//         name: '阿猫自习室',
-//         price: '1000',
-//         status: false,
-//         num: 1
-//     }
-// ]
+
 export default class Order extends Component {
     constructor(){
         super()
@@ -37,7 +20,7 @@ export default class Order extends Component {
       }
     //跳转支付页面
     pay = () => {
-        window.location.href="#/pay"
+        window.location.hash="/myself/pay"
     }
     //跳转评价页面
     comment=(item)=>{
@@ -83,10 +66,10 @@ export default class Order extends Component {
     }
     render() {
         for(var i=0;i<this.state.uncommit.length;i++){
-            this.state.uncommit[i].status=true
+            this.state.uncommit[i].status=false
         }
         for(var i=0;i<this.state.unpay.length;i++){
-            this.state.unpay[i].status=false
+            this.state.unpay[i].status=true
         }
         const order=this.state.unpay.concat(this.state.uncommit)
         console.log(order)
@@ -95,6 +78,12 @@ export default class Order extends Component {
             return (<Redirect to={{
               pathname:'/login',
               state:this.state
+            }} />)
+          }
+          if(this.state.back){
+            return (<Redirect to={{
+              pathname:'/login',
+              state:order
             }} />)
           }
         //如果back为否，显示以下内容

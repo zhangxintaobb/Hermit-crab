@@ -13,12 +13,15 @@ import Collection from './container/myself/Collection';
 import Order from './container/myself/Order';
 import Record from './container/myself/Record';
 import Comment from './container/myself/Comment';
+import Pay from './container/myself/Pay';
 function App() {
   return (
     <div>
       <Router>
         <Switch>
+          
           <Route path='/citylist' component={CityList} />
+          <Route path='/myself/pay' component={Pay} />
           <Route path='/myself/person' component={Person} />
           <Route path='/myself/record' component={Record} />
           <Route path='/myself/comment' component={Comment} />

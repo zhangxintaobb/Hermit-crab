@@ -10,6 +10,8 @@ var personRouter = require('./routes/person')
 var loginRouter = require('./routes/login')
 var collectionRouter = require("./routes/collection")
 var orderRouter = require("./routes/order")
+var studyroomRouter =require("./routes/studyroom")
+var commitRouter=require("./routes/commit")
 var app = express();
 
 app.all('*', function(req, res, next) {
@@ -36,6 +38,8 @@ app.use('/', personRouter);
 app.use('/', loginRouter);
 app.use("/",collectionRouter);
 app.use("/",orderRouter);
+app.use("/",studyroomRouter);
+app.use("/",commitRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
