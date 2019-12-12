@@ -58,7 +58,7 @@ export default class Myself extends Component {
                                 }}></img>
                             </Flex.Item>
                             {/* 手机号码 */}
-                            <Flex.Item><h4 style={{ display: 'inline-block' }}>{this.state.data.phonenumber}</h4></Flex.Item>
+                            <Flex.Item><h4 style={{ display: 'inline-block' }}>{this.state.data.phone}</h4></Flex.Item>
                             <Flex.Item></Flex.Item>
                         </Flex>
                     </div>

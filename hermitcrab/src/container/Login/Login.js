@@ -28,13 +28,15 @@ export default function Login(props) {
         }).then(res => res.json()).then(
             data => {
                 setDat(data.data)
+                console.log(data.data)
             }
         )
     }, [])
     function loginIt() {
         for (var i = 0; i < dat.length; i++) {
-            if (user == dat[i].phonenumber && pwd == dat[i].password) {
+            if (user == dat[i].phone && pwd == dat[i].password) {
                 setData(dat[i])
+                
                 store.dispatch(login(dat[i]))
                 setJump(true)
             }

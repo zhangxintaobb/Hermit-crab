@@ -53,8 +53,11 @@
     height: 50px;
     width: 80%;
     margin-left: 10%;
-    color: #000;
+    color: white;
     font-weight: bold;
+    border-radius:5px;
+    border: none;
+    background-color: rgba(29, 131, 247, 0.911);
 }
 .talktouser {
     height: 50px;

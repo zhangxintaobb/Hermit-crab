@@ -6,10 +6,10 @@ export default class Beforeloading extends Component {
         return (
             <div>
                 <div className="wordintop">
-                    <p>我的订单</p>
+                    <p>租赁区</p>
                 </div>
                 <div className="img1"><img className="img11" src="q_images/logo001.jpg"></img></div>
-                <div className="jumptxt"><p>登录后可查看订单</p></div>
+                <div className="jumptxt"><p>登录后可查看租赁房屋</p></div>
                 <div className="jump">
                     <Link to='/login'><button className="jumpbut">登录</button></Link>
                 </div>

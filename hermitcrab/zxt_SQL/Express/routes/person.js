@@ -15,7 +15,7 @@ router.post('/myself/person', function (req, res, next) { //添加的代码
   const sex=req.query.sex;
   const email=req.query.email;
   let con = mysql.createConnection(dbconfig);
-  con.query("update user set username = ?,email = ?,sex = ?,password = ? where userid = ?", [name,email,sex,password,id], function (err, result) {
+  con.query("update userinfo set username = ?,email = ?,sex = ?,password = ? where userid = ?", [name,email,sex,password,id], function (err, result) {
     if (err) {
       console.log(err);
     }

@@ -13,6 +13,7 @@ import Collection from './container/myself/Collection';
 import Order from './container/myself/Order';
 import Record from './container/myself/Record';
 import Comment from './container/myself/Comment';
+import officeinfor from './container/Foundhouse/officeinfor';
 function App() {
   return (
     <div>
@@ -25,6 +26,7 @@ function App() {
           <Route path='/myself/collection' component={Collection} />
           <Route path='/myself/order' component={Order} />
           <Route path='/study-room-infor' component={Information} />
+          <Route path='/office-infor' component={officeinfor} />
           <Route path='/userword' component={Userword} />
           <Route path='/importantinfor' component={Importantinfor} />
           <Route path='/badword' component={Badword} />
