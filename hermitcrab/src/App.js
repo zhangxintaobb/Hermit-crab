@@ -13,7 +13,11 @@ import Collection from './container/myself/Collection';
 import Order from './container/myself/Order';
 import Record from './container/myself/Record';
 import Comment from './container/myself/Comment';
+<<<<<<< HEAD
 import Pay from './container/myself/Pay';
+=======
+import officeinfor from './container/Foundhouse/officeinfor';
+>>>>>>> b952550661c3f0681206e5d068832dfe8de57fce
 function App() {
   return (
     <div>
@@ -28,6 +32,7 @@ function App() {
           <Route path='/myself/collection' component={Collection} />
           <Route path='/myself/order' component={Order} />
           <Route path='/study-room-infor' component={Information} />
+          <Route path='/office-infor' component={officeinfor} />
           <Route path='/userword' component={Userword} />
           <Route path='/importantinfor' component={Importantinfor} />
           <Route path='/badword' component={Badword} />
