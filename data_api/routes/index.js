@@ -220,7 +220,178 @@ router.get('/collection/delete', function (req, res, next) {
   });
 })
 
+//提交评价
+router.get('/commit/put', function (req, res, next) {
+  let content = req.query;
+  console.log(req.query)
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("update userorder set commit_content= ?,commit = ?,commit_status = ? where userid = ? && type = ? && roomid = ?",[content.content,true,content.status,content.userid,"自习室",content.roomid],function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    else{
+      console.log(result)
+    }
+  });
+})
 
+//登录，获取所有用户信息
+router.get('/login', function (req, res, next) { 
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from userinfo", function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )}
+      })
+})
 
+//获取未付款的租赁记录
+router.get('/order/unpay', function (req, res, next) { //添加的代码
+  console.log(req.query.userid)
+  let con = mysql.createConnection(dbconfig);
+con.connect();
+con.query("select * from srinfo where srid in (select roomid from userorder where userid = ? && pay = ? )",[req.query.userid,0] , function (err, result) {
+  if (err) {
+    console.log(err);
+  } else {
+      res.json(
+          {
+            "code": 0,
+            "msg": "",
+            "count": 1000,
+            "data": result
+          }
+        )
+    }
+    })
+})
+
+//获取未评价的租赁记录
+
+router.get('/order/uncommit', function (req, res, next) { //添加的代码
+  console.log(req.query)
+  let con = mysql.createConnection(dbconfig);
+con.connect();
+con.query("select * from srinfo where srid in (select roomid from userorder where userid = ? && pay = ? && commit = ?)",[req.query.userid,1,0] , function (err, result) {
+  if (err) {
+    console.log(err);
+  } else {
+      res.json(
+          {
+            "code": 0,
+            "msg": "",
+            "count": 1000,
+            "data": result
+          }
+        )
+    }
+    })
+})
+
+//付款
+router.get('/pay', function (req, res, next) {
+  let content = req.query;
+  console.log(req.query)
+  let con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("update userorder set pay = ? where userid = ? && roomid = ?",[1,content.userid,content.srid],function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    else{
+      console.log(result)
+    }
+  });
+})
+
+//修改个人信息
+
+router.post('/myself/person', function (req, res, next) { //添加的代码
+  console.log(req.query);
+  const name=req.query.username;
+  const id=req.query.userid;
+  const password=req.query.password;
+  const sex=req.query.sex;
+  const email=req.query.email;
+  let con = mysql.createConnection(dbconfig);
+  con.query("update userinfo set username = ?,email = ?,sex = ?,password = ? where userid = ?", [name,email,sex,password,id], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(result);
+  });
+})
+
+//获取评价
+router.get('/record', function (req, res, next) { //添加的代码
+  console.log(req.query.userid)
+        let con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query("select * from userorder where userid = ? && commit = ?",[req.query.userid,1], function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(
+          {
+            "code": 0,
+            "msg": "",
+            "count": 1000,
+            "data": result
+          }
+        )}
+        })
+  })
+
+//获取评价的房屋信息
+
+router.get('/record/room', function (req, res, next) { //添加的代码
+  console.log(req.query.room)
+        let con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query("select * from srinfo where srid in"+req.query.room, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(
+          {
+            "code": 0,
+            "msg": "",
+            "count": 1000,
+            "data": result
+          }
+        )}
+        })
+  })
+
+ //获取自习室信息
+ 
+router.get('/studyroom', function (req, res, next) { //添加的代码
+  console.log(req.query.srid)
+let con = mysql.createConnection(dbconfig);
+con.connect();
+con.query("select * from srinfo where srid = ?",[req.query.srid], function (err, result) {
+  if (err) {
+    console.log(err);
+  } else {
+    res.json(
+      {
+        "code": 0,
+        "msg": "",
+        "count": 1000,
+        "data": result
+      }
+    )}
+    })
+}) 
 
 module.exports = router;

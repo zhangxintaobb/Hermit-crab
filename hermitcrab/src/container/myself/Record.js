@@ -20,7 +20,7 @@ export default class Record extends Component {
   }
   componentDidMount() {
     axios({
-      url: 'http://127.0.0.1:8081/record',
+      url: 'http://zy.eatclub.wang:3000/record',
       method: 'get',
       responsetype: 'json',
       params: {
@@ -40,7 +40,7 @@ export default class Record extends Component {
         room=room.substring(0,room.length-1)+")"
         console.log(room)
         axios({
-          url: 'http://127.0.0.1:8081/record/room',
+          url: 'http://zy.eatclub.wang:3000/record/room',
           method: 'get',
           responsetype: 'json',
           params: {
