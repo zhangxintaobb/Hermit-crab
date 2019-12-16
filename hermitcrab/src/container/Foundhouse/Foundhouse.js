@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Link, Switch } from 'react-router-dom';
-import information from './Information';
+import srinfor from './srinfor';
 import { SegmentedControl, WingBlank } from 'antd-mobile';
 import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
 import $ from 'jquery';
-// import { Carousel, WingBlank, Flex, Button, WhiteSpace } from 'antd-mobile';
+import { Carousel, Flex, Button } from 'antd-mobile';
 
 const tabs = [
     { title: '自习室' },
@@ -15,70 +15,6 @@ const tabs1 = [
     { title: '形式' },
     { title: '价格' },
 ];
-// const roomstyle = [
-//     {
-//         indexImage: 'q_images/zixishi01.jpg',
-//         name: '自习室',
-//         type: '自习室A类',
-//     },
-//     {
-//         indexImage: 'q_images/zixishi02.jpg',
-//         name: '自习室',
-//         type: '自习室B类',
-//     },
-//     {
-//         indexImage: 'q_images/zixishi02.jpg',
-//         name: '自习室',
-//         type: '自习室C类',
-//     },
-//     {
-//         indexImage: 'q_images/zixishi01.jpg',
-//         name: '自习室',
-//         type: '自习室A类',
-//     },
-//     {
-//         indexImage: 'q_images/zixishi02.jpg',
-//         name: '自习室',
-//         type: '自习室B类',
-//     },
-//     {
-//         indexImage: 'q_images/zixishi02.jpg',
-//         name: '自习室',
-//         type: '自习室C类',
-//     }
-// ]
-// const officestyle = [
-//     {
-//         indexImage: 'q_images/office01.jpg',
-//         name: '办公室',
-//         type: '办公室A类',
-//     },
-//     {
-//         indexImage: 'q_images/office02.jpg',
-//         name: '办公室',
-//         type: '办公室B类',
-//     },
-//     {
-//         indexImage: 'q_images/office03.jpg',
-//         name: '办公室',
-//         type: '办公室C类',
-//     },
-//     {
-//         indexImage: 'q_images/office01.jpg',
-//         name: '办公室',
-//         type: '办公室A类',
-//     },
-//     {
-//         indexImage: 'q_images/office02.jpg',
-//         name: '办公室',
-//         type: '办公室B类',
-//     },
-//     {
-//         indexImage: 'q_images/office03.jpg',
-//         name: '办公室',
-//         type: '办公室C类',
-//     }
-// ]
 
 export default class Foundhouse extends Component {
     constructor(props) {
@@ -249,7 +185,7 @@ export default class Foundhouse extends Component {
                             {this.state.data1.map((value) => (
                                 <div key={value.id} className="roome">
                                     <Link to='/study-room-infor'>
-                                    <img src="q_images/logo001.jpg" />
+                                    <img src="q_images/zixishi04.jpg" />
                                     <div className="roomeA">
                                         <div className="roominfor">
                                             <p style={{ marginTop: '10px' }}>编号：{value.srid}</p>
@@ -263,6 +199,12 @@ export default class Foundhouse extends Component {
                                     </Link>
                                 </div>
                             ))}
+                            </div>
+                            <div class='more'>
+                                <Link to=''>
+                                    <Button className='more_btn'>查看更多自习室信息</Button>
+                                </Link>
+
                             </div>
                         </div> 
 
@@ -385,7 +327,7 @@ export default class Foundhouse extends Component {
                             {this.state.data2.map((value) => (
                                 <div key={value.id} className="roome">
                                     <Link to='/office-infor'>
-                                    <img src="q_images/logo001.jpg" />
+                                    <img src="q_images/office04.jpg" />
                                     <div className="roomeA">
                                         <div className="roominfor">
                                             <p>编号：{value.officeid}</p>
@@ -399,6 +341,12 @@ export default class Foundhouse extends Component {
                                     </Link>
                                 </div>
                             ))}
+                            </div>
+                            <div class='more'>
+                                <Link to=''>
+                                    <Button className='more_btn'>查看更多办公室信息</Button>
+                                </Link>
+
                             </div>
                         </div> 
                     </div> 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './information.css'
 import {Link} from 'react-router-dom';
 
-export default class  extends Component {
+export default class importantinfor extends Component {
     render() {
         return (
             <div>
@@ -10,6 +10,13 @@ export default class  extends Component {
                     <Link to='/study-room-infor'>
                         <button className="exit1">返回</button>
                     </Link>
+                </div>
+                <div>
+                    <img src="q_images/zixishi04.jpg" style={{
+                        width: '80%',
+                        height:'200px',
+                        marginLeft:'10%'
+                    }}></img>
                 </div>
                 <div className="txt02">
                     <p>自习室A类</p>

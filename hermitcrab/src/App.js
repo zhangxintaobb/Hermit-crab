@@ -4,9 +4,9 @@ import './App.css';
 import AppTab from './container/AppTab'
 import CityList from './components/CityList';
 import Foundhouse from './container/Foundhouse/Foundhouse';
-import Information from './container/Foundhouse/Information';
+import Information from './container/Foundhouse/srinfor';
 import Userword from './container/Foundhouse/Userword';
-import Importantinfor from './container/Foundhouse/Importantinfor';
+import Importantinfor from './container/Foundhouse/importantinfor';
 import Badword from './container/Foundhouse/Badword';
 import Person from './container/myself/Person'
 import Collection from './container/myself/Collection';
@@ -17,7 +17,11 @@ import Comment from './container/myself/Comment';
 import Pay from './container/myself/Pay';
 
 import officeinfor from './container/Foundhouse/officeinfor';
+<<<<<<< HEAD
 import Message_jump from './container/myself/Message_jump';
+=======
+import srinfor from './container/Foundhouse/srinfor';
+>>>>>>> 3c81c8c2872c9a5a74a8867790ba119fcc969a1d
 
 function App() {
   return (
@@ -35,6 +39,7 @@ function App() {
           <Route path='/myself/order' component={Order} />
           <Route path='/study-room-infor' component={Information} />
           <Route path='/office-infor' component={officeinfor} />
+          <Route path='/study-room-infor' component={srinfor} />
           <Route path='/userword' component={Userword} />
           <Route path='/importantinfor' component={Importantinfor} />
           <Route path='/badword' component={Badword} />
