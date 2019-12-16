@@ -9,6 +9,7 @@ import {HashRouter as Router,Route,Switch} from 'react-router-dom'
 
 import Phone_Register from './registration/js/Phone_Register';
 import Beforeloading from './Foundhouse/Beforeloading';
+import Message from './myself/Message';
 export default class AppTab extends Component {
 
     constructor(props,context) {
@@ -144,7 +145,7 @@ export default class AppTab extends Component {
                             });
                         }}
                     >
-                        消息
+                        <Message />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={{ uri: 'dock_icons/4.svg' }}
