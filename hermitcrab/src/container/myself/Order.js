@@ -19,8 +19,9 @@ export default class Order extends Component {
         }
       }
     //跳转支付页面
-    pay = () => {
-        window.location.hash="/myself/pay"
+    pay = (item) => {
+        var id=item.item.srid
+        window.location.hash='/myself/pay?'+id
     }
     //跳转评价页面
     comment=(item)=>{
@@ -30,7 +31,7 @@ export default class Order extends Component {
     }
     componentDidMount() {
         axios({
-            url: 'http://127.0.0.1:8081/order/unpay',
+            url: 'http://zy.eatclub.wang:3000/order/unpay',
             method: 'get',
             responsetype:'json',
             params: {
@@ -47,7 +48,7 @@ export default class Order extends Component {
           })
 
           axios({
-            url: 'http://127.0.0.1:8081/order/uncommit',
+            url: 'http://zy.eatclub.wang:3000/order/uncommit',
             method: 'get',
             responsetype:'json',
             params: {
@@ -104,7 +105,7 @@ export default class Order extends Component {
                         {/* 判断是否支付 */}
                         {item.status ? (
                             // 如果未支付  
-                            <div onClick={() => { this.pay() }}>
+                            <div onClick={() => { this.pay({item}) }}>
                                 <div
                                     style={{
                                         backgroundColor: 'white',

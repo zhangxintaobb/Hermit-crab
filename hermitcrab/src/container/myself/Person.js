@@ -55,7 +55,7 @@ export default class Person extends Component {
     }
   }
   componentDidMount(){
-    fetch(`http://127.0.0.1:8081/login`, {
+    fetch(`http://zy.eatclub.wang:3000/login`, {
             method: 'GET'
         }).then(res => res.json()).then(
             data => {
@@ -89,7 +89,7 @@ export default class Person extends Component {
   handleClick = () => {
   
 axios({
-  url: 'http://127.0.0.1:8081/myself/person',
+  url: 'http://zy.eatclub.wang:3000/myself/person',
   method: 'post',
   responsetype:'json',
   params: {

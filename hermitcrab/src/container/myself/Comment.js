@@ -55,7 +55,7 @@ export default class Comment extends Component {
     }
     componentDidMount(){
         axios({
-            url: 'http://127.0.0.1:8081/studyroom',
+            url: 'http://zy.eatclub.wang:3000/studyroom',
             method: 'get',
             responsetype:'json',
             params: {
@@ -90,7 +90,7 @@ export default class Comment extends Component {
         console.log(status)
         //提交评价
         axios({
-            url: 'http://127.0.0.1:8081/commit/put',
+            url: 'http://zy.eatclub.wang:3000/commit/put',
             method: 'get',
             responsetype: 'json',
             params: {

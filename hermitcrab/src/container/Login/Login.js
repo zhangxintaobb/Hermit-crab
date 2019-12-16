@@ -23,7 +23,7 @@ export default function Login(props) {
         setPwd(e.target.value)
     }
     useEffect(() => {
-        fetch(`http://127.0.0.1:8081/login`, {
+        fetch('http://zy.eatclub.wang:3000/login', {
             method: 'GET'
         }).then(res => res.json()).then(
             data => {
