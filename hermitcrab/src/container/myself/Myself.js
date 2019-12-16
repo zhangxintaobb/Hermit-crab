@@ -3,7 +3,7 @@ import { Flex, WhiteSpace, WingBlank,Button} from 'antd-mobile';
 import { HashRouter as Router, Route, Link, Switch  } from 'react-router-dom'
 import store from '../../store';
 import {login} from '../../actions';
-
+import cookie from 'react-cookies'
 
 
 export default class Myself extends Component {
@@ -17,12 +17,17 @@ export default class Myself extends Component {
         }
     }
     componentDidMount(){
-        fetch(`http://zy.eatclub.wang:3000/login`, {
+        let userid=document.cookie.split("=");
+        console.log(userid[1])
+        const user={userid:userid[1]}
+        store.dispatch(login(user))
+        fetch(`http://127.0.0.1:8081/login`, {
             method: 'GET'
         }).then(res => res.json()).then(
             data => {
                 console.log(data.data)
                 for(var i=0;i<data.data.length;i++){
+                    console.log(store.getState().login)
                 if(store.getState().login.userid==data.data[i].userid){
                     this.setState({
                         data:data.data[i]
@@ -35,6 +40,7 @@ export default class Myself extends Component {
     //退出登录
   warning = () => {
     window.location.href = "/"
+    cookie.remove('user');
   }
     render() {
         return (
