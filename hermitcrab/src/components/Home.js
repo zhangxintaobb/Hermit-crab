@@ -135,13 +135,13 @@ export default class Home extends Component {
                                     <img src="z_images/c3.jpg" />
                                     <div className='mes_box'>
                                         <div className='mes_box_top'>
-                                            <p style={{ fontSize: '20px' }}>{value.type}</p>
-                                            <p style={{ marginTop: '10px' }}>{value.name}</p>
+                                            <p style={{ fontSize: '20px' , color: 'black'}}>{value.type}</p>
+                                            <p style={{ marginTop: '10px', color: 'black'}}>{value.name}</p>
                                         </div>
                                         <div className='mes_box_bottom'>
                                             <p>
                                                 <span style={{ color: '#ef6f0d', fontSize: '20px' }}>{value.price}</span>
-                                                <span style={{ fontSize: '12px' }}>元/月</span>
+                                                <span style={{ fontSize: '12px', color: 'black' }}>元/月</span>
                                             </p>
                                         </div>
                                     </div>
