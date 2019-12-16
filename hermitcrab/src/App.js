@@ -18,6 +18,7 @@ import Pay from './container/myself/Pay';
 
 import officeinfor from './container/Foundhouse/officeinfor';
 import srinfor from './container/Foundhouse/srinfor';
+import Info_jump from './container/Foundhouse/Info_jump';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='/citylist' component={CityList} />
           <Route path='/myself/pay' component={Pay} />
           <Route path='/myself/person' component={Person} />
+          <Route path='/info_jump' component={Info_jump} />
           <Route path='/myself/record' component={Record} />
           <Route path='/myself/comment' component={Comment} />
           <Route path='/myself/collection' component={Collection} />
