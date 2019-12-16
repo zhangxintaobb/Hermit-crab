@@ -40,8 +40,10 @@ export default class Home extends Component {
             data: ['1', '2', '3'],
             imgHeight: 176,
             area: ['裕华区', '桥西区', '桥东区', '长安区', '藁城区', '鹿泉区', '正定县', '无极县'],
-            room: roomMes
-        }
+            room: roomMes,
+            data1: [],
+            data2: [],
+        };
     }
 
     componentDidMount() {
@@ -50,6 +52,20 @@ export default class Home extends Component {
         //         data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
         //     });
         // }, 100);
+        fetch('http://zy.eatclub.wang:3000/list/sr')
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    data1: res.data
+                })
+            })
+        fetch('http://zy.eatclub.wang:3000/list/office')
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    data2: res.data
+                })
+            })
     }
 
     render() {
@@ -113,22 +129,24 @@ export default class Home extends Component {
                     <div className='youlike'>
                         <p>猜你喜欢</p>
                         <div className='like_box'>
-                            {this.state.room.map(val => (
-                                <div key={val} className='room_box'>
-                                    <img src={val.indexImage} />
+                            {this.state.data1.map((value) => (
+                                <Link to='/study-room-infor'>
+                                <div key={value.id} className='room_box'>
+                                    <img src="z_images/c3.jpg" />
                                     <div className='mes_box'>
                                         <div className='mes_box_top'>
-                                            <p style={{ fontSize: '20px' }}>{val.type}</p>
-                                            <p style={{ marginTop: '10px' }}>{val.name}</p>
+                                            <p style={{ fontSize: '20px' }}>{value.type}</p>
+                                            <p style={{ marginTop: '10px' }}>{value.name}</p>
                                         </div>
                                         <div className='mes_box_bottom'>
                                             <p>
-                                                <span style={{ color: '#ef6f0d', fontSize: '20px' }}>{val.price}</span>
+                                                <span style={{ color: '#ef6f0d', fontSize: '20px' }}>{value.price}</span>
                                                 <span style={{ fontSize: '12px' }}>元/月</span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+                                </Link>
                             ))}
                             <div class='like_more'>
                                 <Link to=''>
