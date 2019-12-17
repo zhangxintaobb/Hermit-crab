@@ -72,7 +72,7 @@ export default class Information extends Component {
         return (
             <div>
                 <div className="topExit animate-route">
-                    <Link to='/'>
+                    <Link to='info_jump'>
                       <button className="exit1">退出</button>
                     </Link>
                 </div>

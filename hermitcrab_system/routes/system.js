@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var fs = require('fs');
+var path = require('path');
 var dbconfig = require('../config/dbconfig.json');
 
 /* GET home page. */
@@ -93,6 +95,19 @@ router.post('/system/addzxs', function (req, res, next) {
   let type = req.body.zxs_kind;
   let city = req.body.zxs_city;
   let quyu = req.body.zxs_quyu;
+  let imageFile = req.body.imageFile;
+  // 获取文件后缀
+  let extname = path.extname(imageFile);
+  // 去掉base64编码前缀
+  let imgData = req.body.show.replace(/^data:image\/\w+;base64,/, '');
+  // 新建一个变量存储buffer数据
+  let dataBuffer = Buffer.from(imgData, 'base64');
+  // 写入文件
+  fs.writeFile('public/zxs_images/' + name + extname, dataBuffer, function (err) {
+    if (err) {
+      res.send(err);
+    }
+  })
   let con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("insert into srinfo(srname, sraddress, price, ownerid, type, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, type, city, quyu], function (err, result) {
@@ -110,6 +125,19 @@ router.post('/system/addbgs', function (req, res, next) {
   let area = req.body.bgs_area;
   let city = req.body.bgs_city;
   let quyu = req.body.bgs_quyu;
+  let imageFile = req.body.imageFile;
+  // 获取文件后缀
+  let extname = path.extname(imageFile);
+  // 去掉base64编码前缀
+  let imgData = req.body.show.replace(/^data:image\/\w+;base64,/, '');
+  // 新建一个变量存储buffer数据
+  let dataBuffer = Buffer.from(imgData, 'base64');
+  // 写入文件
+  fs.writeFile('public/bgs_images/' + name + extname, dataBuffer, function (err) {
+    if (err) {
+      res.send(err);
+    }
+  })
   let con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("insert into officeinfo(officename, officeaddress, price, ownerid, area, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, area, city, quyu], function (err, result) {
