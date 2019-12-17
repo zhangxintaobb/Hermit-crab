@@ -226,7 +226,7 @@ input {
     /* background: cornflowerblue; */
     height: 80%;
     width: 100px;
-    margin-left: 40px;
+    margin-left: 0px;
     float: left;
     margin-top: 100px;
 }
@@ -238,4 +238,8 @@ input {
     font-family: '宋体';
     font-weight: bolder;
     color: #000;
+}
+.more_btn {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

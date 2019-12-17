@@ -5,13 +5,14 @@ import {login} from '../../actions';
 import { useEffect, useState } from 'react'
 import { HashRouter as Router, Route, Link,Redirect } from 'react-router-dom'
 import axios from '../../model/axios'
+import cookie from 'react-cookies'
 export default function Login(props) {
     //接受数据库传来的数据
     const [dat, setDat] = useState([])
     //将登录信息传给个人页的数据
     const[data,setData]=useState({})
-    const [user, setUser] = useState("15960266038")
-    const [pwd, setPwd] = useState("666666")
+    const [user, setUser] = useState("")
+    const [pwd, setPwd] = useState("")
     const [jump,setJump]=useState(false)
     function register(e) {
         window.location.hash = '/register'
@@ -23,12 +24,11 @@ export default function Login(props) {
         setPwd(e.target.value)
     }
     useEffect(() => {
-        fetch('http://zy.eatclub.wang:3000/login', {
+        fetch('http://127.0.0.1:8081/login', {
             method: 'GET'
         }).then(res => res.json()).then(
             data => {
                 setDat(data.data)
-                console.log(data.data)
             }
         )
     }, [])
@@ -36,12 +36,13 @@ export default function Login(props) {
         for (var i = 0; i < dat.length; i++) {
             if (user == dat[i].phone && pwd == dat[i].password) {
                 setData(dat[i])
-                
                 store.dispatch(login(dat[i]))
                 setJump(true)
             }
             else{console.log("err")}//待修改
         }
+        console.log(dat)
+        cookie.save('userid',store.getState().login.userid);
     }
     if (jump) {
         return (<Redirect to={{

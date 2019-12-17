@@ -130,18 +130,18 @@ export default class Home extends Component {
                         <p>猜你喜欢</p>
                         <div className='like_box'>
                             {this.state.data1.map((value) => (
-                                <Link to='/study-room-infor'>
+                                <Link to={'/study-room-infor?'+value.srid}>
                                 <div key={value.id} className='room_box'>
                                     <img src="z_images/c3.jpg" />
                                     <div className='mes_box'>
                                         <div className='mes_box_top'>
-                                            <p style={{ fontSize: '20px' }}>{value.type}</p>
-                                            <p style={{ marginTop: '10px' }}>{value.name}</p>
+                                            <p style={{ fontSize: '20px' , color: 'black'}}>{value.type}</p>
+                                            <p style={{ marginTop: '10px', color: 'black'}}>{value.name}</p>
                                         </div>
                                         <div className='mes_box_bottom'>
                                             <p>
                                                 <span style={{ color: '#ef6f0d', fontSize: '20px' }}>{value.price}</span>
-                                                <span style={{ fontSize: '12px' }}>元/月</span>
+                                                <span style={{ fontSize: '12px', color: 'black' }}>元/月</span>
                                             </p>
                                         </div>
                                     </div>
@@ -149,7 +149,7 @@ export default class Home extends Component {
                                 </Link>
                             ))}
                             <div class='like_more'>
-                                <Link to=''>
+                                <Link to='info_jump'>
                                     <Button className='more_btn'>查看更多自习室/办公室信息</Button>
                                 </Link>
 
