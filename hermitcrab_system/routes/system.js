@@ -78,9 +78,7 @@ router.post('/system/addfd', function (req, res, next) {
   let sex = req.body.fd_sex;
   let phone = req.body.fd_tel;
   let avatar = req.body.file;
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("insert into fdinfo(name, sex, phone, avatar) values(?, ?, ?, ?)", [name, sex, phone, avatar], function (err, result) {
+  res.conn.query("insert into fdinfo(name, sex, phone, avatar) values(?, ?, ?, ?)", [name, sex, phone, avatar], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -108,9 +106,7 @@ router.post('/system/addzxs', function (req, res, next) {
       res.send(err);
     }
   })
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("insert into srinfo(srname, sraddress, price, ownerid, type, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, type, city, quyu], function (err, result) {
+  res.conn.query("insert into srinfo(srname, sraddress, price, ownerid, type, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, type, city, quyu], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -138,9 +134,7 @@ router.post('/system/addbgs', function (req, res, next) {
       res.send(err);
     }
   })
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("insert into officeinfo(officename, officeaddress, price, ownerid, area, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, area, city, quyu], function (err, result) {
+  res.conn.query("insert into officeinfo(officename, officeaddress, price, ownerid, area, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, area, city, quyu], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -149,9 +143,7 @@ router.post('/system/addbgs', function (req, res, next) {
 
 router.get('/system/deluser', function (req, res, next) {
   let userId = req.query.userid;
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("delete from userinfo where userid=?", [userId], function (err, result) {
+  res.conn.query("delete from userinfo where userid=?", [userId], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -160,9 +152,7 @@ router.get('/system/deluser', function (req, res, next) {
 
 router.get('/system/delfd', function (req, res, next) {
   let Id = req.query.id;
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("delete from fdinfo where id=?", [Id], function (err, result) {
+  res.conn.query("delete from fdinfo where id=?", [Id], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -171,9 +161,7 @@ router.get('/system/delfd', function (req, res, next) {
 
 router.get('/system/delsr', function (req, res, next) {
   let Id = req.query.id;
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("delete from srinfo where srid=?", [Id], function (err, result) {
+  res.conn.query("delete from srinfo where srid=?", [Id], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -182,9 +170,7 @@ router.get('/system/delsr', function (req, res, next) {
 
 router.get('/system/deloffice', function (req, res, next) {
   let Id = req.query.id;
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("delete from officeinfo where officeid=?", [Id], function (err, result) {
+  res.conn.query("delete from officeinfo where officeid=?", [Id], function (err, result) {
     if (err) {
       console.log(err);
     }

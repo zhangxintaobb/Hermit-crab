@@ -7,8 +7,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+var mysql = require('mysql');
+var dbconfig = require('./config/dbconfig.json');
 
+var conn = mysql.createPool(dbconfig);
+
+
+var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,6 +24,11 @@ app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Methods', '*');
   res.header('Content-Type', 'application/json;charset=utf-8');
+  next();
+});
+
+app.use((req, res, next) => {
+  res.conn = conn;
   next();
 });
 

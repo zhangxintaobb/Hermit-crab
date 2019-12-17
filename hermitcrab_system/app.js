@@ -10,7 +10,7 @@ var systemRouter = require('./routes/system');
 
 
 var mysql = require('mysql');
-var dbconfig = require('../config/dbconfig.js');
+var dbconfig = require('./config/dbconfig.json');
 
 var conn = mysql.createPool(dbconfig);
 
@@ -22,7 +22,6 @@ app.set('view engine', 'ejs');
 
 app.use((req, res, next) => {
   res.conn = conn;
-  
   next();
 });
 
