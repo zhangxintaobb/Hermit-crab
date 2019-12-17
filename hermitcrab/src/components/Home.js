@@ -149,7 +149,7 @@ export default class Home extends Component {
                                 </Link>
                             ))}
                             <div class='like_more'>
-                                <Link to=''>
+                                <Link to='info_jump'>
                                     <Button className='more_btn'>查看更多自习室/办公室信息</Button>
                                 </Link>
 
