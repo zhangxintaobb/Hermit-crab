@@ -116,7 +116,6 @@ export default class AppTab extends Component {
                         data-seed="logId1"
                     >
                         <Foundhouse />
-                        {/* <Route exact path="/login/" component={Foundhouse} /> */}
                     </TabBar.Item>
                     <TabBar.Item
                         icon={

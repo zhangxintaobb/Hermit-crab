@@ -192,8 +192,8 @@ router.get('/collection', function (req, res, next) { //添加的代码
 //删除收藏
 router.get('/collection/delete', function (req, res, next) {
   let srid = req.query.srid;
-  // console.log(srid)
-  res.conn.query("delete from usercollect where roomid=?", [srid], function (err, result) {
+  let userid = req.query.userid
+  res.conn.query("delete from usercollect where roomid=? && userid=?", [srid,userid], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -360,5 +360,86 @@ router.get('/studyroom', function (req, res, next) { //添加的代码
     }
   })
 })
+
+//获取收藏信息
+router.get('/collection/srinfor', function (req, res, next) { //添加的代码
+  console.log(req.query.userid)
+        let con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query("select * from usercollect where userid = ? && roomid = ?",[req.query.userid,req.query.srid], function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(
+          {
+            "code": 0,
+            "msg": "",
+            "count": 1000,
+            "data": result
+          }
+        )}
+        })
+  })
+
+
+  //添加收藏
+
+router.get('/collection/add', function (req, res, next) { //添加的代码
+  console.log(req.query.createtime);
+  const createtime=req.query.createtime
+  const userid=req.query.userid
+  const roomid=req.query.srid
+  let con = mysql.createConnection(dbconfig);
+  con.query("insert into usercollect(createtime, userid, type, roomid) values(?, ?, ?, ?)", [createtime,userid,0,roomid], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    else{
+    console.log(result);
+    }
+  });
+})
+
+
+//显示评价内容
+router.get('/commit/content', function (req, res, next) { //添加的代码
+  console.log(req.query.roomid)
+let con = mysql.createConnection(dbconfig);
+con.connect();
+con.query("select * from userorder where roomid = ? && commit = ?",[req.query.roomid,1], function (err, result) {
+  if (err) {
+    console.log(err);
+  } else {
+    res.json(
+      {
+        "code": 0,
+        "msg": "",
+        "count": 1000,
+        "data": result
+      }
+    )}
+    })
+}) 
+
+//通过userid寻找user
+router.get('/finduser', function (req, res, next) { //添加的代码
+  console.log(req.query.userid)
+let con = mysql.createConnection(dbconfig);
+con.connect();
+con.query("select * from userinfo where userid in"+req.query.userid, function (err, result) {
+  if (err) {
+    console.log(err);
+  } else {
+    res.json(
+      {
+        "code": 0,
+        "msg": "",
+        "count": 1000,
+        "data": result
+      }
+    )}
+    })
+}) 
+
 
 module.exports = router;
