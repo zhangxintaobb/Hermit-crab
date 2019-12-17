@@ -130,7 +130,7 @@ export default class Home extends Component {
                         <p>猜你喜欢</p>
                         <div className='like_box'>
                             {this.state.data1.map((value) => (
-                                <Link to='/study-room-infor'>
+                                <Link to={'/study-room-infor?'+value.srid}>
                                 <div key={value.id} className='room_box'>
                                     <img src="z_images/c3.jpg" />
                                     <div className='mes_box'>
