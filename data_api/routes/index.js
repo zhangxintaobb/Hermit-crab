@@ -397,4 +397,24 @@ con.query("select * from srinfo where srid = ?",[req.query.srid], function (err,
     })
 }) 
 
+//获取收藏信息
+router.get('/collection/srinfor', function (req, res, next) { //添加的代码
+  console.log(req.query.userid)
+        let con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query("select * from usercollect where userid = ? && roomid = ?",[req.query.userid,req.query.srid], function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(
+          {
+            "code": 0,
+            "msg": "",
+            "count": 1000,
+            "data": result
+          }
+        )}
+        })
+  })
+
 module.exports = router;

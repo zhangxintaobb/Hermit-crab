@@ -1,9 +1,73 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import './information.css'
-
+import axios from '../../model/axios'
+import store from '../../store';
 export default class Information extends Component {
+    constructor(){
+        super()
+        this.state={
+            data:[],
+            currentIndex: 1,
+            collect:0
+        }
+    }
+    componentDidMount(){
+    axios({
+        url: 'http://127.0.0.1:8081/studyroom',
+        method: 'get',
+        responsetype:'json',
+        params: {
+            srid:this.props.location.search.charAt(1)
+        }
+      })
+      .then((response)=> {
+        console.log(response)
+        this.setState(() => ({
+            data: response.data[0],
+        }))
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      axios({
+        url: 'http://127.0.0.1:3001/collection/srinfor',
+        method: 'get',
+        responsetype: 'json',
+        params: {
+            srid: this.props.location.search.charAt(1),
+            userid: store.getState().login.userid
+        }
+    })
+        .then((response) => {
+            console.log(response)
+            if(response.data.data==undefined){
+                console.log(response.data.data)
+            }
+            else{
+                this.setState({
+                    currentIndex: 0
+                })
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 
+    }
+    collection=()=>{
+        if (this.state.currentIndex == 0) {
+            this.setState({
+                currentIndex: 1
+            })
+        }
+        ////当是显示状态时，点击后消失
+        else {
+            this.setState({
+                currentIndex: 0
+            })
+        }
+    }
     render() {
         return (
             <div>
@@ -19,13 +83,13 @@ export default class Information extends Component {
                     }}></img>
                 </div>
                 <Link to='/importantinfor'><div className="txt02">
-                    <h3>-师大学生自习室-</h3>
+                <h3>-{this.state.data.srname}-</h3>
                     <div className="score"><p>4.6分</p></div>
-                    <p>位置：师大科技园区</p>
-                    <p>占地面积：20㎡</p>
-                    <p>类型：大厅</p>
-                    <p>价格：20元/小时</p>
-                    <p>房东id：01</p>
+                <p>位置：{this.state.data.sraddress}</p>
+                    {/* <p>占地面积：20㎡</p> */}
+                <p>类型：{this.state.data.type}</p>
+                <p>价格：{this.state.data.price}元/小时</p>
+                    {/* <p>房东id：01</p> */}
                 </div></Link>
                 <div className="middleinfor animate-route">
                     <Link to='/importantinfor'>
@@ -45,10 +109,17 @@ export default class Information extends Component {
                         <button className="exit3">联系店主</button>
                     </Link>
                 </div>
-                <div className="likebest">
-                    <Link to='/add_collection'>
+                <div className="likebest" style={{display: (0 === this.state.currentIndex) ? "block" : "none"}}
+                onClick={()=>this.collection()}>
+                    {/* <Link to='/myself/collection'> */}
                         <button className="exit4">收藏</button>
-                    </Link>
+                    {/* </Link> */}
+                </div>
+                <div className="likebest" style={{display: (1 === this.state.currentIndex) ? "block" : "none"}}
+                onClick={()=>this.collection()}>
+                    {/* <Link to='/myself/collection'> */}
+                        <button className="exit4a">收藏</button>
+                    {/* </Link> */}
                 </div>
             </div>
         )
