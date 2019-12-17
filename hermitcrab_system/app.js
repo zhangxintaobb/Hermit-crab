@@ -8,11 +8,23 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var systemRouter = require('./routes/system');
 
+
+var mysql = require('mysql');
+var dbconfig = require('../config/dbconfig.js');
+
+var conn = mysql.createPool(dbconfig);
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use((req, res, next) => {
+  res.conn = conn;
+  
+  next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());
