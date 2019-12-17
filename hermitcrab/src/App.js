@@ -17,11 +17,9 @@ import Comment from './container/myself/Comment';
 import Pay from './container/myself/Pay';
 
 import officeinfor from './container/Foundhouse/officeinfor';
-<<<<<<< HEAD
 import Message_jump from './container/myself/Message_jump';
-=======
+
 import srinfor from './container/Foundhouse/srinfor';
->>>>>>> 3c81c8c2872c9a5a74a8867790ba119fcc969a1d
 
 function App() {
   return (
