@@ -59,7 +59,7 @@ export default class Home extends Component {
                     data1: res.data
                 })
             })
-        fetch('http://zy.eatclub.wang:3000/list/office')
+        fetch('http://127.0.0.1:3001/list/office')
             .then(res => res.json())
             .then(res => {
                 this.setState({

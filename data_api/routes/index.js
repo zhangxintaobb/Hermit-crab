@@ -443,7 +443,7 @@ router.get('/commit/content', function (req, res, next) { //添加的代码
   console.log(req.query.roomid)
 let con = mysql.createConnection(dbconfig);
 con.connect();
-con.query("select * from userorder where roomid = ? && commit=?",[req.query.roomid,1], function (err, result) {
+con.query("select * from userorder where roomid = ? && commit = ?",[req.query.roomid,1], function (err, result) {
   if (err) {
     console.log(err);
   } else {
