@@ -7,13 +7,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-// mysql 连接池
 var mysql = require('mysql');
-var dbconfig = require('./config/dbconfig.js');
+var dbconfig = require('./config/dbconfig.json');
+
 var conn = mysql.createPool(dbconfig);
 
-var app = express();
 
+var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

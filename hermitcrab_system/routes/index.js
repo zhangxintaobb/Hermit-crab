@@ -1,27 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var dbconfig = require('../config/dbconfig.js');
+var dbconfig = require('../config/dbconfig.json');
 
 /* GET home page. */
 router.get('/', function (req, res) {
   res.render('index', { title: 'Login' });
 });
 
-/**
-
-router.post('/system', (req, res) => {
-  res.conn.query();
-});
-
- * 
- */
-
 router.post('/system', function (req, res, next) {
   var i = 0;
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("select * from manager", function (err, result) {
+  res.conn.query("select * from manager", function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -45,9 +34,7 @@ router.post('/system', function (req, res, next) {
 })
 
 router.get('/getdata/user', function (req, res, next) {
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("select * from userinfo", function (err, result) {
+  res.conn.query("select * from userinfo", function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -64,9 +51,7 @@ router.get('/getdata/user', function (req, res, next) {
 });
 
 router.get('/getdata/lan', function (req, res, next) {
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("select * from fdinfo", function (err, result) {
+  res.conn.query("select * from fdinfo", function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -82,10 +67,8 @@ router.get('/getdata/lan', function (req, res, next) {
   });
 });
 
-router.get('/getdata/sr', function (req, res, next) {
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("select * from srinfo", function (err, result) {
+router.get('/getdata/sr', function (req, res) {
+  res.conn.query("select * from srinfo", function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -102,9 +85,7 @@ router.get('/getdata/sr', function (req, res, next) {
 });
 
 router.get('/getdata/office', function (req, res, next) {
-  let con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("select * from officeinfo", function (err, result) {
+  res.conn.query("select * from officeinfo", function (err, result) {
     if (err) {
       console.log(err);
     } else {

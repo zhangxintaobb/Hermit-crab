@@ -52,14 +52,14 @@ export default class Home extends Component {
         //         data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
         //     });
         // }, 100);
-        fetch('http://zy.eatclub.wang:3000/list/sr')
+        fetch('http://127.0.0.1:3001/list/sr')
             .then(res => res.json())
             .then(res => {
                 this.setState({
                     data1: res.data
                 })
             })
-        fetch('http://zy.eatclub.wang:3000/list/office')
+        fetch('http://127.0.0.1:3001/list/office')
             .then(res => res.json())
             .then(res => {
                 this.setState({
