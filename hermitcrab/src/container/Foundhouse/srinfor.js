@@ -40,15 +40,23 @@ export default class Information extends Component {
                         <p>......</p>
                     </Link>
                 </div>
+                <div className="bottom" style={{
+                    height:'70px',width:'100%'
+                }}>
                 <div className="talktouser">
                     <Link to=''>
                         <button className="exit3">联系店主</button>
                     </Link>
                 </div>
-                <div className="likebest">
-                    <Link to='/add_collection'>
-                        <button className="exit4">收藏</button>
+                <div className="collection"><img src="q_images/collection01.png" style={{height:'30px',width:'30px'}}></img></div>
+                <div className="buybuy">
+                    <Link >
+                        <button className="exit5">立即购买</button>
                     </Link>
+                    <Link>
+                        <button className="exit4">加入购物车</button>
+                    </Link>
+                </div>
                 </div>
             </div>
         )
