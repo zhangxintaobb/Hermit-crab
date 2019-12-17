@@ -45,60 +45,35 @@
             <span style="margin-right: 53px;">区域</span><input style="height: 22px;width: 200px;" maxlength="8"
                 type="text" name="zxs_quyu" />
         </div>
-        <div style="margin-top: 15px;margin-left: 10px;">
-            <span style="margin-right: 34px;">缩略图</span>
-            <button type="button"
-                style="width: 100px;height: 30px;border-radius: 5px;background-color: rgb(50, 243, 217);border: 1px solid rgb(50, 243, 217);"
-                id="test1">上传图片</button>
-            <div style="width: 100px;height: 130px;margin-left: 80px;margin-top: 20px;">
-                <img style="width: 100px;height: 100px;" id="demo1">
-                <p id="demoText"></p>
-            </div>
-        </div>
-        <button onclick="save()" type="submit"
-            style="cursor: pointer;border: 1px solid rgba(84, 85, 84, 0.144);border-radius: 10px;font-size: 20px;margin-left: 78px;width: 100px;height: 40px;background: rgba(84, 85, 84, 0.144);">提交</button>
+        <input id="imageFile" name="imageFile" type="file" style="margin-left: 10px;" />
+        <img src="" alt="" name="img" style="width: 150px;height: 150px;margin-top: 20px;">
+        <input id="imageshow" name="show" type="text" style="display: none;" />
+
+        <button type="submit" onclick="save()"
+            style="cursor: pointer;border: 1px solid rgba(84, 85, 84, 0.144);margin-top: 20px;border-radius: 10px;font-size: 20px;margin-left: 180px;width: 100px;height: 40px;background: rgba(84, 85, 84, 0.144);">提交</button>
+
     </form>
 </body>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
 <script src="../layui/layui.all.js" charset="utf-8"></script>
 <script>
+    $("input:file").change(function () {
+        var reader = new FileReader();		//获取一个FileReader类
+        var file = this.files[0];			//获取用户选择的文件
+        reader.readAsDataURL(file);			//开始读取指定Blob（二进制文件）中的内容。一旦完成，立即触发 loadend 事件，并且该对象的 result 属性中将包含一个 data: URL 格式的字符串以表示所读取文件的内容。
+        reader.onloadend = function () {
+            $("img").attr("src", reader.result);
+        }
+    })
     function save() {
+        var formd = document.getElementById("imageFile").form.childNodes[19].currentSrc;
+        $('#imageshow')[0].value = formd;
         formClose();
     }
     window.formClose = function () {
         var index = parent.layer.getFrameIndex(window.name);
         parent.layer.close(index);
     }
-    layui.use('upload', function () {
-        var $ = layui.jquery
-            , upload = layui.upload;
-
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#test1'
-            , url: 'http://localhost:3000/system/addzxs'
-            , before: function (obj) {
-                //预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#demo1').attr('src', result); //图片链接（base64）
-                });
-            }
-            , done: function (res) {
-                //如果上传失败
-                if (res.code > 0) {
-                    return layer.msg('上传失败');
-                }
-                //上传成功
-            }
-            , error: function () {
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function () {
-                    uploadInst.upload();
-                });
-            }
-        });
-    });
 </script>
 
 </html>
