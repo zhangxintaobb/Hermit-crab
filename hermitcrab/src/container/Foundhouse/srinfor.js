@@ -146,7 +146,12 @@ export default class Information extends Component {
                         <button className="exit3">联系店主</button>
                     </Link>
                 </div>
-                <div className="collection"><img src="q_images/collection01.png" style={{height:'30px',width:'30px'}}></img></div>
+                <div className="collection" style={{display: (0 === this.state.currentIndex) ? "block" : "none"}}
+                onClick={()=>this.collection()}
+                ><img src="q_images/collection01.png" style={{height:'30px',width:'30px'}}></img></div>
+                <div className="collection" style={{display: (1 ===  this.state.currentIndex) ? "block" : "none"}}
+                onClick={()=>this.collection()}
+                ><img src="q_images/collection02.png" style={{height:'30px',width:'30px'}}></img></div>
                 <div className="buybuy">
                     <Link >
                         <button className="exit5">立即购买</button>
@@ -159,7 +164,7 @@ export default class Information extends Component {
                 onClick={()=>this.collection()}>
                         <button className="exit4">收藏</button>
                 </div>
-                <div className="likebest" style={{display: (1 === this.state.currentIndex) ? "block" : "none"}}
+                <div className="likebest"style={{display: (1 ===  this.state.currentIndex) ? "block" : "none"}}
                 onClick={()=>this.collection()}>
                         <button className="exit4a">收藏</button>
                 </div> */}
