@@ -8,7 +8,7 @@ export default class Information extends Component {
         super()
         this.state={
             data:[],
-            currentIndex: 1,
+            currentIndex: 0,
             collect:0
         }
     }
@@ -40,14 +40,16 @@ export default class Information extends Component {
         }
     })
         .then((response) => {
-            console.log(response)
-            if(response.data.data==undefined){
-                console.log(response.data.data)
+            if(response.data[0]===undefined){
+                this.setState(() => ({
+                    currentIndex: 1
+                }))
             }
             else{
-                this.setState({
+                console.log("132")
+                this.setState(() => ({
                     currentIndex: 0
-                })
+                }))
             }
         })
         .catch(function (error) {
@@ -57,16 +59,48 @@ export default class Information extends Component {
     }
     collection=()=>{
         if (this.state.currentIndex == 0) {
+            axios({
+                url: 'http://127.0.0.1:3001/collection/delete',
+                method: 'get',
+                responsetype: 'json',
+                params: {
+                    srid: this.props.location.search.charAt(1),
+                    userid: store.getState().login.userid
+                }
+            })
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
             this.setState({
                 currentIndex: 1
             })
         }
         ////当是显示状态时，点击后消失
         else {
+            axios({
+                url: 'http://127.0.0.1:3001/collection/add',
+                method: 'get',
+                responsetype: 'json',
+                params: {
+                    createtime: new Date(),
+                    srid: this.props.location.search.charAt(1),
+                    userid: store.getState().login.userid
+                }
+            })
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
             this.setState({
                 currentIndex: 0
             })
         }
+       
     }
     render() {
         return (
@@ -97,7 +131,7 @@ export default class Information extends Component {
                     </Link>
                 </div>
                 <div className="userword01 animate-route">
-                    <Link to='/userword'>
+                    <Link to={'/userword?'+this.props.location.search.charAt(1)} >
                         <h3>用户评价(27)</h3>
                         <p>BetterMe_8601:打分：五星。
                         交通非常便利，环境是一个屋子，不过真的好安静，密码锁特别静音，里面有好多标志都很可爱，听不见外面的噪音，总的来说非常不错。</p>

@@ -31,7 +31,7 @@ export default class Foundhouse extends Component {
         this.handleChange3 = this.handleChange3.bind(this);
     }
     componentDidMount() {
-        fetch('http://zy.eatclub.wang:3000/list/sr')
+        fetch('http://127.0.0.1:3001/list/sr')
             .then(res => res.json())
             .then(res => {
                 this.setState({
@@ -184,7 +184,7 @@ export default class Foundhouse extends Component {
                             <div className="roomstyleonly">
                             {this.state.data1.map((value) => (
                                 <div key={value.id} className="roome">
-                                    <Link to='/study-room-infor'>
+                                    <Link to={'/study-room-infor?'+value.srid}>
                                     <img src="q_images/zixishi04.jpg" />
                                     <div className="roomeA">
                                         <div className="roominfor">
