@@ -183,3 +183,17 @@
     margin-top: 10px;
     width: 100%;
 }
+.exit4a{
+    height: 40px;
+    margin-top: 5px;
+    margin-right: 20%;
+    float: right;
+    width: 50%;
+    color: white;
+    font-weight: bolder;
+    font-family: "宋体";
+    background-color: #bfbfbf;
+    font-size: 1.2em;
+    border: none;
+    border-radius:5px;
+}

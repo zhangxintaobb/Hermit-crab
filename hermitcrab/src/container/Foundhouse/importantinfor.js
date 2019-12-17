@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 
 export default class importantinfor extends Component {
     render() {
+        
+
         return (
             <div>
                 <div className="topExit animate-route">

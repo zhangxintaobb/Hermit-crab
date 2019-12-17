@@ -1,12 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var dbconfig = require('../config/dbconfig.json');
+var dbconfig = require('../config/dbconfig.js');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   res.render('index', { title: 'Login' });
 });
+
+/**
+
+router.post('/system', (req, res) => {
+  res.conn.query();
+});
+
+ * 
+ */
 
 router.post('/system', function (req, res, next) {
   var i = 0;

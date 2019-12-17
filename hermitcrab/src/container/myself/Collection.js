@@ -22,7 +22,7 @@ export default class extends Component {
     }
     componentDidMount() {
         axios({
-            url: 'http://zy.eatclub.wang:3000/collection',
+            url: 'http://127.0.0.1:3001/collection',
             method: 'get',
             responsetype: 'json',
             params: {
@@ -63,11 +63,12 @@ export default class extends Component {
     //删除对应的收藏项
     delete = (item) => {
         axios({
-            url: 'http://zy.eatclub.wang:3000/collection/delete',
+            url: 'http://127.0.0.1:3001/collection/delete',
             method: 'get',
             responsetype: 'json',
             params: {
-                srid: item.item.srid
+                srid: item.item.srid,
+                userid: store.getState().login.userid
             }
         })
             .then((response) => {
