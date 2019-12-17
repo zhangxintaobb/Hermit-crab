@@ -68,7 +68,7 @@
             var Id = obj.data.id;
             obj.del();
             layer.close(index);
-            $.get("http://localhost:3000/system/delfd?id=" + Id);
+            $.get("http://zy.eatclub.wang:3030/system/delfd?id=" + Id);
           });
         } else if (obj.event === 'edit') {
           layer.msg('ID：' + data.id + ' 的编辑操作');
@@ -87,7 +87,7 @@
         layer.open({
           type: 2
           , title: '新建房东'
-          , content: 'http://localhost:3000/system/fd_addlist'
+          , content: 'http://zy.eatclub.wang:3030/system/fd_addlist'
           , area: ['500px', '450px']
           , shade: 0.5 //遮罩半透明
         });

@@ -44,7 +44,7 @@
       layer.open({
         type: 2,
         title: '新建办公室',
-        content: 'http://localhost:3000/system/bgs_addlist',
+        content: 'http://zy.eatclub.wang:3030/system/bgs_addlist',
         area: ['500px', '600px'],
         shade: 0.5 //遮罩半透明
       });
@@ -79,7 +79,7 @@
           var Id = obj.data.officeid;
           obj.del();
           layer.close(index);
-          $.get("http://localhost:3000/system/deloffice?id=" + Id);
+          $.get("http://zy.eatclub.wang:3030/system/deloffice?id=" + Id);
         });
       } else if (obj.event === 'edit') {
         layer.msg('ID：' + data.id + ' 的编辑操作');

@@ -1,4 +1,4 @@
-{
+module.exports = {
     "host" : "localhost",
     "database" : "hermitcrab",
     "user" : "zhouyang",
