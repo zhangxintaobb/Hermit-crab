@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "重置密码",
+  "navigationBarBackgroundColor": "#599F6F",
+  "navigationBarTextStyle": "white",
+  "bounce": "none",
+  "softinputNavBar": "none",
+  "usingComponents": {}
+}

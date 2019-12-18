@@ -1,0 +1,6 @@
+module.exports = {
+    "host" : "localhost",
+    "database" : "hermitcrab",
+    "user" : "zhouyang",
+    "password" : "zhouyang1999"
+}

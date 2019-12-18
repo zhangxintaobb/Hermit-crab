@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <form action="http://localhost:3000/system/addfd" id="form1" method="POST">
+    <form action="http://zy.eatclub.wang:3030/system/addfd" id="form1" method="POST">
         <div style="margin-top: 20px;margin-left: 10px;">
             <span style="margin-right: 10px;">房东名称</span><input style="height: 22px;width: 200px;" maxlength="12"
                 type="text" name="fd_name" /><span
@@ -58,7 +58,7 @@
         //普通图片上传
         var uploadInst = upload.render({
             elem: '#test1'
-            , url: 'http://localhost:3000/system/addfd'
+            , url: 'http://zy.eatclub.wang:3030/system/addfd'
             , before: function (obj) {
                 //预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {

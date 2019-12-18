@@ -1,0 +1,89 @@
+{
+  "pages": [
+    "pages/tabBar/home/home",
+    "pages/tabBar/cart/cart",
+    "pages/tabBar/user/user",
+    "pages/goods/goods",
+    "pages/login/login",
+    "pages/login/register",
+    "pages/login/resetpasswd",
+    "pages/order/confirmation",
+    "pages/user/setting/setting",
+    "pages/tabBar/msg/msg",
+    "pages/msg/msg",
+    "pages/tabBar/msg/chat/chat",
+    "pages/user/coupon/coupon",
+    "pages/msg/chat/chat",
+    "pages/user/keep/keep",
+    "pages/user/address/address",
+    "pages/user/address/edit/edit",
+    "pages/user/deposit/deposit",
+    "pages/pay/payment/payment",
+    "pages/pay/success/success",
+    "pages/goods/ratings/ratings",
+    "pages/tabBar/findhome/findhome",
+    "pages/user/setting/changeinfo"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#599F6F",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/home/home",
+        "iconPath": "static/img/tabBar/shouye.png",
+        "selectedIconPath": "static/img/tabBar/shouye.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/tabBar/findhome/findhome",
+        "iconPath": "static/img/tabBar/dizhi.png",
+        "selectedIconPath": "static/img/tabBar/dizhi.png",
+        "text": "找房"
+      },
+      {
+        "pagePath": "pages/tabBar/msg/msg",
+        "iconPath": "static/img/tabBar/xiaoxi.png",
+        "selectedIconPath": "static/img/tabBar/xiaoxi.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/tabBar/user/user",
+        "iconPath": "static/img/tabBar/wode.png",
+        "selectedIconPath": "static/img/tabBar/wode.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "nvue": {
+    "pages": {
+      "pages/tabBar/category/category.html": {
+        "window": {
+          "usingComponents": {},
+          "navigationBarTextStyle": "black",
+          "titleNView": false,
+          "bounce": "none"
+        },
+        "nvue": true
+      }
+    }
+  },
+  "nvueCompiler": "uni-app",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "HM-mall",
+  "compilerVersion": "2.4.6",
+  "usingComponents": {}
+}

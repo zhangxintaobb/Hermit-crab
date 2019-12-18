@@ -1,6 +1,6 @@
 module.exports = {
     "host": "localhost",
     "database": "hermitcrab",
-    "user": "root",
-    "password": ""
+    "user": "zhouyang",
+    "password": "zhouyang1999"
 }
