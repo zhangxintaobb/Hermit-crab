@@ -8,6 +8,16 @@
     <title>Document</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="../layui/css/layui.css">
+    <style>
+        .addimg {
+            width: 100px;
+            height: 100px;
+            margin-left: 20px;
+            margin-top: 20px;
+            float: left;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,10 +53,8 @@
             <span style="margin-right: 53px;">区域</span><input style="height: 22px;width: 200px;" maxlength="8"
                 type="text" name="bgs_quyu" />
         </div>
-        <input id="imageFile" name="imageFile" type="file" style="margin-left: 10px;" />
-        <img src="" alt="" name="img" style="width: 150px;height: 150px;margin-top: 20px;">
-        <input id="imageshow" name="show" type="text" style="display: none;" />
-
+        <input id="imageFile" multiple name="imageFile" type="file" style="margin-left: 10px;" />
+        <input type="text" id="imagesadd" style="display: none;">
         <button type="submit" onclick="save()"
             style="cursor: pointer;border: 1px solid rgba(84, 85, 84, 0.144);margin-top: 20px;;border-radius: 10px;font-size: 20px;margin-left: 180px;width: 100px;height: 40px;background: rgba(84, 85, 84, 0.144);">提交</button>
     </form>
@@ -55,16 +63,36 @@
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
 <script>
     $("input:file").change(function () {
-        var reader = new FileReader();		//获取一个FileReader类
-        var file = this.files[0];			//获取用户选择的文件
-        reader.readAsDataURL(file);			//开始读取指定Blob（二进制文件）中的内容。一旦完成，立即触发 loadend 事件，并且该对象的 result 属性中将包含一个 data: URL 格式的字符串以表示所读取文件的内容。
-        reader.onloadend = function () {
-            $("img").attr("src", reader.result);
-        }
+        var files = this.files;
+        $.each(files, function (key, value) {
+            //每次都只会遍历一个图片数据
+            var div = document.createElement("div"),
+                img = document.createElement("img");
+            var fr = new FileReader();
+            fr.onload = function () {
+                img.src = this.result;
+                div.appendChild(img);
+                img.className = "addimg";
+                $('#imagesadd').before(div);
+            }
+            fr.readAsDataURL(value);
+        })
     })
     function save() {
-        var formd = document.getElementById("imageFile").form.childNodes[19].currentSrc;
-        $('#imageshow')[0].value = formd;
+        // 获取选择图片的个数
+        var length = document.getElementById("imageFile").files.length;
+        for (var i = 0; i < length; i++) {
+            let input = document.createElement("input");
+            // console.log(document.getElementById("imageFile").form.childNodes[17 + i].childNodes[0].currentSrc);
+            input.id = "images" + i;
+            input.name = "images" + i;
+            input.style = "display:none";
+            input.value = document.getElementById("imageFile").form.childNodes[17 + i].childNodes[0].currentSrc;
+            // 每个图片的base64数据
+            $('#imagesadd').after(input);
+            // console.log(document.getElementById("imageFile").form.childNodes[16 + i].childNodes[0].currentSrc);
+            // console.log(input.value);
+        }
         formClose();
     }
     window.formClose = function () {

@@ -85,7 +85,8 @@ router.post('/system/addfd', function (req, res, next) {
   });
 })
 
-router.post('/system/addzxs', function (req, res, next) {
+router.post('/system/addzxs', function (req, res) {
+  let req_body = req.body;
   let name = req.body.zxs_name;
   let address = req.body.zxs_address;
   let price = req.body.zxs_price;
@@ -94,26 +95,34 @@ router.post('/system/addzxs', function (req, res, next) {
   let city = req.body.zxs_city;
   let quyu = req.body.zxs_quyu;
   let imageFile = req.body.imageFile;
-  // 获取文件后缀
-  let extname = path.extname(imageFile);
-  // 去掉base64编码前缀
-  let imgData = req.body.show.replace(/^data:image\/\w+;base64,/, '');
-  // 新建一个变量存储buffer数据
-  let dataBuffer = Buffer.from(imgData, 'base64');
-  // 写入文件
-  fs.writeFile('public/zxs_images/' + name + extname, dataBuffer, function (err) {
-    if (err) {
-      res.send(err);
-    }
-  })
-  res.conn.query("insert into srinfo(srname, sraddress, price, ownerid, type, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, type, city, quyu], function (err, result) {
+  for (let i = 0; i < imageFile.length; i++) {
+    let a = i + 1;
+    // 获取文件后缀
+    var extname = path.extname(imageFile[i]);
+    // 去掉base64编码前缀
+    let imgData = req_body['images' + i].replace(/^data:image\/\w+;base64,/, '');
+    // 新建一个变量存储buffer数据
+    let dataBuffer = Buffer.from(imgData, 'base64');
+
+    // 写入文件
+    fs.writeFile('public/img/' + name + a + extname, dataBuffer, function (err) {
+      if (err) {
+        res.send(err);
+      }
+    })
+  }
+  var img_url = 'http://zy.eatclub.wang:3030/public/img/' + name + '1' + extname;
+  var detail_img = name + '1';
+
+  res.conn.query("insert into srinfo(srname, sraddress, type, price, ownerid, city, region, img_url, detail_img) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", [name, address, type, price, ownerid, city, quyu, img_url, detail_img], function (err, result) {
     if (err) {
       console.log(err);
     }
   });
 })
 
-router.post('/system/addbgs', function (req, res, next) {
+router.post('/system/addbgs', function (req, res) {
+  let req_body = req.body;
   let name = req.body.bgs_name;
   let address = req.body.bgs_address;
   let price = req.body.bgs_price;
@@ -122,19 +131,31 @@ router.post('/system/addbgs', function (req, res, next) {
   let city = req.body.bgs_city;
   let quyu = req.body.bgs_quyu;
   let imageFile = req.body.imageFile;
-  // 获取文件后缀
-  let extname = path.extname(imageFile);
-  // 去掉base64编码前缀
-  let imgData = req.body.show.replace(/^data:image\/\w+;base64,/, '');
-  // 新建一个变量存储buffer数据
-  let dataBuffer = Buffer.from(imgData, 'base64');
-  // 写入文件
-  fs.writeFile('public/bgs_images/' + name + extname, dataBuffer, function (err) {
-    if (err) {
-      res.send(err);
-    }
-  })
-  res.conn.query("insert into officeinfo(officename, officeaddress, price, ownerid, area, city, region) values(?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, area, city, quyu], function (err, result) {
+  // console.log(req_body);
+  for (let i = 0; i < imageFile.length; i++) {
+    let a = i + 1;
+    // console.log(i);
+    // console.log(req_body['images' + i]);
+    // 获取文件后缀
+    var extname = path.extname(imageFile[i]);
+    // console.log(extname);
+    // 去掉base64编码前缀
+    let imgData = req_body['images' + i].replace(/^data:image\/\w+;base64,/, '');
+    // console.log(imgData);
+    // 新建一个变量存储buffer数据
+    let dataBuffer = Buffer.from(imgData, 'base64');
+
+    // 写入文件
+    fs.writeFile('public/img/' + name + a + extname, dataBuffer, function (err) {
+      if (err) {
+        res.send(err);
+      }
+    })
+  }
+  var img_url = 'http://zy.eatclub.wang:3030/public/img/' + name + '1' + extname;
+  var detail_img = name + '1';
+
+  res.conn.query("insert into officeinfo(officename, officeaddress, price, ownerid, area, city, region, img_url, detail_img) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", [name, address, price, ownerid, area, city, quyu, img_url, detail_img], function (err, result) {
     if (err) {
       console.log(err);
     }
