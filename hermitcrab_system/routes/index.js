@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 var mysql = require('mysql');
 var dbconfig = require('../config/dbconfig.json');
 
@@ -84,7 +85,7 @@ router.get('/getdata/sr', function (req, res) {
   });
 });
 
-router.get('/getdata/office', function (req, res, next) {
+router.get('/getdata/office', function (req, res) {
   res.conn.query("select * from officeinfo", function (err, result) {
     if (err) {
       console.log(err);
