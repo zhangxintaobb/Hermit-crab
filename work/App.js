@@ -19,6 +19,8 @@ import {
 import Home from './compontents/home';
 import Message from './compontents/message';
 import Person from './compontents/person'
+import Find from './compontents/find'
+import Icon from 'react-native-vector-icons/AntDesign'
 const App = () => {
   return (
     <>
@@ -36,18 +38,52 @@ const App = () => {
               key="home"
               component={Home}
               title="首页"
+              icon={
+                ({ focused }) => <Icon
+                  size={30}
+                  color={focused ? '#f23636' : '#949494'}
+                  name="home"
+                />
+              }
+            />
+            <Scene
+              hideNavBar
+              key="find"
+              component={Find}
+              title="发现"
+              icon={
+                ({ focused }) => <Icon
+                  size={30}
+                  color={focused ? '#f23636' : '#949494'}
+                  name="search1"
+                />
+              }
             />
             <Scene
               hideNavBar
               key="message"
               component={Message}
               title="消息"
+              icon={
+                ({ focused }) => <Icon
+                  size={30}
+                  color={focused ? '#f23636' : '#949494'}
+                  name="mail"
+                />
+              }
             />
             <Scene
               hideNavBar
               key="person"
               component={Person}
               title="个人中心"
+              icon={
+                ({ focused }) => <Icon
+                  size={30}
+                  color={focused ? '#f23636' : '#949494'}
+                  name="user"
+                />
+              }
             >
             </Scene>
           </Tabs>
