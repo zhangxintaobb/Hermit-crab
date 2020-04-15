@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-native-button": "^3.0.1",
     "react-native-swiper": "^1.6.0-nightly.5"
   }
 }
