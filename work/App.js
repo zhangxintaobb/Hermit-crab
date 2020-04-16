@@ -18,10 +18,13 @@ import {
 } from 'react-native-router-flux';
 import Home from './compontents/home';
 import Message from './compontents/message';
-import Person from './compontents/person'
-import Find from './compontents/find'
-import Icon from 'react-native-vector-icons/AntDesign'
+import Person from './compontents/person';
+import Find from './compontents/find';
+import SplashScreen from 'react-native-splash-screen';
+import Icon from 'react-native-vector-icons/AntDesign';
+console.disableYellowBox = true;//清除黄色警告
 const App = () => {
+  SplashScreen.hide();
   return (
     <>
       <Router>
