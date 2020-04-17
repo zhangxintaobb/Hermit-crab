@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {
-  StyleSheet
+  StyleSheet,View
 } from 'react-native';
 import {
   Router,
@@ -22,6 +22,8 @@ import Person from './compontents/person';
 import Find from './compontents/find';
 import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Lead from './compontents/begin/Lead';
+import Login from './compontents/begin/Login';
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   SplashScreen.hide();
