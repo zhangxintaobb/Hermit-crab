@@ -24,6 +24,7 @@ import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Lead from './compontents/begin/Lead';
 import Login from './compontents/begin/Login';
+import Register from './compontents/begin/Register'
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   SplashScreen.hide();
