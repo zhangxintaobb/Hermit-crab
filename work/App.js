@@ -25,6 +25,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Lead from './compontents/begin/Lead';
 import Login from './compontents/begin/Login';
 import Register from './compontents/begin/Register'
+import Office from './compontents/find/Office'
+import StudyRoom from './compontents/find/StudyRoom'
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   SplashScreen.hide();
@@ -93,6 +95,20 @@ const App = () => {
             >
             </Scene>
           </Tabs>
+          <Scene
+            key='office'
+            title='办公室'
+            component={Office}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='sr'
+            title='自习室'
+            component={StudyRoom}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
         </Scene>
       </Router>
     </>

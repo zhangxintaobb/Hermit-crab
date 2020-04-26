@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, ScrollView, StyleSheet, FlatList, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { Actions } from "react-native-router-flux";
 import Icon from 'react-native-vector-icons/AntDesign'
-import Tabs from '@ant-design/react-native';
+import { Tabs, Button } from '@ant-design/react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -20,106 +21,166 @@ export default class index extends Component {
             .then((res) => {
                 // console.log(res);
                 this.setState({
-                    data: res.data
+                    office: res.data
+                });
+            })
+        fetch("http://zy.eatclub.wang:3000/list/sr")
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res);
+                this.setState({
+                    sr: res.data
                 });
             })
     }
 
     render() {
-        // const tabs = [
-        //     { title: 'First Tab' },
-        //     { title: 'Second Tab' },
-        //     { title: 'Third Tab' },
-        // ];
-        // const style = {
-        //     alignItems: 'center',
-        //     justifyContent: 'center',
-        //     height: 150,
-        //     backgroundColor: '#fff',
-        // };
+        const tabs = [
+            { title: '自习室' },
+            { title: '办公室' },
+        ];
         return (
-            <View>
-                {/* <Tabs tabs={tabs}>
-                    <View style={style}>
-                        <Text>Content of First Tab</Text>
+            <View style={{ flex: 1 }}>
+                <Tabs tabs={tabs}>
+                    <View style={styles.tabs}>
+                        <ScrollView style={{width:width}}>
+                            <FlatList
+                                data={this.state.sr}
+                                keyExtractor={(item, index) => index}
+                                renderItem={({ item }) =>
+                                    <TouchableOpacity style={styles.listitem} onPress={() => Actions.sr({ 'srid': item.srid })}>
+                                        <Image
+                                            source={{ uri: item.img_url }}
+                                            style={styles.pic}
+                                        />
+                                        <View style={{ width: width * 0.3, }}>
+                                            <Text style={styles.title}>{item.srname}</Text>
+                                            <Text style={{ fontSize: 12, color: '#bbb', marginTop: 10 }}>{item.city},{item.region}</Text>
+                                            <View style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
+                                                <Icon
+                                                    size={15}
+                                                    color={'#f23636'}
+                                                    name="enviromento"
+                                                />
+                                                <Text style={{ fontSize: 12, color: '#bbb' }}>距离2KM</Text>
+                                            </View>
+                                            <View style={{ display: 'flex', flexDirection: 'row', marginTop: 15 }}>
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="star"
+                                                />
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="star"
+                                                />
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="star"
+                                                />
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="star"
+                                                />
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="staro"
+                                                />
+                                            </View>
+                                        </View>
+                                        <View style={{ marginLeft: 10 }}>
+                                            <Text style={styles.price}>￥{item.price}</Text>
+                                            <Text>/天</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                }
+                            />
+                        </ScrollView>
                     </View>
-                    <View style={style}>
-                        <Text>Content of Second Tab</Text>
+                    <View style={styles.tabs}>
+                        <ScrollView>
+                            <FlatList
+                                data={this.state.office}
+                                keyExtractor={(item, index) => index}
+                                renderItem={({ item }) =>
+                                    <TouchableOpacity style={styles.listitem} onPress={() => Actions.office({ 'officeid': item.officeid })}>
+                                        <Image
+                                            source={{ uri: item.img_url }}
+                                            style={styles.pic}
+                                        />
+                                        <View style={{ width: width * 0.3, }}>
+                                            <Text style={styles.title}>{item.officename}</Text>
+                                            <Text style={{ fontSize: 12, color: '#bbb', marginTop: 10 }}>{item.city},{item.region}</Text>
+                                            <View style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
+                                                <Icon
+                                                    size={15}
+                                                    color={'#f23636'}
+                                                    name="enviromento"
+                                                />
+                                                <Text style={{ fontSize: 12, color: '#bbb' }}>距离2KM</Text>
+                                            </View>
+                                            <View style={{ display: 'flex', flexDirection: 'row', marginTop: 15 }}>
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="star"
+                                                />
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="star"
+                                                />
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="star"
+                                                />
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="star"
+                                                />
+                                                <Icon
+                                                    size={20}
+                                                    color={'#f23636'}
+                                                    name="staro"
+                                                />
+                                            </View>
+                                        </View>
+                                        <View style={{ marginLeft: 10 }}>
+                                            <Text style={styles.price}>￥{item.price}</Text>
+                                            <Text>/天</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                }
+                            />
+                        </ScrollView>
                     </View>
-                    <View style={style}>
-                        <Text>Content of Third Tab</Text>
-                    </View>
-                </Tabs> */}
-                <ScrollView>
-                    <FlatList
-                        data={this.state.data}
-                        keyExtractor={(item, index) => index}
-                        renderItem={({ item }) =>
-                            <TouchableOpacity style={styles.listitem}>
-                                <Image
-                                    source={{ uri: item.img_url }}
-                                    style={styles.pic}
-                                />
-                                <View style={{ width: width * 0.3, }}>
-                                    <Text style={styles.title}>{item.officename}</Text>
-                                    <Text style={{ fontSize: 12, color: '#bbb', marginTop: 10 }}>{item.city},{item.region}</Text>
-                                    <View style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
-                                        <Icon
-                                            size={15}
-                                            color={'#f23636'}
-                                            name="enviromento"
-                                        />
-                                        <Text style={{ fontSize: 12, color: '#bbb' }}>距离2KM</Text>
-                                    </View>
-                                    <View style={{ display: 'flex', flexDirection: 'row', marginTop: 15 }}>
-                                        <Icon
-                                            size={20}
-                                            color={'#f23636'}
-                                            name="star"
-                                        />
-                                        <Icon
-                                            size={20}
-                                            color={'#f23636'}
-                                            name="star"
-                                        />
-                                        <Icon
-                                            size={20}
-                                            color={'#f23636'}
-                                            name="star"
-                                        />
-                                        <Icon
-                                            size={20}
-                                            color={'#f23636'}
-                                            name="star"
-                                        />
-                                        <Icon
-                                            size={20}
-                                            color={'#f23636'}
-                                            name="staro"
-                                        />
-                                    </View>
-                                </View>
-                                <View style={{ marginLeft: 10 }}>
-                                    <Text style={styles.price}>￥{item.price}</Text>
-                                    <Text>/天</Text>
-                                </View>
-                            </TouchableOpacity>
-                        }
-                    />
-                </ScrollView>
+                </Tabs>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    tabs: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        // height: 150,
+        // backgroundColor: '#ccc',
+        width: width
+    },
     listitem: {
         display: 'flex',
         height: height * 1 / 6,
         width: width * 0.9,
-        marginLeft: width * 0.05,
         margin: 0,
         marginTop: 10,
+        marginLeft:width*0.05,
         backgroundColor: '#fff',
         borderRadius: 20,
         flexDirection: 'row'

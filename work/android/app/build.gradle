@@ -179,11 +179,7 @@ android {
 }
 
 dependencies {
-<<<<<<< HEAD
-    implementation project(':@react-native-community_viewpager')
-=======
     implementation project(':react-native-splash-screen')
->>>>>>> 975480e09743f9dab30b793a371ae5b35b1a3266
     implementation project(':react-native-image-picker')
     implementation project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])
