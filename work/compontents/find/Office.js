@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     footbar: {
         width: width,
         height: 60,
-        backgroundColor: '#D0D0D0',
+        backgroundColor: '#CCCCCC',
         flexDirection: 'row',
         alignItems: 'center',
         borderTopLeftRadius: 15,

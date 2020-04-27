@@ -74,10 +74,10 @@ export default class Login extends Component {
                 {/* 注册 & 忘记密码 */}
                 <View style={styles.other}>
                     <TouchableOpacity onPress={Actions.register}>
-                        <Text style={{color:'#0B63A7'}}>立即注册</Text>
+                        <Text style={{color:'#FFF'}}>立即注册</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Text>找回密码</Text>
+                        <Text  style={{color:'#FFF'}}>找回密码</Text>
                     </TouchableOpacity>
 
                 </View>
@@ -86,20 +86,20 @@ export default class Login extends Component {
                 <TouchableOpacity
                     style={styles.login}
                     onPress={this.login}>
-                    <Text>登录</Text>
+                    <Text style={{color:'#599F6F',fontSize:16}}>登录</Text>
                 </TouchableOpacity>
                 {/* 快捷登录 */}
                 <View style={styles.convenientLogin} >
-                    <Text>--快捷登录--</Text>
+                    <Text style={{color:'#FFF'}}>--快捷登录--</Text>
                     <View style={styles.convenienticon}>
                         <TouchableOpacity>
-                        <Icon name="qq" size={20} color={'#3A14B2'} />
+                        <Icon name="qq" size={30} color={'#FFF'} />
                         </TouchableOpacity>
                         <TouchableOpacity>
-                        <Icon name="wechat" size={20} color={'#3A14B2'} />
+                        <Icon name="wechat" size={30} color={'#FFF'} />
                         </TouchableOpacity>
                         <TouchableOpacity>
-                        <Icon name="weibo" size={20} color={'#3A14B2'} />
+                        <Icon name="weibo" size={30} color={'#FFF'} />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#009999',
+        backgroundColor: '#599F6F',
         flex: 1
     },
     title: {
@@ -126,7 +126,8 @@ const styles = StyleSheet.create({
     },
 
     titlefont: {
-        fontSize: 24
+        fontSize: 24,
+        color:'#FFF'
     },
     headportrait: {
         height: '25%',
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '100%',
-        backgroundColor: '#ccc',
+        backgroundColor: '#FFF',
         borderRadius: 30
     },
     username: {
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
     login: {
         width: '70%',
         height: 50,
-        backgroundColor: '#0B5FA5',
+        backgroundColor: '#FFF',
         marginTop: 30,
         alignItems: 'center',
         justifyContent: 'center',

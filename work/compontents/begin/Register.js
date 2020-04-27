@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import {
     Actions
-  } from 'react-native-router-flux';
+} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 export default class Register extends Component {
     constructor() {
@@ -17,7 +17,7 @@ export default class Register extends Component {
         this.state = {
             username: '', //用户名
             pwd: '', //密码
-            pwdagain:'',//确认密码
+            pwdagain: '',//确认密码
         }
     }
     userhandle = (text) => {
@@ -72,10 +72,10 @@ export default class Register extends Component {
                 <TouchableOpacity
                     style={styles.register}
                     onPress={this.register}>
-                    <Text>注册</Text>
+                    <Text style={{ color: '#599F6F', fontSize: 16 }}>注册</Text>
                 </TouchableOpacity>
-               {/* 留白 */}
-               <View style={styles.liubai}></View>
+                {/* 留白 */}
+                <View style={styles.liubai}></View>
             </View>
         )
     }
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#009999',
+        backgroundColor: '#599F6F',
         flex: 1
     },
     title: {
@@ -98,15 +98,16 @@ const styles = StyleSheet.create({
     },
 
     titlefont: {
-        fontSize: 24
+        fontSize: 24,
+        color:'#FFF'
     },
-    liubai:{
-        width:'100%',
-        height:'20%'
+    liubai: {
+        width: '100%',
+        height: '20%'
     },
     input: {
         width: '100%',
-        backgroundColor: '#ccc',
+        backgroundColor: '#FFF',
         borderRadius: 30
     },
     username: {
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
     register: {
         width: '70%',
         height: 50,
-        backgroundColor: '#0B5FA5',
+        backgroundColor: '#FFF',
         marginTop: 30,
         alignItems: 'center',
         justifyContent: 'center',
