@@ -8,48 +8,62 @@ import { black } from 'color-name';
 export default class index extends Component {
     render() {
         return (
-            <View>
+            <View style={{backgroundColor:'white'}}>
                 <View style={styles.top}>
                     <Text style={{color:'#fff'}}>消息列表</Text>
                 </View>
 
                 <ScrollView>
                     <View  style={{
-                        flexDirection:'column',
-                        justifyContent:'center',
+                        flexDirection:'row',
+                        justifyContent:'space-evenly',
                         flexWrap:'wrap',
-                        marginTop:20,
+                        paddingTop:20,
                         width:'100%',
+                        height: 650
                     }}>
-                        <View style={styles.box}>
-                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
-                            <Text>官方客服1</Text>
-                            <Text>您想咨询什么问题？                                  --12:56</Text>
+                        <View style={{
+                            flexDirection:'column',
+                            justifyContent:'center',
+                            flexWrap:'wrap',
+                        }}>
+                            <View style={styles.pic}><Image style={{height:90,width:90}} source={require('../../assets/zxt/Login/person.png')} /></View>
+                            <View style={styles.pic}><Image style={{height:90,width:90}} source={require('../../assets/zxt/Login/person.png')} /></View>
+                            <View style={styles.pic}><Image style={{height:90,width:90}} source={require('../../assets/zxt/Login/person.png')} /></View>
+                            <View style={styles.pic}><Image style={{height:90,width:90}} source={require('../../assets/zxt/Login/person.png')} /></View>
+                            <View style={styles.pic}><Image style={{height:90,width:90}} source={require('../../assets/zxt/Login/person.png')} /></View>
+                            <View style={styles.pic}><Image style={{height:90,width:90}} source={require('../../assets/zxt/Login/person.png')} /></View>
                         </View>
-                        <View style={styles.box}>
-                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
-                            <Text>官方客服2</Text>
-                            <Text>您想咨询什么问题？                                  --12:56</Text>
-                        </View>
-                        <View style={styles.box}>
-                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
-                            <Text>官方客服3</Text>
-                            <Text>您想咨询什么问题？                                  --12:56</Text>
-                        </View>
-                        <View style={styles.box}>
-                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
-                            <Text>官方客服4</Text>
-                            <Text>您想咨询什么问题？                                  --12:56</Text>
-                        </View>
-                        <View style={styles.box}>
-                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
-                            <Text>官方客服5</Text>
-                            <Text>您想咨询什么问题？                                  --12:56</Text>
-                        </View>
-                        <View style={styles.box}>
-                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
-                            <Text>官方客服6</Text>
-                            <Text>您想咨询什么问题？                                  --12:56</Text>
+                        <View style={{
+                            flexDirection:'column',
+                            justifyContent:'space-around',
+                            flexWrap:'wrap',
+                            height: 600
+                        }}>
+                            <View>
+                                <Text style={{fontSize:25}}>官方客服1</Text>
+                                <Text style={{color:'#ccc'}}>您想咨询什么问题？                                             --12:56</Text>
+                            </View>
+                            <View>
+                                <Text style={{fontSize:25}}>官方客服2</Text>
+                                <Text style={{color:'#ccc'}}>您想咨询什么问题？                                             --12:56</Text>
+                            </View>
+                            <View>
+                                <Text style={{fontSize:25}}>官方客服3</Text>
+                                <Text style={{color:'#ccc'}}>您想咨询什么问题？                                             --12:56</Text>
+                            </View>
+                            <View>
+                                <Text style={{fontSize:25}}>官方客服4</Text>
+                                <Text style={{color:'#ccc'}}>您想咨询什么问题？                                             --12:56</Text>
+                            </View>
+                            <View>
+                                <Text style={{fontSize:25}}>官方客服5</Text>
+                                <Text style={{color:'#ccc'}}>您想咨询什么问题？                                             --12:56</Text>
+                            </View>
+                            <View>
+                                <Text style={{fontSize:25}}>官方客服6</Text>
+                                <Text style={{color:'#ccc'}}>您想咨询什么问题？                                             --12:56</Text>
+                            </View>
                         </View>
                     </View>
                 </ScrollView>
@@ -66,6 +80,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     box:{
-        marginLeft:10
+        marginLeft:10,
+        backgroundColor:'#cccccc',
+        paddingTop:5,
+        backgroundColor:'white',
+        width: '90%',
+    },
+    pic:{
+        marginTop:10
     }
 })
