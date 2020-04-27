@@ -27,7 +27,7 @@ export default class index extends Component {
         fetch("http://zy.eatclub.wang:3000/list/sr")
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 this.setState({
                     sr: res.data
                 });

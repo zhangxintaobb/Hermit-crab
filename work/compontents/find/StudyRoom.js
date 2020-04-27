@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity } from 'react-native'
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { Actions } from "react-native-router-flux";
 
 
 const { width, height } = Dimensions.get('window');
@@ -79,7 +80,12 @@ export default class StudyRoom extends Component {
                         <View style={{ marginTop: 15 }}>
                             <View style={{ flexDirection: 'row', marginTop: 10 }}>
                                 <Text style={{ color: '#aaa' }}>评论(25)</Text>
-                                <TouchableOpacity style={{ marginLeft: 280 }}><Text style={{ color: '#0099CC' }}>查看全部</Text></TouchableOpacity>
+                                <TouchableOpacity 
+                                    style={{ marginLeft: 280 }}
+                                    onPress={()=>Actions.comment()}
+                                >
+                                    <Text style={{ color: '#0099CC' }}>查看全部</Text>
+                                </TouchableOpacity>
                             </View>
                             <View style={styles.pinglun}>
                                 <View style={{ flexDirection: 'row' }}>
@@ -247,7 +253,10 @@ export default class StudyRoom extends Component {
                         />
                         <Text style={{ color: '#2C3E50' }}>收藏</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.bbutton}>
+                    <TouchableOpacity
+                        style={styles.bbutton}
+                        onPress={()=>Actions.order({'data':this.state.data})}    
+                    >
                         <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: 14 }}>下单</Text>
                     </TouchableOpacity>
                 </View>

@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, Image,AsyncStorage } from 'react-native'
 import Swiper from 'react-native-swiper';
 import {
   Actions
 } from 'react-native-router-flux';
 export default class Lead extends Component {
-  
+  start =  () => {
+    AsyncStorage.setItem('isInstall','true',()=>{
+        this.props.afterInstall();
+    });
+};
   render() {
     return (
       <Swiper>
@@ -23,7 +27,7 @@ export default class Lead extends Component {
         <Image 
         style={styles.img}
         source={require('../../assets/zxt/Swipe/a_03.png')} />
-          <TouchableOpacity style={styles.start} onPress={Actions.login}>
+          <TouchableOpacity style={styles.start} onPress={this.start}>
             <Text style={{ color: '#fff' }}>开始体验</Text>
           </TouchableOpacity>
         </View>

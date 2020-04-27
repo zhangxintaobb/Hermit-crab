@@ -5,7 +5,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     TextInput,
-    Image
+    Image,
+    AsyncStorage
 } from 'react-native'
 import {
     Actions
@@ -27,9 +28,16 @@ export default class Login extends Component {
         this.setState({ pwd: text })
     }
     login = () => {
+        this.setState({isloading:true})
         console.log(this.state.username)
         console.log(this.state.pwd)
         this.setState({ isloading: true })
+        AsyncStorage.setItem('user',JSON.stringify("zxt"))
+        .then(()=>{
+            this.setState({isloading:false})
+            Actions.home();
+        })
+        
     }
     render() {
         return (
