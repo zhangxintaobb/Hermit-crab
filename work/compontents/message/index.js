@@ -12,6 +12,47 @@ export default class index extends Component {
                 <View style={styles.top}>
                     <Text style={{color:'#fff'}}>消息列表</Text>
                 </View>
+
+                <ScrollView>
+                    <View  style={{
+                        flexDirection:'column',
+                        justifyContent:'center',
+                        flexWrap:'wrap',
+                        marginTop:20,
+                        width:'100%',
+                    }}>
+                        <View style={styles.box}>
+                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
+                            <Text>官方客服1</Text>
+                            <Text>您想咨询什么问题？                                  --12:56</Text>
+                        </View>
+                        <View style={styles.box}>
+                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
+                            <Text>官方客服2</Text>
+                            <Text>您想咨询什么问题？                                  --12:56</Text>
+                        </View>
+                        <View style={styles.box}>
+                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
+                            <Text>官方客服3</Text>
+                            <Text>您想咨询什么问题？                                  --12:56</Text>
+                        </View>
+                        <View style={styles.box}>
+                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
+                            <Text>官方客服4</Text>
+                            <Text>您想咨询什么问题？                                  --12:56</Text>
+                        </View>
+                        <View style={styles.box}>
+                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
+                            <Text>官方客服5</Text>
+                            <Text>您想咨询什么问题？                                  --12:56</Text>
+                        </View>
+                        <View style={styles.box}>
+                            <Image style={{width:70,height:70}} source={require('../../assets/zxt/Login/person.png')} />
+                            <Text>官方客服6</Text>
+                            <Text>您想咨询什么问题？                                  --12:56</Text>
+                        </View>
+                    </View>
+                </ScrollView>
             </View>
         )
     }
@@ -23,6 +64,8 @@ const styles = StyleSheet.create({
         backgroundColor:'#33CC99',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize:50
     },
+    box:{
+        marginLeft:10
+    }
 })
