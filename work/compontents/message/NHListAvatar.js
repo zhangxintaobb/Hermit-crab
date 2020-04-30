@@ -65,16 +65,11 @@ class NHListAvatar extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>List Avatar</Title>
+        <Header style={{width:'100%',justifyContent:'center',alignItems:'center',flexDirection:'row'}} >
+          <Body style={{width:'100%',justifyContent:'center',alignItems:'center'}}>
+            <Title>消息列表</Title>
           </Body>
-          <Right />
+          {/* <Right /> */}
         </Header>
 
         <Content>
@@ -104,7 +99,7 @@ class NHListAvatar extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFF"
+    backgroundColor: "#FFF",
   },
 });
 

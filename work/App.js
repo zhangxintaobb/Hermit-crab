@@ -17,7 +17,7 @@ import {
   Actions
 } from 'react-native-router-flux';
 import Home from './compontents/home';
-import Message from './compontents/message';
+import Message from './compontents/message/NHListAvatar';
 import Person from './compontents/person';
 import Find from './compontents/find';
 import SplashScreen from 'react-native-splash-screen';
