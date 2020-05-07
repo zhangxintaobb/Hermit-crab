@@ -29,6 +29,10 @@ import Office from './compontents/find/Office'
 import StudyRoom from './compontents/find/StudyRoom'
 import Comment from './compontents/find/Comment'
 import Order from './compontents/find/Order'
+import Information from './compontents/person/information';
+import NmaeRevise from './compontents/person/information/NmaeRevise';
+import PhoneRevise from './compontents/person/information/PhoneRevise';
+import EmailRevise from './compontents/person/information/EmailRevise';
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -165,6 +169,34 @@ const App = () => {
             key='order'
             title='确认并支付'
             component={Order}
+          />
+          <Scene
+            key='information'
+            title='个人信息'
+            component={Information}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='information_username'
+            title='修改昵称'
+            component={NmaeRevise}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='information_userphone'
+            title='修改手机号码'
+            component={PhoneRevise}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='information_useremail'
+            title='修改邮箱'
+            component={EmailRevise}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
           />
         </Scene>
       </Router>

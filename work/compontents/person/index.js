@@ -32,11 +32,11 @@ const jumpData = [
     { icon: 'redenvelopes', name: '红包/卡券', jump: () => Actions.mycard }
 ]
 const list = [
-    {  name: '个人信息' },
-    {  name: '余额查询'},
-    {  name: '会员中心'},
-    {  name: '客服中心'},
-    {  name: '关于寄居蟹'},
+    {  name: '个人信息', jump: () => Actions.information },
+    {  name: '余额查询', jump: () => Actions.information },
+    {  name: '会员中心', jump: () => Actions.information },
+    {  name: '客服中心', jump: () => Actions.information },
+    {  name: '关于寄居蟹', jump: () => Actions.information },
 ]
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -161,7 +161,7 @@ export default class index extends Component {
                 <View style={styles.otherbox}>
                     {/* 个人中心 */}
                     {list.map((data, i) => (
-                           <TouchableOpacity style={styles.other}>
+                           <TouchableOpacity style={styles.other}  onPress={data.jump()}>
                            <Text>{data.name}</Text>
                            <Icon
                                        size={15}
