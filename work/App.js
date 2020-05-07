@@ -29,6 +29,7 @@ import Office from './compontents/find/Office'
 import StudyRoom from './compontents/find/StudyRoom'
 import Comment from './compontents/find/Comment'
 import Order from './compontents/find/Order'
+import MyCollect from './compontents/person/Mycollect'
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -166,6 +167,12 @@ const App = () => {
             title='确认并支付'
             component={Order}
           />
+          <Scene
+            key='mycollect'
+            title='我的收藏'
+            component={MyCollect}
+          />
+          
         </Scene>
       </Router>
     </>

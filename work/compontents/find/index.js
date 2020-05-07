@@ -48,7 +48,7 @@ export default class index extends Component {
                                 data={this.state.sr}
                                 keyExtractor={(item, index) => index}
                                 renderItem={({ item }) =>
-                                    <TouchableOpacity style={styles.listitem} onPress={() => Actions.sr({ 'srid': item.srid })}>
+                                    <TouchableOpacity style={styles.listitem1} onPress={() => Actions.sr({ 'srid': item.srid })}>
                                         <Image
                                             source={{ uri: item.img_url }}
                                             style={styles.pic}
@@ -174,13 +174,24 @@ const styles = StyleSheet.create({
         // backgroundColor: '#ccc',
         width: width
     },
+    listitem1: {
+        display: 'flex',
+        height: height * 1 / 6,
+        width: width * 0.9,
+        margin: 0,
+        marginTop: 10,
+        marginLeft: width * 0.05,
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        flexDirection: 'row'
+    },
     listitem: {
         display: 'flex',
         height: height * 1 / 6,
         width: width * 0.9,
         margin: 0,
         marginTop: 10,
-        marginLeft:width*0.05,
+        // marginLeft:width*0.05,
         backgroundColor: '#fff',
         borderRadius: 20,
         flexDirection: 'row'
