@@ -29,14 +29,11 @@ import Office from './compontents/find/Office'
 import StudyRoom from './compontents/find/StudyRoom'
 import Comment from './compontents/find/Comment'
 import Order from './compontents/find/Order'
-<<<<<<< HEAD
 import Information from './compontents/person/information';
 import NmaeRevise from './compontents/person/information/NmaeRevise';
 import PhoneRevise from './compontents/person/information/PhoneRevise';
 import EmailRevise from './compontents/person/information/EmailRevise';
-=======
 import MyCollect from './compontents/person/Mycollect'
->>>>>>> 873ce0ca6add7c3c93a027d0c0b79ba64af5c63f
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -175,7 +172,6 @@ const App = () => {
             component={Order}
           />
           <Scene
-<<<<<<< HEAD
             key='information'
             title='个人信息'
             component={Information}
@@ -203,13 +199,12 @@ const App = () => {
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
           />
-=======
+          <Scene
             key='mycollect'
             title='我的收藏'
             component={MyCollect}
           />
           
->>>>>>> 873ce0ca6add7c3c93a027d0c0b79ba64af5c63f
         </Scene>
       </Router>
     </>

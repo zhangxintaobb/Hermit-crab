@@ -18,7 +18,8 @@ export default class Login extends Component {
         this.state = {
             username: '',
             pwd: '',
-            isloading: false
+            isloading: false,
+            data:''
         }
     }
     userhandle = (text) => {
@@ -28,9 +29,17 @@ export default class Login extends Component {
         this.setState({ pwd: text })
     }
     login = () => {
+        // fetch("http://zy.eatclub.wang:3000/login")
+        //     .then((res) => res.json())
+        //     .then((res) => {
+        //         // console.log(res);
+        //         this.setState({
+        //             data: res.data
+        //         });
+        //     })
         this.setState({isloading:true})
-        console.log(this.state.username)
-        console.log(this.state.pwd)
+        // console.log(this.state.username)
+        console.log(this.state.data)
         this.setState({ isloading: true })
         AsyncStorage.setItem('user',JSON.stringify("zxt"))
         .then(()=>{
