@@ -6,12 +6,17 @@ import {
     TouchableOpacity,
     TextInput,
     Image,
-    AsyncStorage
+    AsyncStorage,
+    ToastAndroid
 } from 'react-native'
 import {
     Actions
-  } from 'react-native-router-flux';
+} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Load from '../load'
+let url = 'http://zy.eatclub.wang:3000/login'
+
+// const http = require("http");
 export default class Login extends Component {
     constructor() {
         super();
@@ -19,7 +24,7 @@ export default class Login extends Component {
             username: '',
             pwd: '',
             isloading: false,
-            data:''
+            data: ''
         }
     }
     userhandle = (text) => {
@@ -29,28 +34,47 @@ export default class Login extends Component {
         this.setState({ pwd: text })
     }
     login = () => {
-        // fetch("http://zy.eatclub.wang:3000/login")
-        //     .then((res) => res.json())
-        //     .then((res) => {
-        //         // console.log(res);
-        //         this.setState({
-        //             data: res.data
-        //         });
-        //     })
-        this.setState({isloading:true})
-        // console.log(this.state.username)
-        console.log(this.state.data)
         this.setState({ isloading: true })
-        AsyncStorage.setItem('user',JSON.stringify("zxt"))
-        .then(()=>{
-            this.setState({isloading:false})
-            Actions.home();
+        // console.log(options)
+        fetch('http://zy.eatclub.wang:3000/login', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phone:this.state.username,
+                password:this.state.pwd
+            }),
         })
-        
+        .then((res) => res.json())
+        .then((res) => {
+                console.log(res);
+                this.setState({
+                    data: res.data
+                });
+                if (res.msg == "OK") {
+                    console.log(this.state.data)
+                    AsyncStorage.setItem('user', JSON.stringify(res.data))
+                        .then(() => {
+                            this.setState({ isloading: false })
+                            Actions.home();
+                        })
+                }
+                else if(res.msg == "PWDERR") {
+                    this.setState({ isloading: false })
+                    ToastAndroid.show("密码错误",100)
+                }
+                else {
+                    this.setState({ isloading: false })
+                    ToastAndroid.show("用户不存在",100)
+                }
+            })
     }
     render() {
         return (
             <View style={styles.box}>
+                {this.state.isloading?<Load spinkerType="Circle" />:null}
                 {/* title */}
                 <View style={styles.title}>
                     <Text style={styles.titlefont}>登录</Text>
@@ -78,15 +102,16 @@ export default class Login extends Component {
                         style={styles.input}
                         placeholder="密码"
                         onChangeText={this.pwdhandle}
+                        secureTextEntry={true}
                     />
                 </View>
                 {/* 注册 & 忘记密码 */}
                 <View style={styles.other}>
                     <TouchableOpacity onPress={Actions.register}>
-                        <Text style={{color:'#FFF'}}>立即注册</Text>
+                        <Text style={{ color: '#FFF' }}>立即注册</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Text  style={{color:'#FFF'}}>找回密码</Text>
+                        <Text style={{ color: '#FFF' }}>找回密码</Text>
                     </TouchableOpacity>
 
                 </View>
@@ -95,23 +120,24 @@ export default class Login extends Component {
                 <TouchableOpacity
                     style={styles.login}
                     onPress={this.login}>
-                    <Text style={{color:'#599F6F',fontSize:16}}>登录</Text>
+                    <Text style={{ color: '#599F6F', fontSize: 16 }}>登录</Text>
                 </TouchableOpacity>
                 {/* 快捷登录 */}
                 <View style={styles.convenientLogin} >
-                    <Text style={{color:'#FFF'}}>--快捷登录--</Text>
+                    <Text style={{ color: '#FFF' }}>--快捷登录--</Text>
                     <View style={styles.convenienticon}>
                         <TouchableOpacity>
-                        <Icon name="qq" size={30} color={'#FFF'} />
+                            <Icon name="qq" size={30} color={'#FFF'} />
                         </TouchableOpacity>
                         <TouchableOpacity>
-                        <Icon name="wechat" size={30} color={'#FFF'} />
+                            <Icon name="wechat" size={30} color={'#FFF'} />
                         </TouchableOpacity>
                         <TouchableOpacity>
-                        <Icon name="weibo" size={30} color={'#FFF'} />
+                            <Icon name="weibo" size={30} color={'#FFF'} />
                         </TouchableOpacity>
                     </View>
                 </View>
+
             </View>
         )
     }
@@ -131,12 +157,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
         height: '10%',
-        marginTop:20
+        marginTop: 20
     },
 
     titlefont: {
         fontSize: 24,
-        color:'#FFF'
+        color: '#FFF'
     },
     headportrait: {
         height: '25%',

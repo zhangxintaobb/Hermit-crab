@@ -44,24 +44,22 @@ export default class index extends Component {
     constructor() {
         super();
         this.state = {
-            avatarSource: require('../../assets/zxt/Login/person.png')
+            username:'',
+            avatarSource: "http://touxiang.yeree.com/pics/9e/2287425.jpg",
+            userid:''
         }
     }
     componentDidMount() {
-        AsyncStorage.getItem('image')
-            .then((res) => {
-                const imgsrc = { uri: res };
-                if (res == null) {
-                    this.setState({
-                        avatarSource: require('../../assets/zxt/Login/person.png')
-                    })
-                }
-                else {
-                    this.setState({
-                        avatarSource: imgsrc,
-                    });
-                }
-            });
+        AsyncStorage.getItem('user')
+        .then((res)=>{
+            let data=JSON.parse(res)
+            console.log(data[0].username)
+            this.setState({
+                username:data[0].username,
+                userid:data[0].userid,
+                avatarSource: "http://zy.eatclub.wang:3030/public/img/nologin.png"
+            })
+        })
     }
 
     storeData = async (img) => {
@@ -93,7 +91,9 @@ export default class index extends Component {
         });
     }
     render() {
+        {console.log(this.state.userid)}
         return (
+            
             <View style={styles.box}>
                 {/* 头部 */}
                 <View style={styles.head}>
@@ -101,15 +101,15 @@ export default class index extends Component {
                         {/* 头像 */}
                         <TouchableOpacity style={styles.headportrait} onPress={() => this.tackpicker()}>
                             <Image
-                                source={require('../../assets/zxt/Login/person.png')}
+                                source={{uri: this.state.avatarSource}}
                                 resizeMode='contain'
                                 style={{ width: 60, height: 60, borderRadius: 65 }}
                                 imageStyle={{ borderRadius: 65 }}
                             />
                         </TouchableOpacity>
                         <View style={styles.user}>
-                            <Text>昵称:张鑫涛</Text>
-                            <Text>ID:123</Text>
+                            <Text>昵称:{this.state.username}</Text>
+                            <Text>ID:{this.state.userid}</Text>
                         </View>
                     </View>
                     <TouchableOpacity style={styles.right}>
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'space-evenly',
-        width: '50%',
+        width: '60%',
         height: '100%',
     },
     right: {
