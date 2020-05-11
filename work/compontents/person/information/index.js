@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity,TouchableHighlight, } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity,TouchableHighlight, AsyncStorage, } from 'react-native'
 import {
     ListItem,
     List
@@ -10,11 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/AntDesign';
 import CustomAlertDialog from "./CustomAlertDialog";
 const typeArr = ["不限", "男", "女"];
-const list = [
-    { name: '手机号码', data: '15960266038', jump: () => Actions.information_userphone },
-    { name: '昵称', data: '大佬逼', jump: () => Actions.information_username },
-    { name: '邮箱', data: '3061573009@qq.com', jump: () => Actions.information_useremail }
-]
+
 export default class index extends Component {
     constructor(props) {
         super(props);
@@ -22,13 +18,35 @@ export default class index extends Component {
             typeName: '性别',
             type: 0,
             showTypePop: false,
+            phone:'',
+            username:'',
+            email:'',
+            sex:''
         }
     }
-
+    componentDidMount(){
+        AsyncStorage.getItem('user')
+        .then((res)=>{
+            let data=JSON.parse(res)
+            console.log(data[0])
+            this.setState({
+                phone:data[0].phone,
+                username:data[0].username,
+                email:data[0].email,
+                sex:data[0].sex
+            })
+        })
+        
+    }
     _openTypeDialog() {
         this.setState({showTypePop: !this.state.showTypePop})
     }
     render() {
+        const list = [
+            { name: '手机号码', jump: () => Actions.information_userphone,data:this.state.phone },
+            { name: '昵称', jump: () => Actions.information_username,data:this.state.username },
+            { name: '邮箱', jump: () => Actions.information_useremail,data:this.state.email }
+        ]
         return (
             <View style={styles.box}>
                 <View style={styles.top}>

@@ -147,7 +147,8 @@ const App = () => {
             </Scene>
           </Tabs>
           <Scene initial={!isLogin} hideNavBar key="login" component={Login} />
-          <Scene key="register" hideNavBar component={Register} />
+          <Scene 
+          key="register" hideNavBar component={Register} />
           <Scene
             key='office'
             title='办公室'

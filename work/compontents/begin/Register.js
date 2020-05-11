@@ -6,15 +6,16 @@ import {
     TouchableOpacity,
     TextInput,
     Image,
-    Alert
+    ToastAndroid
 } from 'react-native'
 import {
     Actions
 } from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/AntDesign';
 import md5 from "react-native-md5"
 let url = 'http://zy.eatclub.wang:3000/register'
-
+import Load from '../load'
+let myreg= /^[1][3,4,5,7,8][0-9]{9}$/
 export default class Register extends Component {
     constructor() {
         super();
@@ -25,7 +26,6 @@ export default class Register extends Component {
             isloading: false
         }
     }
-
     userhandle = (text) => {
         this.setState({ username: text })
     }
@@ -36,52 +36,53 @@ export default class Register extends Component {
         this.setState({ pwdagain: text })
     }
     register = () => {
-
-        // if (this.state.username != '' && this.state.pwd != '' && this.state.pwdagain != '') {
-        //     if (this.state.pwd == this.state.pwdagain) {
-                // let options = {
-                //     method: "get",
-                //     query: {
-                //         password: this.state.pwd,
-                //         phone: this.state.username
-                //     }
-                // }
-                // console.log(options)
-        //         this.setState({ isloading: true })
-        //         fetch('http://zy.eatclub.wang:3000/register', {
-        //             method: 'GET',
-        //             headers: {
-        //                 "Accept": "application/json",
-        //                 "Content-Type": 'application/json',
-        //                 "Connection": "close",
-        //                 "type": "getUserData",
-        //             },
-        //             query: JSON.stringify({
-
-        //             }),
-        //         })
-        //             .then((res) => res.json())
-        //             .then((res) => {
-        //                 console.log(res)
-        //                 this.setState({ isloading: false })
-        //             })
-        //             .catch(function (err) {
-        //                 console.log(err);
-        //             })
-        //     }
-        //     else { Alert.alert("密码不一致"); }
-        // }
-        // else {
-        //     Alert.alert("用户名或密码不为空");
-        // }
-        Actions.login()
+        if (this.state.username != '' && this.state.pwd != '' && this.state.pwdagain != '') {
+            if (this.state.pwd == this.state.pwdagain) {
+                
+                if (!myreg.test(this.state.username)) {
+                    ToastAndroid.show('请填写正确手机号码',300);
+                }
+                else {
+                    this.setState({ isloading: true })
+                    fetch(url + '?phone=' + this.state.username + '&' + 'password=' + md5.hex_md5(this.state.pwd), {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'text/plain'
+                        },
+                    })
+                        .then((res) => res.json())
+                        .then((res) => {
+                            this.setState({ isloading: false })
+                            if(res.msg=="OK"){
+                                Actions.login()
+                            }
+                            else{
+                                ToastAndroid.show("用户已存在",300)
+                            }
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        })
+                }
+            }
+            else { ToastAndroid.show("密码不一致",300); }
+        }
+        else {
+            ToastAndroid.show("用户名或密码不为空",300);
+        }
+       
     }
     render() {
         return (
             <View style={styles.box}>
+                 {this.state.isloading?<Load spinkerType="Circle" />:null}
                 {/* title */}
                 <View style={styles.title}>
+                    <TouchableOpacity onPress={Actions.login}>
+                    <Icon size={20} name='left' color={"white"} />
+                    </TouchableOpacity>
                     <Text style={styles.titlefont}>注册</Text>
+                    <View style={{width:30}}></View>
                 </View>
                 {/* 留白 */}
                 <View style={styles.liubai}></View>
@@ -89,7 +90,7 @@ export default class Register extends Component {
                 <View style={styles.username}>
                     <TextInput
                         style={styles.input}
-                        placeholder="用户名"
+                        placeholder="请填写手机号"
                         onChangeText={this.userhandle}
                     />
                 </View>
@@ -97,7 +98,7 @@ export default class Register extends Component {
                 <View style={styles.passwrod}>
                     <TextInput
                         style={styles.input}
-                        placeholder="密码"
+                        placeholder="请填写密码"
                         onChangeText={this.pwdhandle}
                         secureTextEntry={true}
                     />
@@ -133,9 +134,9 @@ const styles = StyleSheet.create({
         flex: 1
     },
     title: {
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         width: '100%',
         height: '10%',
     },

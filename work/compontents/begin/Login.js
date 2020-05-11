@@ -15,7 +15,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Load from '../load'
 let url = 'http://zy.eatclub.wang:3000/login'
-
+import md5 from "react-native-md5"
 // const http = require("http");
 export default class Login extends Component {
     constructor() {
@@ -34,7 +34,8 @@ export default class Login extends Component {
         this.setState({ pwd: text })
     }
     login = () => {
-        this.setState({ isloading: true })
+        if(this.state.username != '' && this.state.pwd != ''){
+            this.setState({ isloading: true })
         // console.log(options)
         fetch('http://zy.eatclub.wang:3000/login', {
             method: 'POST',
@@ -44,7 +45,9 @@ export default class Login extends Component {
             },
             body: JSON.stringify({
                 phone:this.state.username,
-                password:this.state.pwd
+                password:md5.hex_md5(this.state.pwd)
+                // phone:'13722258607',
+                // password:'123456789'
             }),
         })
         .then((res) => res.json())
@@ -70,6 +73,11 @@ export default class Login extends Component {
                     ToastAndroid.show("用户不存在",100)
                 }
             })
+        }
+        else{
+            ToastAndroid.show("用户名或密码不为空",300)
+        }
+        
     }
     render() {
         return (
