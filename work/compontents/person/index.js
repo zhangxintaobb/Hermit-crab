@@ -5,7 +5,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     Image,
-    AsyncStorage
+    AsyncStorage,
+    DeviceEventEmitter
 } from 'react-native'
 import {
     Actions
@@ -49,19 +50,42 @@ export default class index extends Component {
             userid:''
         }
     }
+    
     componentDidMount() {
         AsyncStorage.getItem('user')
         .then((res)=>{
             let data=JSON.parse(res)
             console.log(data[0].username)
+            console.log('storage:'+res)
             this.setState({
                 username:data[0].username,
                 userid:data[0].userid,
                 avatarSource: "http://zy.eatclub.wang:3030/public/img/nologin.png"
             })
         })
+        .catch(function (err) {
+            console.log(err);
+        })
+        this.subscription = DeviceEventEmitter.addListener("EventType", ()=>{
+            AsyncStorage.getItem('user')
+            .then((res)=>{
+                let data=JSON.parse(res)
+                console.log(data[0].username)
+                console.log('storage:'+res)
+                this.setState({
+                    username:data[0].username,
+                    userid:data[0].userid,
+                    avatarSource: "http://zy.eatclub.wang:3030/public/img/nologin.png"
+                })
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+        });
     }
-
+    componentWillUnmount() {
+        this.subscription.remove();
+    }
     storeData = async (img) => {
         await AsyncStorage.setItem('image', img,
             () => { console.log('store success') }

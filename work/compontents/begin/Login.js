@@ -7,7 +7,8 @@ import {
     TextInput,
     Image,
     AsyncStorage,
-    ToastAndroid
+    ToastAndroid,
+    DeviceEventEmitter
 } from 'react-native'
 import {
     Actions
@@ -44,10 +45,10 @@ export default class Login extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                phone:this.state.username,
-                password:md5.hex_md5(this.state.pwd)
-                // phone:'13722258607',
-                // password:'123456789'
+                // phone:this.state.username,
+                // password:md5.hex_md5(this.state.pwd)
+                phone:'13722258607',
+                password:'123456789'
             }),
         })
         .then((res) => res.json())
@@ -61,6 +62,7 @@ export default class Login extends Component {
                     AsyncStorage.setItem('user', JSON.stringify(res.data))
                         .then(() => {
                             this.setState({ isloading: false })
+                            DeviceEventEmitter.emit("EventType");
                             Actions.home();
                         })
                 }

@@ -31,9 +31,10 @@ import Comment from './compontents/find/Comment'
 import Order from './compontents/find/Order'
 import Information from './compontents/person/information';
 import NmaeRevise from './compontents/person/information/NmaeRevise';
-import PhoneRevise from './compontents/person/information/PhoneRevise';
+// import PhoneRevise from './compontents/person/information/PhoneRevise';
 import EmailRevise from './compontents/person/information/EmailRevise';
 import MyCollect from './compontents/person/Mycollect'
+import AddressRevise from './compontents/person/information/AddressRevise';
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -147,8 +148,8 @@ const App = () => {
             </Scene>
           </Tabs>
           <Scene initial={!isLogin} hideNavBar key="login" component={Login} />
-          <Scene 
-          key="register" hideNavBar component={Register} />
+          <Scene
+            key="register" hideNavBar component={Register} />
           <Scene
             key='office'
             title='办公室'
@@ -178,6 +179,7 @@ const App = () => {
             component={Information}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
+            renderLeftButton={<View></View>}
           />
           <Scene
             key='information_username'
@@ -187,9 +189,9 @@ const App = () => {
             renderRightButton={<View></View>}
           />
           <Scene
-            key='information_userphone'
-            title='修改手机号码'
-            component={PhoneRevise}
+            key='information_useraddress'
+            title='修改地址'
+            component={AddressRevise}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
           />
@@ -205,7 +207,7 @@ const App = () => {
             title='我的收藏'
             component={MyCollect}
           />
-          
+
         </Scene>
       </Router>
     </>

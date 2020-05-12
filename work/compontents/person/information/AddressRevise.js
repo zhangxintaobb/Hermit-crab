@@ -12,13 +12,14 @@ import {
     Actions
 } from 'react-native-router-flux';
 let url = 'http://zy.eatclub.wang:3000/changeinfo'
-export default class EmailRevise extends Component {
+export default class AddressRevise extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: '',
+            address: '',
             data: {}
         }
+
     }
     componentDidMount() {
         AsyncStorage.getItem('user')
@@ -28,17 +29,17 @@ export default class EmailRevise extends Component {
                 })
             })
     }
-    emailhandle = (text) => {
-        this.setState({ email: text })
+    addresshandle = (text) => {
+        this.setState({ address: text })
     }
     submit = () => {
-        if (this.state.email == '') {
-            ToastAndroid.show("邮箱不能为空", 100)
+        if (this.state.address == '') {
+            ToastAndroid.show("地址不能为空", 100)
         }
         else {
             var userdata = [{}]
             userdata[0] = this.state.data
-            userdata[0].email = this.state.email
+            userdata[0].address = this.state.address
             var options = '?username=' + userdata[0].username + '&email=' + userdata[0].email + '&address=' + userdata[0].address +
                 '&userid=' + userdata[0].userid
             console.log(userdata)
@@ -64,41 +65,41 @@ export default class EmailRevise extends Component {
     render() {
         return (
             <View style={styles.box}>
-                <View style={styles.inputbox}>
-                    <Text>邮箱:</Text>
-                    <TextInput
-                        placeholder={this.state.data.email}
-                        style={styles.input}
-                        placeholderTextColor={'#ccc'}
-                    onChangeText={this.emailhandle} />
-                </View>
-                <TouchableOpacity style={styles.submit}
-                    onPress={this.submit}>
-                    <Text>
-                        完成
-                    </Text>
-                </TouchableOpacity>
+            <View style={styles.inputbox}>
+                <Text>地址:</Text>
+                <TextInput
+                    placeholder={this.state.data.address}
+                    style={styles.input}
+                    placeholderTextColor={'#ccc'}
+                    onChangeText={this.addresshandle} />
             </View>
+            <TouchableOpacity style={styles.submit}
+                onPress={this.submit}>
+                <Text>
+                    完成
+                </Text>
+            </TouchableOpacity>
+        </View>
         )
     }
 }
-const styles=StyleSheet.create({
-    box:{
-        width:'100%',
-        height:'100%',
-        flexDirection:'column',
-        alignItems:'center'
+const styles = StyleSheet.create({
+    box: {
+        width: '100%',
+        height: '100%',
+        flexDirection: 'column',
+        alignItems: 'center'
     },
-    inputbox:{
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between',
-        backgroundColor:'white',
-        width:'100%',
-        height:'8%',
-        paddingLeft:25
+    inputbox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+        width: '100%',
+        height: '8%',
+        paddingLeft: 25
     },
-    submit:{ 
+    submit: {
         marginTop: 40,
         width: '60%',
         height: 40,
@@ -107,10 +108,10 @@ const styles=StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: "yellow"
     },
-        input:{
-            marginTop:2,
-            height:'80%',
-            width:'100%',
-        }
-        
+    input: {
+        marginTop: 2,
+        height: '80%',
+        width: '100%',
+    }
+
 })

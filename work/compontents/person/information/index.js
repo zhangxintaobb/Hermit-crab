@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity,TouchableHighlight, AsyncStorage, } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity,TouchableHighlight, AsyncStorage,DeviceEventEmitter } from 'react-native'
 import {
     ListItem,
     List
@@ -18,7 +18,7 @@ export default class index extends Component {
             typeName: '性别',
             type: 0,
             showTypePop: false,
-            phone:'',
+            address:'',
             username:'',
             email:'',
             sex:''
@@ -28,9 +28,9 @@ export default class index extends Component {
         AsyncStorage.getItem('user')
         .then((res)=>{
             let data=JSON.parse(res)
-            console.log(data[0])
+            // console.log(data[0])
             this.setState({
-                phone:data[0].phone,
+                address:data[0].address,
                 username:data[0].username,
                 email:data[0].email,
                 sex:data[0].sex
@@ -43,7 +43,7 @@ export default class index extends Component {
     }
     render() {
         const list = [
-            { name: '手机号码', jump: () => Actions.information_userphone,data:this.state.phone },
+            { name: '地址', jump: () => Actions.information_useraddress,data:this.state.address },
             { name: '昵称', jump: () => Actions.information_username,data:this.state.username },
             { name: '邮箱', jump: () => Actions.information_useremail,data:this.state.email }
         ]
@@ -92,8 +92,13 @@ export default class index extends Component {
                     </List>
                 </View>
                 <TouchableOpacity
-                    style={styles.submit}>
-                    <Text>确认修改</Text>
+                    style={styles.submit}
+                    onPress={() => {
+                        this.props.navigation.navigate('person');
+                        // 这里的param可以不写
+                        DeviceEventEmitter.emit("EventType");
+                    }}>
+                    <Text>返回</Text>
                 </TouchableOpacity>
             </View>
 
