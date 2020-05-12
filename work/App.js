@@ -35,6 +35,7 @@ import NmaeRevise from './compontents/person/information/NmaeRevise';
 import EmailRevise from './compontents/person/information/EmailRevise';
 import MyCollect from './compontents/person/Mycollect'
 import AddressRevise from './compontents/person/information/AddressRevise';
+import MyComment from './compontents/person/MyComment'
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -207,7 +208,13 @@ const App = () => {
             title='我的收藏'
             component={MyCollect}
           />
-
+          <Scene
+            key='mycomment'
+            title='我的评价'
+            component={MyComment}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
         </Scene>
       </Router>
     </>
