@@ -32,11 +32,11 @@ const jumpData = [
     { icon: 'redenvelopes', name: '红包/卡券', jump: () => Actions.mycard }
 ]
 const list = [
-    {  name: '个人信息', jump: () => Actions.information },
-    {  name: '余额查询', jump: () => Actions.information },
-    {  name: '会员中心', jump: () => Actions.information },
-    {  name: '客服中心', jump: () => Actions.information },
-    {  name: '关于寄居蟹', jump: () => Actions.information },
+    { name: '个人信息', jump: () => Actions.information },
+    { name: '余额查询', jump: () => Actions.information },
+    { name: '会员中心', jump: () => Actions.information },
+    { name: '客服中心', jump: () => Actions.information },
+    { name: '关于寄居蟹', jump: () => Actions.information },
 ]
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -44,22 +44,22 @@ export default class index extends Component {
     constructor() {
         super();
         this.state = {
-            username:'',
+            username: '',
             avatarSource: "http://touxiang.yeree.com/pics/9e/2287425.jpg",
-            userid:''
+            userid: ''
         }
     }
     componentDidMount() {
         AsyncStorage.getItem('user')
-        .then((res)=>{
-            let data=JSON.parse(res)
-            console.log(data[0].username)
-            this.setState({
-                username:data[0].username,
-                userid:data[0].userid,
-                avatarSource: "http://zy.eatclub.wang:3030/public/img/nologin.png"
+            .then((res) => {
+                let data = JSON.parse(res)
+                console.log(data[0].username)
+                this.setState({
+                    username: data[0].username,
+                    userid: data[0].userid,
+                    avatarSource: "http://zy.eatclub.wang:3030/public/img/nologin.png"
+                })
             })
-        })
     }
 
     storeData = async (img) => {
@@ -91,9 +91,9 @@ export default class index extends Component {
         });
     }
     render() {
-        {console.log(this.state.userid)}
+        { console.log(this.state.userid) }
         return (
-            
+
             <View style={styles.box}>
                 {/* 头部 */}
                 <View style={styles.head}>
@@ -101,7 +101,7 @@ export default class index extends Component {
                         {/* 头像 */}
                         <TouchableOpacity style={styles.headportrait} onPress={() => this.tackpicker()}>
                             <Image
-                                source={{uri: this.state.avatarSource}}
+                                source={{ uri: this.state.avatarSource }}
                                 resizeMode='contain'
                                 style={{ width: 60, height: 60, borderRadius: 65 }}
                                 imageStyle={{ borderRadius: 65 }}
@@ -113,16 +113,16 @@ export default class index extends Component {
                         </View>
                     </View>
                     <TouchableOpacity style={styles.right}>
-                    <Icon
-                                    size={25}
-                                    color={'#ccc'}
-                                    name='bells'
-                                />
+                        <Icon
+                            size={25}
+                            color={'#ccc'}
+                            name='bells'
+                        />
                     </TouchableOpacity>
                 </View>
                 {/* 功能 */}
                 <View style={styles.contentbox}>
-                    
+
                     {jumpData.map((data, i) => (
                         <TouchableOpacity style={styles.content}
                             onPress={data.jump()}>
@@ -140,7 +140,7 @@ export default class index extends Component {
                     <View style={styles.orderhead}>
                         <Text>我的订单</Text>
                         <TouchableOpacity >
-                            <Text style={{color:'#ccc'}}>查看全部订单 ></Text>
+                            <Text style={{ color: '#ccc' }}>查看全部订单 ></Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.ordercontent}>
@@ -161,16 +161,16 @@ export default class index extends Component {
                 <View style={styles.otherbox}>
                     {/* 个人中心 */}
                     {list.map((data, i) => (
-                           <TouchableOpacity style={styles.other}  onPress={data.jump()}>
-                           <Text>{data.name}</Text>
-                           <Icon
-                                       size={15}
-                                       color={'#ccc'}
-                                       name='right'
-                                   />
-                       </TouchableOpacity>
-                        ))}
-                    
+                        <TouchableOpacity style={styles.other} onPress={data.jump()}>
+                            <Text>{data.name}</Text>
+                            <Icon
+                                size={15}
+                                color={'#ccc'}
+                                name='right'
+                            />
+                        </TouchableOpacity>
+                    ))}
+
                     {/* 退出 */}
                     <View style={styles.foot}>
                         <TouchableOpacity
@@ -235,9 +235,9 @@ const styles = StyleSheet.create({
     right: {
         height: '100%',
         width: '30%',
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center'
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     contentbox: {
         width: '90%',
