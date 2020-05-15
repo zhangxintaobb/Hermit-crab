@@ -45,8 +45,6 @@ export default class Login extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                // phone:this.state.username,
-                // password:md5.hex_md5(this.state.pwd)
                 phone:'13722258607',
                 password:'123456789'
             }),

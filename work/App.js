@@ -31,11 +31,14 @@ import Comment from './compontents/find/Comment'
 import Order from './compontents/find/Order'
 import Information from './compontents/person/information';
 import NmaeRevise from './compontents/person/information/NmaeRevise';
-// import PhoneRevise from './compontents/person/information/PhoneRevise';
 import EmailRevise from './compontents/person/information/EmailRevise';
 import MyCollect from './compontents/person/Mycollect'
 import AddressRevise from './compontents/person/information/AddressRevise';
 import MyComment from './compontents/person/MyComment'
+import PostComment from './compontents/find/PostComment';
+import Card from './compontents/person/card'
+import CustomerCenter from './compontents/person/informationl/CustomerCenter'
+import MemberCenter from './compontents/person/informationl/MemberCenter'
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -214,6 +217,33 @@ const App = () => {
             component={MyComment}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
+          />
+          <Scene
+            key='postcomment'
+            title='提交评价'
+            component={PostComment}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='menbercenter'
+            title='会员中心'
+            component={MemberCenter}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='customercenter'
+            title='客服中心'
+            component={CustomerCenter}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene 
+          key='mycard'
+          title='红包/卡券'
+          component={Card}
+          hideNavBar
           />
         </Scene>
       </Router>
