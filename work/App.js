@@ -39,6 +39,9 @@ import PostComment from './compontents/find/PostComment';
 import Card from './compontents/person/card'
 import CustomerCenter from './compontents/person/informationl/CustomerCenter'
 import MemberCenter from './compontents/person/informationl/MemberCenter'
+import City from './compontents/home/City';
+import Notify from './compontents/person/Notify';
+import About from './compontents/person/About';
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -244,6 +247,26 @@ const App = () => {
           title='红包/卡券'
           component={Card}
           hideNavBar
+          />
+          <Scene
+            key='city'
+            title='热门城市'
+            component={City}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='notify'
+            title='通知'
+            component={Notify}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='about'
+            component={About}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
           />
         </Scene>
       </Router>

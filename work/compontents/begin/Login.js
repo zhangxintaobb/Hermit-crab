@@ -73,7 +73,11 @@ export default class Login extends Component {
                     ToastAndroid.show("用户不存在",100)
                 }
             })
+            .catch(function (err) {
+            console.log(err);
+        })
         }
+        
         else{
             ToastAndroid.show("用户名或密码不为空",300)
         }
