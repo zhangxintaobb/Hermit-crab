@@ -37,7 +37,7 @@ const list = [
     { name: '余额查询', jump: () => Actions.information},
     { name: '会员中心', jump: () => Actions.menbercenter },
     { name: '客服中心', jump: () => Actions.customercenter },
-    { name: '关于寄居蟹', jump: () => Actions.information },
+    { name: '关于寄居蟹', jump: () => Actions.about },
 ]
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -45,9 +45,9 @@ export default class index extends Component {
     constructor() {
         super();
         this.state = {
-            username: '',
+            username: '小螃蟹',
             avatarSource: "http://touxiang.yeree.com/pics/9e/2287425.jpg",
-            userid: ''
+            userid: '666'
         }
     }
     
@@ -136,7 +136,7 @@ export default class index extends Component {
                             <Text>ID:{this.state.userid}</Text>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.right}>
+                    <TouchableOpacity style={styles.right} onPress={Actions.notify}>
                         <Icon
                             size={25}
                             color={'#ccc'}

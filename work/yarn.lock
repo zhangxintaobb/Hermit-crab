@@ -5788,6 +5788,20 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
+react-native-animatable@^1.2.4, react-native-animatable@^1.3.2:
+  version "1.3.3"
+  resolved "https://registry.npm.taobao.org/react-native-animatable/download/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
+  integrity sha1-oTpK+CWOO7FNCp2DmRfpu5J07Io=
+  dependencies:
+    prop-types "^15.7.2"
+
+react-native-button@^2.3.0:
+  version "2.4.0"
+  resolved "https://registry.npm.taobao.org/react-native-button/download/react-native-button-2.4.0.tgz#42b487073a7ce7c54ab503f77c6ced1ab95742bf"
+  integrity sha1-QrSHBzp858VKtQP3fGztGrlXQr8=
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-button@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npm.taobao.org/react-native-button/download/react-native-button-3.0.1.tgz#89de59b6ee23f6cb4451c4ebe311cc14fb02c65a"
@@ -5801,6 +5815,11 @@ react-native-collapsible@^1.4.0:
   integrity sha1-VEYW3ASnGHBQjccHBJVEqAVAKZM=
   dependencies:
     prop-types "^15.6.2"
+
+react-native-custom-input@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/react-native-custom-input/download/react-native-custom-input-2.0.0.tgz#5c95e29926fb9d5677d5426e15c963423ae439ce"
+  integrity sha1-XJXimSb7nVZ31UJuFcljQjrkOc4=
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
@@ -5854,6 +5873,11 @@ react-native-keyboard-aware-scroll-view@0.9.1:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
+react-native-location@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.npm.taobao.org/react-native-location/download/react-native-location-2.5.0.tgz#b6d2f7e9c3dbe13fbe87587f9533b8bf943b6a35"
+  integrity sha1-ttL36cPb4T++h1h/lTO4v5Q7ajU=
+
 react-native-md5@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/react-native-md5/download/react-native-md5-1.0.0.tgz#2320be24d674938ae5ef4f492698edbbfa0e0205"
@@ -5893,6 +5917,14 @@ react-native-screens@^1.0.0-alpha.11:
   dependencies:
     debounce "^1.2.0"
 
+react-native-search-header@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.npm.taobao.org/react-native-search-header/download/react-native-search-header-0.3.5.tgz#7720beeef391df9073ddc7d6c385f75439b450b5"
+  integrity sha1-dyC+7vOR35Bz3cfWw4X3VDm0ULU=
+  dependencies:
+    react-native-animatable "^1.3.2"
+    semver "^6.3.0"
+
 react-native-spinkit@^1.5.0:
   version "1.5.0"
   resolved "https://registry.npm.taobao.org/react-native-spinkit/download/react-native-spinkit-1.5.0.tgz#598b4b138b1e95cc232dfb2fc7e64dcdd45de574"
@@ -5904,6 +5936,16 @@ react-native-splash-screen@^3.2.0:
   version "3.2.0"
   resolved "https://registry.npm.taobao.org/react-native-splash-screen/download/react-native-splash-screen-3.2.0.tgz#d47ec8557b1ba988ee3ea98d01463081b60fff45"
   integrity sha1-1H7IVXsbqYjuPqmNAUYwgbYP/0U=
+
+react-native-star-rating@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npm.taobao.org/react-native-star-rating/download/react-native-star-rating-1.1.0.tgz#57fcd023c63e947427c4dbbd1c8f4cc49e5c48ce"
+  integrity sha1-V/zQI8Y+lHQnxNu9HI9MxJ5cSM4=
+  dependencies:
+    prop-types "^15.5.10"
+    react-native-animatable "^1.2.4"
+    react-native-button "^2.3.0"
+    react-native-vector-icons "^4.5.0"
 
 react-native-swipeout@^2.3.6:
   version "2.3.6"
@@ -5934,6 +5976,15 @@ react-native-tab-view@^1.0.0:
   integrity sha1-8RPNh0hYCPDJkavsk39w+jgEeLk=
   dependencies:
     prop-types "^15.6.1"
+
+react-native-vector-icons@^4.5.0:
+  version "4.6.0"
+  resolved "https://registry.npm.taobao.org/react-native-vector-icons/download/react-native-vector-icons-4.6.0.tgz#e4014311ffa6de397d914ffc31b7097a874cc8d5"
+  integrity sha1-5AFDEf+m3jl9kU/8MbcJeodMyNU=
+  dependencies:
+    lodash "^4.0.0"
+    prop-types "^15.5.10"
+    yargs "^8.0.2"
 
 react-native-vector-icons@^6.6.0:
   version "6.6.0"
@@ -7625,6 +7676,25 @@ yargs@^15.0.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.1"
+
+yargs@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.npm.taobao.org/yargs/download/yargs-8.0.2.tgz?cache=0&sync_timestamp=1589565997954&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyargs%2Fdownload%2Fyargs-8.0.2.tgz#6299a9055b1cefc969ff7e79c1d918dceb22c360"
+  integrity sha1-YpmpBVsc78lp/355wdkY3Osiw2A=
+  dependencies:
+    camelcase "^4.1.0"
+    cliui "^3.2.0"
+    decamelize "^1.1.1"
+    get-caller-file "^1.0.1"
+    os-locale "^2.0.0"
+    read-pkg-up "^2.0.0"
+    require-directory "^2.1.1"
+    require-main-filename "^1.0.1"
+    set-blocking "^2.0.0"
+    string-width "^2.0.0"
+    which-module "^2.0.0"
+    y18n "^3.2.1"
+    yargs-parser "^7.0.0"
 
 yargs@^9.0.0:
   version "9.0.1"
