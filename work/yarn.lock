@@ -5788,7 +5788,7 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
-react-native-animatable@^1.2.4:
+react-native-animatable@^1.2.4, react-native-animatable@^1.3.2:
   version "1.3.3"
   resolved "https://registry.npm.taobao.org/react-native-animatable/download/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
   integrity sha1-oTpK+CWOO7FNCp2DmRfpu5J07Io=
@@ -5916,6 +5916,14 @@ react-native-screens@^1.0.0-alpha.11:
   integrity sha1-JdfqTRG9pPzeLR2nrlAnHGqmNuA=
   dependencies:
     debounce "^1.2.0"
+
+react-native-search-header@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.npm.taobao.org/react-native-search-header/download/react-native-search-header-0.3.5.tgz#7720beeef391df9073ddc7d6c385f75439b450b5"
+  integrity sha1-dyC+7vOR35Bz3cfWw4X3VDm0ULU=
+  dependencies:
+    react-native-animatable "^1.3.2"
+    semver "^6.3.0"
 
 react-native-spinkit@^1.5.0:
   version "1.5.0"

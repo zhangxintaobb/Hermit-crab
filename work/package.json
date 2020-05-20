@@ -22,6 +22,7 @@
     "react-native-location": "^2.5.0",
     "react-native-md5": "^1.0.0",
     "react-native-router-flux": "4.0.6",
+    "react-native-search-header": "^0.3.5",
     "react-native-spinkit": "^1.5.0",
     "react-native-splash-screen": "^3.2.0",
     "react-native-star-rating": "^1.1.0",

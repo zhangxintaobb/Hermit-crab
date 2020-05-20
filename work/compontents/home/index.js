@@ -298,7 +298,8 @@ const styles = StyleSheet.create({
         backgroundColor:'#ccc',
         alignItems:'center',
         justifyContent:'center',
-        flexDirection:'row'
+        flexDirection:'row',
+        borderRadius:10
     },
     head:{
         width:'100%',
