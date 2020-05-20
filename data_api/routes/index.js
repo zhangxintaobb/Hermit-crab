@@ -45,7 +45,7 @@ router.get('/list/fd', (req, res) => {
 });
 
 // 自习室列表
-router.get('/list/sr',(req, res) => {
+router.get('/list/sr', (req, res) => {
   res.conn.query("select * from srinfo", function (err, result) {
     if (err) {
       console.log(err);
@@ -137,11 +137,11 @@ router.post('/adduser', function (req, res) {
 router.post('/login', function (req, res) { //添加的代码
   let phone = req.body.phone;
   let password = req.body.password;
-  res.conn.query("select * from userinfo where phone=?",[phone], function (err, result) {
+  res.conn.query("select * from userinfo where phone=?", [phone], function (err, result) {
     if (err) {
       console.log(err);
     } else {
-      if(result[0] == undefined) {
+      if (result[0] == undefined) {
         res.json(
           {
             "code": 0,
@@ -151,7 +151,7 @@ router.post('/login', function (req, res) { //添加的代码
           }
         )
       } else {
-        if(result[0].password == password) {
+        if (result[0].password == password) {
           res.json(
             {
               "code": 0,
@@ -170,7 +170,7 @@ router.post('/login', function (req, res) { //添加的代码
             }
           )
         }
-      }  
+      }
     }
   })
 })
@@ -179,12 +179,12 @@ router.post('/login', function (req, res) { //添加的代码
 router.get('/register', function (req, res) { //添加的代码
   let phone = req.query.phone;
   let password = req.query.password;
-  res.conn.query("select * from userinfo where phone=?",[phone], function (err, result) {
+  res.conn.query("select * from userinfo where phone=?", [phone], function (err, result) {
     if (err) {
       console.log(err);
     } else {
-      if(result[0] == undefined) {
-        res.conn.query("insert into userinfo(username,phone,password) values(?,?,?)", [phone,phone,password], function (err, result) {
+      if (result[0] == undefined) {
+        res.conn.query("insert into userinfo(username,phone,password) values(?,?,?)", [phone, phone, password], function (err, result) {
           if (err) {
             console.log(err);
           } else {
@@ -215,9 +215,9 @@ router.get('/register', function (req, res) { //添加的代码
 //第三方登录
 router.get('/oathlogin', function (req, res) {
   let username = req.query.username;
-	let avatar = req.query.avatar;
+  let avatar = req.query.avatar;
   let sex = req.query.sex;
-  res.conn.query("insert into userinfo(username,avatar,sex,password) values(?,?,?,?)", [username,avatar,sex,'123456'], function (err, result) {
+  res.conn.query("insert into userinfo(username,avatar,sex,password) values(?,?,?,?)", [username, avatar, sex, '123456'], function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -240,7 +240,7 @@ router.get('/addcollect', function (req, res) {
   let userid = req.query.userid;
   let createtime = new Date().getTime();
   let type = req.query.type;
-  res.conn.query("select * from usercollect where roomid = ? && userid = ? && type = ?", [roomid, userid,type], function (err, result) {
+  res.conn.query("select * from usercollect where roomid = ? && userid = ? && type = ?", [roomid, userid, type], function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -259,7 +259,7 @@ router.get('/delcollect', function (req, res) {
   let roomid = req.query.roomid;
   let userid = req.query.userid;
   let type = req.query.type;
-  res.conn.query("delete from usercollect where roomid=? && userid=? && type=?", [roomid,userid,type], function (err, result) {
+  res.conn.query("delete from usercollect where roomid=? && userid=? && type=?", [roomid, userid, type], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -269,7 +269,7 @@ router.get('/delcollect', function (req, res) {
 // 获取收藏列表
 router.get('/list/usercollect/sr', function (req, res) {
   let userid = req.query.userid;
-  res.conn.query("select * from srinfo where srid in (select roomid from usercollect where userid=? && type=?)", [userid,'0'], function (err, result) {
+  res.conn.query("select * from srinfo where srid in (select roomid from usercollect where userid=? && type=?)", [userid, '0'], function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -286,7 +286,7 @@ router.get('/list/usercollect/sr', function (req, res) {
 });
 router.get('/list/usercollect/office', function (req, res) {
   let userid = req.query.userid;
-  res.conn.query("select * from officeinfo where officeid in (select roomid from usercollect where userid=? && type=?)", [userid,'1'], function (err, result) {
+  res.conn.query("select * from officeinfo where officeid in (select roomid from usercollect where userid=? && type=?)", [userid, '1'], function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -306,7 +306,7 @@ router.get('/list/usercollect/office', function (req, res) {
 router.get('/userinfo', function (req, res) {
   console.log(req.query);
   let userid = req.query.userid;
-  res.conn.query("select * from userinfo WHERE userid=?",[userid], function (err, result) {
+  res.conn.query("select * from userinfo WHERE userid=?", [userid], function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -329,7 +329,7 @@ router.get('/changeinfo', function (req, res) {
   let username = req.query.username;
   let email = req.query.email;
   let address = req.query.address;
-  res.conn.query("UPDATE userinfo SET username=?, email=?, address=? WHERE userid=?",[username,email,address,userid], function (err, result) {
+  res.conn.query("UPDATE userinfo SET username=?, email=?, address=? WHERE userid=?", [username, email, address, userid], function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -347,7 +347,141 @@ router.get('/changeinfo', function (req, res) {
 
 //修改头像
 router.get('/changeavatar', (req, res) => {
-  
+
+})
+
+// 创建订单
+router.get('/createorder', function (req, res) {
+  let roomid = req.query.roomid;
+  let userid = req.query.userid;
+  let createtime = new Date().getTime();
+  let type = req.query.type;
+  let time = req.query.time;
+  res.conn.query("insert into usercollect(createtime, userid, type, roomid,time) values(?, ?, ?, ?, ?)", [createtime, userid, type, roomid, time], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+})
+
+// 获取订单列表
+router.get('/list/order', function (req, res) {
+  let userid = req.query.userid;
+  res.conn.query("select * from orderinfo where userid = " + userid, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )
+    }
+  });
+});
+
+// 获取订单信息
+router.get('/list/order/detail', function(req, res) {
+  let createtime = req.query.createtime;
+  res.conn.query("select * from orderinfo where createtime = " + createtime, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )
+    }
+  });
+})
+
+// 添加评论
+router.get('/addcomment', function (req, res) {
+  let roomid = req.query.roomid;
+  let userid = req.query.userid;
+  let createtime = new Date().getTime();
+  let type = req.query.type;
+  let container = req.query.container;
+  res.conn.query("insert into commentinfo(createtime, userid, type, roomid, container) values(?, ?, ?, ?, ?)", [createtime, userid, type, roomid, container], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+})
+
+// 删除评论
+router.get('/delcomment', function (req, res) {
+  let createtime = req.query.createtime;
+  res.conn.query("delete from commentinfo where createtime = " + createtime, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+})
+
+// 获取评论列表(用户)
+router.get('/list/usercomment', function (req, res) {
+  let userid = req.query.userid;
+  res.conn.query("select * from commentinfo where userid = " + userid, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )
+    }
+  });
+});
+
+// 获取评论列表(房间)
+router.get('/list/roomcomment', function (req, res) {
+  let type = req.query.type;
+  let roomid = req.query.userid;
+  res.conn.query("select * from commentinfo where type = ? && roomid = ? ",[type,roomid], function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )
+    }
+  });
+});
+
+// 获取评论
+router.get('/list/comment/detail', function(req, res) {
+  let createtime = req.query.createtime;
+  res.conn.query("select * from commentinfo where createtime = " + createtime, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(
+        {
+          "code": 0,
+          "msg": "",
+          "count": 1000,
+          "data": result
+        }
+      )
+    }
+  });
 })
 
 module.exports = router;
