@@ -16,7 +16,8 @@ import Button from 'react-native-button';
 import { black } from 'color-name';
 import Swiper from 'react-native-swiper';
 import RNLocation from 'react-native-location';
-import Load from '../load'
+import Load from '../load';
+import Search from './Search'
 const { width, height } = Dimensions.get('window')
 const city = [
     { cityname: '石家庄', uri: require('../../assets/zxt/City/city1.jpg') },
@@ -140,7 +141,7 @@ export default class index extends Component {
                             />
                             <Text>{this.state.city}</Text>
                         </TouchableOpacity>
-                        <View style={{
+                        <TouchableOpacity style={{
                             width: '80%',
                             height: 40,
                             backgroundColor: '',
@@ -151,13 +152,14 @@ export default class index extends Component {
                             marginTop: 10,
                             borderWidth: 0.5,
                             alignItems: 'center'
-                        }}>
+                        }}
+                        onPress={Actions.search}>
                             <Icon size={20} color="#33CC99"
                                 name="search1"
                             />
-                            <TextInput placeholder='请输入关键字'
-                            />
-                        </View>
+                            {/* <TextInput placeholder='请输入关键字'
+                            /> */}
+                        </TouchableOpacity>
                         <TouchableOpacity
                             onPress={Actions.notify}
                             style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 5 }}>
@@ -299,7 +301,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         flexDirection:'row',
-        borderRadius:10
+        borderRadius:15
     },
     head:{
         width:'100%',

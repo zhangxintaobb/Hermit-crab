@@ -42,6 +42,7 @@ import MemberCenter from './compontents/person/informationl/MemberCenter'
 import City from './compontents/home/City';
 import Notify from './compontents/person/Notify';
 import About from './compontents/person/About';
+import Search from './compontents/home/Search';
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -265,6 +266,13 @@ const App = () => {
           <Scene
             key='about'
             component={About}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='search'
+            component={Search}
+            hideNavBar
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
           />
