@@ -43,11 +43,12 @@ import City from './compontents/home/City';
 import Notify from './compontents/person/Notify';
 import About from './compontents/person/About';
 import Search from './compontents/home/Search';
+import Balance from './compontents/person/Balance';
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
   let [isInstall, setInstall] = useState(true);//设置引导页状态
-  SplashScreen.hide();
+  // SplashScreen.hide();
   let init = () => {  //初始化函数
     AsyncStorage.getItem('isInstall') //从本地获取isInstall
       .then(res => {
@@ -273,6 +274,11 @@ const App = () => {
             key='search'
             component={Search}
             hideNavBar
+          />
+          <Scene
+            key='balance'
+            title='我的余额'
+            component={Balance}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
           />
