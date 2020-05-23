@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity,TouchableHighlight, AsyncStorage,DeviceEventEmitter } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, TouchableHighlight, AsyncStorage, DeviceEventEmitter } from 'react-native'
 import {
     ListItem,
     List
@@ -18,39 +18,49 @@ export default class index extends Component {
             typeName: '性别',
             type: 0,
             showTypePop: false,
-            address:'',
-            username:'',
-            email:'',
-            sex:''
+            address: '',
+            username: '',
+            email: '',
+            sex: ''
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         AsyncStorage.getItem('user')
-        .then((res)=>{
-            let data=JSON.parse(res)
-            // console.log(data[0])
-            this.setState({
-                address:data[0].address,
-                username:data[0].username,
-                email:data[0].email,
-                sex:data[0].sex
+            .then((res) => {
+                let data = JSON.parse(res)
+                // console.log(data[0])
+                this.setState({
+                    phone:data[0].phone,
+                    address: data[0].address,
+                    username: data[0].username,
+                    email: data[0].email,
+                    sex: data[0].sex
+                })
             })
-        })
-        
+
     }
     _openTypeDialog() {
-        this.setState({showTypePop: !this.state.showTypePop})
+        this.setState({ showTypePop: !this.state.showTypePop })
     }
     render() {
         const list = [
-            { name: '地址', jump: () => Actions.information_useraddress,data:this.state.address },
-            { name: '昵称', jump: () => Actions.information_username,data:this.state.username },
-            { name: '邮箱', jump: () => Actions.information_useremail,data:this.state.email }
+            { name: '地址', jump: () => Actions.information_useraddress, data: this.state.address },
+            { name: '昵称', jump: () => Actions.information_username, data: this.state.username },
+            { name: '邮箱', jump: () => Actions.information_useremail, data: this.state.email }
         ]
         return (
             <View style={styles.box}>
                 <View style={styles.top}>
                     <List>
+                        <ListItem>
+                            <View style={styles.container}>
+                                <Text>手机号码</Text>
+                                <View style={styles.right}>
+                                <Text>{this.state.phone}  </Text>
+                                   
+                                </View>
+                            </View>
+                        </ListItem>
                         {list.map((data, i) => (
                             <ListItem>
                                 <TouchableOpacity style={styles.container} onPress={data.jump()}>
@@ -65,29 +75,29 @@ export default class index extends Component {
                             </ListItem>
                         ))}
                         <ListItem>
-                            
 
-                                <TouchableOpacity onPress={() => this._openTypeDialog()} style={styles.container}
-                                    underlayColor="#a5a5a5">
-                                    <Text>性别</Text>
-                                    <View style={styles.right}>
+
+                            <TouchableOpacity onPress={() => this._openTypeDialog()} style={styles.container}
+                                underlayColor="#a5a5a5">
+                                <Text>性别</Text>
+                                <View style={styles.right}>
                                     <Text>{this.state.typeName}-{this.state.type}</Text>
-                                        <Icon size={14}
-                                            color={'#ccc'}
-                                            name="right" />
-                                    </View>
-                                </TouchableOpacity>
+                                    <Icon size={14}
+                                        color={'#ccc'}
+                                        name="right" />
+                                </View>
+                            </TouchableOpacity>
 
-                                <CustomAlertDialog entityList={typeArr} callback={(i) => {
-                                    this.setState({
-                                        type: i,
-                                        typeName: typeArr[i],
-                                    })
-                                }} show={this.state.showTypePop} closeModal={(show) => {
-                                    this.setState({
-                                        showTypePop: show
-                                    })
-                                }} />
+                            <CustomAlertDialog entityList={typeArr} callback={(i) => {
+                                this.setState({
+                                    type: i,
+                                    typeName: typeArr[i],
+                                })
+                            }} show={this.state.showTypePop} closeModal={(show) => {
+                                this.setState({
+                                    showTypePop: show
+                                })
+                            }} />
                         </ListItem>
                     </List>
                 </View>

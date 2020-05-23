@@ -34,7 +34,7 @@ const jumpData = [
 ]
 const list = [
     { name: '个人信息', jump: () => Actions.information },
-    { name: '余额查询', jump: () => Actions.information},
+    { name: '余额查询', jump: () => Actions.balance},
     { name: '会员中心', jump: () => Actions.menbercenter },
     { name: '客服中心', jump: () => Actions.customercenter },
     { name: '关于寄居蟹', jump: () => Actions.about },
