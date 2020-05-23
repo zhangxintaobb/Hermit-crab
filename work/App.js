@@ -44,6 +44,7 @@ import Notify from './compontents/person/Notify';
 import About from './compontents/person/About';
 import Search from './compontents/home/Search';
 import Balance from './compontents/person/Balance';
+import AllOrder from './compontents/person/order/AllOrder'
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -279,6 +280,13 @@ const App = () => {
             key='balance'
             title='我的余额'
             component={Balance}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='allorder'
+            title='我的订单'
+            component={AllOrder}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
           />
