@@ -356,8 +356,10 @@ router.get('/createorder', function (req, res) {
   let userid = req.query.userid;
   let createtime = new Date().getTime();
   let type = req.query.type;
-  let time = req.query.time;
-  res.conn.query("insert into usercollect(createtime, userid, type, roomid,time) values(?, ?, ?, ?, ?)", [createtime, userid, type, roomid, time], function (err, result) {
+  let number = req.query.number;
+  let state = req.query.state;
+  let rental = req.query.rental;
+  res.conn.query("insert into usercollect(createtime, userid, type, roomid, number, state, rental) values(?, ?, ?, ?, ?, ?, ?)", [createtime, userid, type, roomid, number, state, rental], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -402,6 +404,18 @@ router.get('/list/order/detail', function(req, res) {
   });
 })
 
+// 改变订单状态
+router.get('/changeorder', function(req, res) {
+  let createtime = req.query.createtime;
+  let changetime = req.query.changetime;
+  let state = req.query.state;
+  res.conn.query("UPDATE orderinfo SET state = ? WHERE createtime = ?", [state, createtime], function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+})
+
 // 添加评论
 router.get('/addcomment', function (req, res) {
   let roomid = req.query.roomid;
@@ -409,7 +423,8 @@ router.get('/addcomment', function (req, res) {
   let createtime = new Date().getTime();
   let type = req.query.type;
   let container = req.query.container;
-  res.conn.query("insert into commentinfo(createtime, userid, type, roomid, container) values(?, ?, ?, ?, ?)", [createtime, userid, type, roomid, container], function (err, result) {
+  let star = req.query.star;
+  res.conn.query("insert into commentinfo(createtime, userid, type, roomid, container, star) values(?, ?, ?, ?, ?, ?)", [createtime, userid, type, roomid, container, star], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -483,5 +498,7 @@ router.get('/list/comment/detail', function(req, res) {
     }
   });
 })
+
+
 
 module.exports = router;
