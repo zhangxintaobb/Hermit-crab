@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Dimensions, FlatList, AsyncStorage, Image } from 'react-native'
 import { Container, Content, Text, View, Button, Icon, Left, Right, Body, Segment, Row } from "native-base";
-
 let { width } = Dimensions.get('window');
-
 export default class AllOrder extends Component {
     constructor(props) {
         super(props);

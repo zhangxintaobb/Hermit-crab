@@ -23,8 +23,13 @@ export default class index extends Component {
 
         }
     }
-    componentDidMount() { }
-
+    componentDidMount() {
+        fetch('http://zy.eatclub.wang:3000/list/usercomment?userid=21')
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res)
+            })
+    }
 
     render() {
         return (
@@ -43,7 +48,7 @@ export default class index extends Component {
                         keyExtractor={(item, index) => index}
                         renderItem={({ item }) =>
                             <View style={styles.box}>
-                                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                     <View>
                                         <Text>2020/04/22</Text>
                                         <View style={{ height: 55 }}>
