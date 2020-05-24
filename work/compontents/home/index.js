@@ -98,7 +98,7 @@ export default class index extends Component {
         )
             .then((res) => res.json())
             .then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 var arr=[]
                 for(var i=0;i<res.data.length;i++){
                     if(city==res.data[i].city)

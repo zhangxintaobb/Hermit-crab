@@ -8,7 +8,7 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet, View, AsyncStorage
+  StyleSheet, View, AsyncStorage,TouchableOpacity
 } from 'react-native';
 import {
   Router,
@@ -16,6 +16,7 @@ import {
   Tabs,
   Actions
 } from 'react-native-router-flux';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 import Home from './compontents/home';
 import Message from './compontents/message/NHListAvatar';
 import Person from './compontents/person';
@@ -28,6 +29,7 @@ import Register from './compontents/begin/Register'
 import Office from './compontents/find/Office'
 import StudyRoom from './compontents/find/StudyRoom'
 import Comment from './compontents/find/Comment'
+import OfficeComment from './compontents/find/OfficeComment'
 import Order from './compontents/find/Order'
 import Information from './compontents/person/information';
 import NmaeRevise from './compontents/person/information/NmaeRevise';
@@ -182,6 +184,10 @@ const App = () => {
             component={Comment}
           />
           <Scene
+            key='officecomment'
+            component={OfficeComment}
+          />
+          <Scene
             key='order'
             title='确认并支付'
             component={Order}
@@ -226,6 +232,10 @@ const App = () => {
             component={MyComment}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
+            renderLeftButton={
+            <TouchableOpacity onPress={Actions.person}>
+              <Icon name="left" size={30} color={'#ccc'}/>
+            </TouchableOpacity>}
           />
           <Scene
             key='postcomment'

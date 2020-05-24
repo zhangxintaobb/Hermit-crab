@@ -82,7 +82,7 @@ export default class Office extends Component {
                                 <Text style={{ color: '#aaa' }}>评论(25)</Text>
                                 <TouchableOpacity 
                                     style={{ marginLeft: 280 }}
-                                    onPress={() => Actions.comment()}
+                                    onPress={() => Actions.officecomment()}
                                 >
                                     <Text style={{ color: '#0099CC' }}>查看全部</Text>
                                 </TouchableOpacity>

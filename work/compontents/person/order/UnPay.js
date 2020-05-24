@@ -69,6 +69,10 @@ export default class UnPay extends Component {
                     })
             })
     }
+    _pay=()=>{
+        fetch('http://zy.eatclub.wang:3000/changeorder?state=2&createtime='+this.state.data.createtime)
+                                    
+    }
     formatDate(now) {
         var year = now.getFullYear();  //取得4位数的年份
         var month = now.getMonth() + 1;  //取得日期中的月份，其中0表示1月，11表示12月
@@ -103,7 +107,8 @@ export default class UnPay extends Component {
                              </View>
                          </View>
                          <View style={styles.foot}>
-                         <TouchableOpacity style={styles.button}>
+                         <TouchableOpacity style={styles.button}
+                         onPress={()=>{this._pay()}}>
                              <Text>付款</Text>
                          </TouchableOpacity>
                          </View>

@@ -46,23 +46,24 @@ export default class PostComment extends Component {
                 AsyncStorage.getItem('user')
                     .then((res) => {
                         let data = JSON.parse(res)
-                        str+='&userid='+data[0].userid
-                        str+='&roomid='+this.props.data.id+'&type='+this.props.data.t
-                        console.log(str)
-                        fetch('http://zy.eatclub.wang:3000/addcomment' + str,{
+                        str += '&userid=' + data[0].userid
+                        str += '&roomid=' + this.props.data.id + '&type=' + this.props.data.t
+                        // console.log(str)
+                        fetch('http://zy.eatclub.wang:3000/addcomment' + str, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'text/plain'
                             },
                         })
-                        .then((res) => res.json())
-                        .then((res) => {
-
-                        })
-                        .catch(function (err) {
-                            console.log(err);
-                        })
-                        Actions.mycomment()
+                            .then((res) => res.json())
+                            .then((res) => {
+                                 
+                            })
+                            .catch(function (err) {
+                                console.log(err);
+                            })
+                            fetch('http://zy.eatclub.wang:3000/changeorder?state=3&createtime='+this.props.data.createtime)
+                            Actions.mycomment()
                     })
                     .catch(function (err) {
                         console.log(err);
@@ -72,6 +73,7 @@ export default class PostComment extends Component {
 
     }
     render() {
+        {console.log(this.props.data)}
         return (
             <View style={styles.box}>
                 <View style={styles.stars}>
