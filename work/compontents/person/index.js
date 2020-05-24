@@ -163,7 +163,7 @@ export default class index extends Component {
                 <View style={styles.orderbox}>
                     <View style={styles.orderhead}>
                         <Text>我的订单</Text>
-                        <TouchableOpacity >
+                        <TouchableOpacity onPress={Actions.allorder}>
                             <Text style={{ color: '#ccc' }}>查看全部订单 ></Text>
                         </TouchableOpacity>
                     </View>
