@@ -35,7 +35,7 @@ export default class UnComment extends Component {
                         // console.log(arr)
                         for (let index = 0; index < arr.length; index++) {
                             if (arr[index].type == '0') {
-                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': res.data[index].createtime };
+                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime };
                                 fetch('http://zy.eatclub.wang:3000/list/sr/detail?id=' + arr[index].roomid)
                                     .then((res) => res.json())
                                     .then((res) => {
@@ -52,8 +52,8 @@ export default class UnComment extends Component {
                                     })
 
                             } else {
-                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': res.data[index].createtime };
-                                fetch('http://zy.eatclub.wang:3000/list/sr/detail?id=' + arr[index].roomid)
+                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime };
+                                fetch('http://zy.eatclub.wang:3000/list/office/detail?id=' + arr[index].roomid)
                                     .then((res) => res.json())
                                     .then((res) => {
                                         str.id=res.data[0].officeid

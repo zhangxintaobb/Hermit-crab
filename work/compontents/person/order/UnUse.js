@@ -89,7 +89,7 @@ export default class UnUse extends Component {
             <ScrollView>
                 <View style={styles.box}>
                     {this.state.data.map((data,i)=>(
-                         <TouchableOpacity style={styles.item} onPress={Actions.orderinfo}>
+                         <TouchableOpacity style={styles.item} >
                          <View style={styles.title}>
                     <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
                              <Text style={{ color: '#ccc' }}>待使用</Text>

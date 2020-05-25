@@ -310,6 +310,10 @@ const App = () => {
             component={UnPay}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
+            renderLeftButton={
+              <TouchableOpacity onPress={Actions.person}>
+                <Icon name="left" size={30} color={'#ccc'}/>
+              </TouchableOpacity>}
           />
           <Scene
             key='uncomment'
@@ -317,6 +321,10 @@ const App = () => {
             component={UnComment}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
+            renderLeftButton={
+              <TouchableOpacity onPress={Actions.person}>
+                <Icon name="left" size={30} color={'#ccc'}/>
+              </TouchableOpacity>}
           />
           <Scene
             key='unuse'
@@ -324,6 +332,10 @@ const App = () => {
             component={UnUse}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
+            renderLeftButton={
+              <TouchableOpacity onPress={Actions.person}>
+                <Icon name="left" size={30} color={'#ccc'}/>
+              </TouchableOpacity>}
           />
           <Scene
             key='orderinfo'

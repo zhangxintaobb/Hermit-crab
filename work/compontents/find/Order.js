@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text,AsyncStorage, View, Dimensions, ScrollView, StyleSheet, Image, FlatList, TouchableOpacity,Platform, } from 'react-native'
+import { Text,AsyncStorage, View, Dimensions, ScrollView, StyleSheet, Image, FlatList, TouchableOpacity,Platform,Modal, } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign';
 import { ConfirmModal } from './ConfirmModal'
 import { Actions } from 'react-native-router-flux';
@@ -11,7 +11,7 @@ export default class Order extends Component {
         super();
         this.state = {
             userid:'',
-            
+            box:true
         };
     }
     componentDidMount(){
@@ -26,9 +26,7 @@ export default class Order extends Component {
             console.log(err);
         })
     }
-    confirm(){
-        　　　　this.refs.tipModal2._open('付款')
-        　　}
+        
         _addorder=()=>{
             
             if(this.props.data.officeid==undefined){
@@ -40,7 +38,7 @@ export default class Order extends Component {
                 +'&number=1'+'&rental='+this.props.data.price
             }
             fetch(url+str)
-            
+            Actions.unuse()
         }
         _cancerorder=()=>{
             if(this.props.data.officeid==undefined){
@@ -51,12 +49,11 @@ export default class Order extends Component {
                 var str='state=0&type='+this.props.data.t+'&roomid='+this.props.data.officeid+'&userid='+this.state.userid
                 +'&number=1'+'&rental='+this.props.data.price
             }
-            console.log(url+str)
             fetch(url+str)
             Actions.unpay()
         }
     render() {
-        {console.log(this.props.data)}
+        // {console.log(this.props.data)}
         return (
             <View style={{ flex: 1 }}>
                 <View style={styles.box}>
@@ -105,15 +102,16 @@ export default class Order extends Component {
                         <Text style={{fontWeight:'bold'}}>其他支付方式></Text>
                     </TouchableOpacity>
 
-                    <ConfirmModal ref="tipModal2"
-		                animationType='slide'        //弹出框出现消失的运动形式  
-　　　　　　　　　　     confirmFunc={()=>{this._addorder()}}　//确认按钮按下需要执行的操作　　
-                        cancel={()=>{this._cancerorder()}}
-	                 />
-                    <TouchableOpacity style={styles.button} 
-                    onPress={()=>{this. _cancerorder()}}>
+                    <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-evenly'}}>
+                    <TouchableOpacity style={styles.button} onPress={()=>{this._addorder()}} >
                         <Text style={{color:'#fff',fontWeight:'bold',fontSize:14}}>确认预定 ￥{this.props.data.price}</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={()=>{this._cancerorder()}} >
+                        <Text style={{color:'#fff',fontWeight:'bold',fontSize:14}}>放弃预定</Text>
+                    </TouchableOpacity>
+                    </View>
+                    
+                    
                 </View>
             </View>
         )
@@ -126,7 +124,8 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 10,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        
     },
     detail: {
         flexDirection: 'row',
@@ -167,12 +166,56 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     },
     button:{
-        width:'100%',
+        width:'45%',
         height: 60,
         backgroundColor:'#FF6347',
         marginTop:20,
         borderRadius:10,
         justifyContent:'center',
         alignItems:'center'
+    },
+    loadingContainer:{
+        position:'relative',
+        width:180,
+        height:100,
+        borderRadius:10,
+        backgroundColor:'#000',
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    parent:{
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    imageContainer:{
+        width:30,
+        height:30,
+        backgroundColor:'#fff',
+        borderRadius:15,
+        overflow:'hidden'
+    },
+    icon:{
+        width:'100%',
+        height:'100%'
+    },
+    text:{
+        height:60,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    btnContainer:{
+        position:'absolute',
+        bottom:0,
+        width:'100%',
+        height:40,
+        flexDirection:'row',
+    },
+    btn:{
+        flex:1,
+        justifyContent: 'center', 
+        alignItems: 'center',
+        fontSize:16,
+        borderWidth:1,
+        borderColor:'#fff'
     }
 })
