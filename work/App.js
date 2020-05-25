@@ -8,7 +8,7 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet, View, AsyncStorage
+  StyleSheet, View, AsyncStorage,TouchableOpacity
 } from 'react-native';
 import {
   Router,
@@ -16,6 +16,7 @@ import {
   Tabs,
   Actions
 } from 'react-native-router-flux';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 import Home from './compontents/home';
 import Message from './compontents/message/NHListAvatar';
 import Person from './compontents/person';
@@ -28,6 +29,7 @@ import Register from './compontents/begin/Register'
 import Office from './compontents/find/Office'
 import StudyRoom from './compontents/find/StudyRoom'
 import Comment from './compontents/find/Comment'
+import OfficeComment from './compontents/find/OfficeComment'
 import Order from './compontents/find/Order'
 import Information from './compontents/person/information';
 import NmaeRevise from './compontents/person/information/NmaeRevise';
@@ -45,6 +47,10 @@ import About from './compontents/person/About';
 import Search from './compontents/home/Search';
 import Balance from './compontents/person/Balance';
 import AllOrder from './compontents/person/order/AllOrder'
+import UnPay from './compontents/person/order/UnPay';
+import UnComment from './compontents/person/order/UnComment';
+import OrderInfo from './compontents/person/order/OrderInfo';
+import UnUse from './compontents/person/order/UnUse';
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -179,6 +185,10 @@ const App = () => {
             component={Comment}
           />
           <Scene
+            key='officecomment'
+            component={OfficeComment}
+          />
+          <Scene
             key='order'
             title='确认并支付'
             component={Order}
@@ -223,6 +233,10 @@ const App = () => {
             component={MyComment}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
+            renderLeftButton={
+            <TouchableOpacity onPress={Actions.person}>
+              <Icon name="left" size={30} color={'#ccc'}/>
+            </TouchableOpacity>}
           />
           <Scene
             key='postcomment'
@@ -287,6 +301,46 @@ const App = () => {
             key='allorder'
             title='我的订单'
             component={AllOrder}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='unpay'
+            title='待付款'
+            component={UnPay}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+            renderLeftButton={
+              <TouchableOpacity onPress={Actions.person}>
+                <Icon name="left" size={30} color={'#ccc'}/>
+              </TouchableOpacity>}
+          />
+          <Scene
+            key='uncomment'
+            title='待评价'
+            component={UnComment}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+            renderLeftButton={
+              <TouchableOpacity onPress={Actions.person}>
+                <Icon name="left" size={30} color={'#ccc'}/>
+              </TouchableOpacity>}
+          />
+          <Scene
+            key='unuse'
+            title='待使用'
+            component={UnUse}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+            renderLeftButton={
+              <TouchableOpacity onPress={Actions.person}>
+                <Icon name="left" size={30} color={'#ccc'}/>
+              </TouchableOpacity>}
+          />
+          <Scene
+            key='orderinfo'
+            title='订单详情'
+            component={OrderInfo}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
           />

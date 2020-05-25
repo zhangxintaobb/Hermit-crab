@@ -45,8 +45,8 @@ export default class Login extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                phone:'13722258607',
-                password:'123456789'
+                phone:this.state.username,
+                password:this.state.pwd
             }),
         })
         .then((res) => res.json())

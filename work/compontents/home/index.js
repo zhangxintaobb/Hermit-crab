@@ -78,7 +78,6 @@ export default class index extends Component {
             this._request(param)
         })
         
-        
     }
 
     componentWillUnmount() {
@@ -99,9 +98,10 @@ export default class index extends Component {
         )
             .then((res) => res.json())
             .then((res) => {
+                // console.log(res.data)
                 var arr=[]
                 for(var i=0;i<res.data.length;i++){
-                    if(city==res.data[0].city)
+                    if(city==res.data[i].city)
                     {
                         if(arr.length<3){
                             arr.push(res.data[i])

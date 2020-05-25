@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Dimensions, FlatList, AsyncStorage, Image } from 'react-native'
 import { Container, Content, Text, View, Button, Icon, Left, Right, Body, Segment, Row } from "native-base";
-
 let { width } = Dimensions.get('window');
-
 export default class AllOrder extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +25,7 @@ export default class AllOrder extends Component {
                         // console.log(res.data)
                         for (let index = 0; index < res.data.length; index++) {
                             if (res.data[index].type == '0') {
-                                let str = { 'rental': res.data[index].rental, 'state': res.data[index].state, 'time': res.data[index].time };
+                                let str = { 'rental': res.data[index].rental, 'state': res.data[index].state, 'time': res.data[index].createtime,'number':res.data[0].number };
                                 let arr = this.state.otherorder;
                                 arr.push(str);
                                 // console.log(arr)
@@ -46,7 +44,7 @@ export default class AllOrder extends Component {
                                         })
                                     })
                             } else {
-                                let str = { 'rental': res.data[index].rental, 'state': res.data[index].state, 'time': res.data[index].time };
+                                let str = { 'rental': res.data[index].rental, 'state': res.data[index].state, 'time': res.data[index].createtime };
                                 let arr = this.state.otherorder;
                                 arr.push(str);
                                 // console.log(arr)
@@ -141,8 +139,8 @@ export default class AllOrder extends Component {
                                     <View style={styles.singleOd}>
                                         <View style={styles.singleOdLt}>
                                             <Text style={styles.odTitle}>{item.key}</Text>
-                                            <Text>{this.formatDate(new Date(item.time))}-</Text>
-                                            <Text>{this.formatDate(new Date(item.time + item.rental))}</Text>
+                                            <Text>{this.formatDate(new Date(item.time))}</Text>
+                                            <Text>数量：{item.number}</Text>
                                             <Text>{item.state == 0 ? '订单已完成' : <Text style={{ color: 'red' }}>订单未完成</Text>}</Text>
                                             <Text>￥{item.money}</Text>
                                         </View>
@@ -173,8 +171,8 @@ export default class AllOrder extends Component {
                                     <View style={styles.singleOd}>
                                         <View style={styles.singleOdLt}>
                                             <Text style={styles.odTitle}>{item.key}</Text>
-                                            <Text>{this.formatDate(new Date(item.time))}-</Text>
-                                            <Text>{this.formatDate(new Date(item.time + item.rental))}</Text>
+                                            <Text>{this.formatDate(new Date(item.time))}</Text>
+                                         <Text>数量：{item.number}</Text>
                                             <Text>订单已完成</Text>
                                             <Text>￥{item.money}</Text>
                                         </View>
@@ -198,8 +196,8 @@ export default class AllOrder extends Component {
                                     <View style={styles.singleOd}>
                                         <View style={styles.singleOdLt}>
                                             <Text style={styles.odTitle}>{item.key}</Text>
-                                            <Text>{this.formatDate(new Date(item.time))}-</Text>
-                                            <Text>{this.formatDate(new Date(item.time + item.rental))}</Text>
+                                            <Text>{this.formatDate(new Date(item.time))}</Text>
+                    <Text>数量：{item.number}</Text>
                                             <Text style={{ color: 'red' }}>订单未完成</Text>
                                             <Text>￥{item.money}</Text>
                                         </View>

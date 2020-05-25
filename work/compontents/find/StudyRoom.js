@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, AsyncStorage } from 'react-native'
+import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, FlatList } from 'react-native'
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { Actions } from "react-native-router-flux";
@@ -11,7 +12,8 @@ export default class StudyRoom extends Component {
     constructor() {
         super();
         this.state = {
-            data: {}
+            data: {},
+            comment: []
         }
     }
 
@@ -25,9 +27,18 @@ export default class StudyRoom extends Component {
                     collect: false,
                     collectIcon: 'hearto'
                 });
-                // console.log(this.state.data)
+                console.log(this.state.data)
             })
-    }
+        fetch("http://zy.eatclub.wang:3000/list/roomcomment?type=0&userid=" + this.props.srid)
+            .then((res) => res.json())
+            .then((res) => {
+                // console.log(res.data)
+                var arr = []
+                for (var i = 0; i < res.data.length; i++) {
+                    let obj = { 'container': res.data[i].container, 'createtime': res.data[i].createtime, 'star': res.data[i].star }
+                    fetch('http://zy.eatclub.wang:3000/userinfo?userid=' + res.data[i].userid)
+                        .then((res) => res.json())
+                        .then((res) => {
 
     _collect = () => {
         if (this.state.collect) {
@@ -60,10 +71,33 @@ export default class StudyRoom extends Component {
                 })
         }
     }
+                            obj.name = res.data[0].username
+                            obj.img = res.data[0].avatar
+                            arr = this.state.comment
+                            if (arr.length < 3) {
+                                arr.push(obj)
+                                this.setState({
+                                    comment: arr
+                                })
+                            }
+                        })
+                }
+            })
+    }
+    formatDate(now) {
+        var year = now.getFullYear();  //取得4位数的年份
+        var month = now.getMonth() + 1;  //取得日期中的月份，其中0表示1月，11表示12月
+        var date = now.getDate();      //返回日期月份中的天数（1到31）
+        var hour = now.getHours();     //返回日期中的小时数（0到23）
+        var minute = now.getMinutes(); //返回日期中的分钟数（0到59）
+        var second = now.getSeconds(); //返回日期中的秒数（0到59）
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+    };
 
     render() {
+        // { console.log(this.state.comment) }
         return (
-            <View style={{ flex: 1,backgroundColor:'#ffffff', }}>
+            <View style={{ flex: 1, backgroundColor: '#ffffff', }}>
                 <ScrollView>
                     <View style={{ height: width * 0.43, width: width }}>
                         <Swiper
@@ -111,150 +145,69 @@ export default class StudyRoom extends Component {
                             <Text style={{ color: '#2C3E50', marginTop: 5 }}>{this.state.data.detail}</Text>
                         </View>
                         <View style={{ marginTop: 15 }}>
+                            
+                            {this.state.comment[0]==undefined?
+                        (<View style={styles.unlist}>
+                            <Text>暂无评论</Text>
+                        </View>):(
                             <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                                <Text style={{ color: '#aaa' }}>评论(25)</Text>
-                                <TouchableOpacity 
-                                    style={{ marginLeft: 280 }}
-                                    onPress={()=>Actions.comment()}
-                                >
-                                    <Text style={{ color: '#0099CC' }}>查看全部</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.pinglun}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Image
-                                        style={{ width: 50, height: 50, borderRadius: 25 }}
-                                        source={require('../../assets/zy/pinglunAvatar.jpeg')}
-                                    />
-                                    <View style={{ marginLeft: 5 }}>
-                                        <Text>Daniel Hua</Text>
-                                        <Text style={{ fontSize: 12, color: '#aaa' }}>1小时前</Text>
-                                    </View>
-                                    <View style={{ marginLeft: 200 }}>
-                                        <Text style={{ marginLeft: 50 }}>8.0</Text>
-                                        <View style={{ flexDirection: 'row' }}>
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="staro"
-                                            />
-                                        </View>
-                                    </View>
-                                </View>
-                                <View>
-                                    <Text style={{ color: '#aaa', marginTop: 5 }}>这是一个非常棒的地方，环境很安静，推荐给大家。</Text>
-                                </View>
-                            </View>
-                            <View style={styles.pinglun}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Image
-                                        style={{ width: 50, height: 50, borderRadius: 25 }}
-                                        source={require('../../assets/zy/pinglunAvatar.jpeg')}
-                                    />
-                                    <View style={{ marginLeft: 5 }}>
-                                        <Text>Daniel Hua</Text>
-                                        <Text style={{ fontSize: 12, color: '#aaa' }}>1小时前</Text>
-                                    </View>
-                                    <View style={{ marginLeft: 200 }}>
-                                        <Text style={{ marginLeft: 50 }}>8.0</Text>
-                                        <View style={{ flexDirection: 'row' }}>
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="staro"
-                                            />
-                                        </View>
-                                    </View>
-                                </View>
-                                <View>
-                                    <Text style={{ color: '#aaa', marginTop: 5 }}>这是一个非常棒的地方，环境很安静，推荐给大家。</Text>
-                                </View>
-                            </View>
-                            <View style={styles.pinglun}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Image
-                                        style={{ width: 50, height: 50, borderRadius: 25 }}
-                                        source={require('../../assets/zy/pinglunAvatar.jpeg')}
-                                    />
-                                    <View style={{ marginLeft: 5 }}>
-                                        <Text>Daniel Hua</Text>
-                                        <Text style={{ fontSize: 12, color: '#aaa' }}>1小时前</Text>
-                                    </View>
-                                    <View style={{ marginLeft: 200 }}>
-                                        <Text style={{ marginLeft: 50 }}>8.0</Text>
-                                        <View style={{ flexDirection: 'row' }}>
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="star"
-                                            />
-                                            <Icon
-                                                size={15}
-                                                color={'#0099CC'}
-                                                name="staro"
-                                            />
-                                        </View>
-                                    </View>
-                                </View>
-                                <View>
-                                    <Text style={{ color: '#aaa', marginTop: 5 }}>这是一个非常棒的地方，环境很安静，推荐给大家。</Text>
-                                </View>
-                            </View>
+                            <Text style={{ color: '#aaa' }}>{this.state.comment.length}</Text>
+                            <TouchableOpacity
+                                style={{ marginLeft: 280 }}
+                                onPress={() => Actions.comment({ 'srid': this.props.srid })}
+                            >
+                                <Text style={{ color: '#0099CC' }}>查看全部</Text>
+                            </TouchableOpacity>
+                        </View>
+                        )}
+                            {this.state.comment.map((data,i)=>(
+                                 <View style={styles.pinglun}>
+                                 <View style={{ flexDirection: 'row' }}>
+                                     <Image
+                                         style={{ width: 50, height: 50, borderRadius: 25 }}
+                                         source={{ uri: data.img }}
+                                     />
+                                     <View style={{ marginLeft: 5 }}>
+                            <Text>{data.name}</Text>
+                            <Text style={{ fontSize: 12, color: '#aaa' }}>{this.formatDate(new Date(data.createtime))}</Text>
+                                     </View>
+                                     <View style={{ marginLeft: 200 }}>
+                                         <Text style={{ marginLeft: 50 }}>{parseFloat(data.star) * 2}.0</Text>
+                                         <View style={{ flexDirection: 'row' }}>
+                                             <Icon
+                                                 size={15}
+                                                 color={'#0099CC'}
+                                                 name="star"
+                                             />
+                                             <Icon
+                                                 size={15}
+                                                 color={'#0099CC'}
+                                                 name="star"
+                                             />
+                                             <Icon
+                                                 size={15}
+                                                 color={'#0099CC'}
+                                                 name="star"
+                                             />
+                                             <Icon
+                                                 size={15}
+                                                 color={'#0099CC'}
+                                                 name="star"
+                                             />
+                                             <Icon
+                                                 size={15}
+                                                 color={'#0099CC'}
+                                                 name="staro"
+                                             />
+                                         </View>
+                                     </View>
+                                 </View>
+                                 <View>
+                            <Text style={{ color: '#aaa', marginTop: 5 }}>{data.container}</Text>
+                                 </View>
+                             </View>
+                            ))}
+                            
                         </View>
                     </View>
                 </ScrollView>
@@ -288,7 +241,7 @@ export default class StudyRoom extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.bbutton}
-                        onPress={()=>Actions.order({'data':this.state.data})}    
+                        onPress={() => Actions.order({ 'data': this.state.data })}
                     >
                         <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: 14 }}>下单</Text>
                     </TouchableOpacity>
@@ -299,6 +252,15 @@ export default class StudyRoom extends Component {
 }
 
 const styles = StyleSheet.create({
+    unlist:{
+        width:'100%',
+        height:250,
+        backgroundColor:'#ccc',
+        alignItems:'center',
+        justifyContent:'center',
+        flexDirection:'row',
+        borderRadius:15
+    },
     footbar: {
         width: width,
         height: 60,
@@ -326,7 +288,7 @@ const styles = StyleSheet.create({
     container: {
         // height:500,
         width: width * 0.9,
-        backgroundColor:'#ffffff',
+        backgroundColor: '#ffffff',
         marginLeft: width * 0.05,
         display: 'flex',
         marginTop: 15
