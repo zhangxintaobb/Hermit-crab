@@ -1,19 +1,62 @@
 import React, { Component } from 'react'
-import { Text, View, Dimensions, ScrollView, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native'
+import { Text,AsyncStorage, View, Dimensions, ScrollView, StyleSheet, Image, FlatList, TouchableOpacity,Platform, } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign';
-
+import { ConfirmModal } from './ConfirmModal'
+import { Actions } from 'react-native-router-flux';
 
 const { width, height } = Dimensions.get('window');
-
+const url='http://zy.eatclub.wang:3000/createorder?'
 export default class Order extends Component {
     constructor() {
         super();
         this.state = {
-
+            userid:'',
+            
         };
     }
-
+    componentDidMount(){
+        AsyncStorage.getItem('user')
+        .then((res)=>{
+            let data=JSON.parse(res)
+            this.setState({
+                userid:data[0].userid,
+            })
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
+    confirm(){
+        　　　　this.refs.tipModal2._open('付款')
+        　　}
+        _addorder=()=>{
+            
+            if(this.props.data.officeid==undefined){
+                var str='state=1&type='+this.props.data.t+'&roomid='+this.props.data.srid+'&userid='+this.state.userid
+                +'&number=1'+'&rental='+this.props.data.price
+            }
+            else{
+                var str='state=1&type='+this.props.data.t+'&roomid='+this.props.data.officeid+'&userid='+this.state.userid
+                +'&number=1'+'&rental='+this.props.data.price
+            }
+            fetch(url+str)
+            
+        }
+        _cancerorder=()=>{
+            if(this.props.data.officeid==undefined){
+                var str='state=0&type='+this.props.data.t+'&roomid='+this.props.data.srid+'&userid='+this.state.userid
+                +'&number=1'+'&rental='+this.props.data.price
+            }
+            else{
+                var str='state=0&type='+this.props.data.t+'&roomid='+this.props.data.officeid+'&userid='+this.state.userid
+                +'&number=1'+'&rental='+this.props.data.price
+            }
+            console.log(url+str)
+            fetch(url+str)
+            Actions.unpay()
+        }
     render() {
+        {console.log(this.props.data)}
         return (
             <View style={{ flex: 1 }}>
                 <View style={styles.box}>
@@ -61,7 +104,14 @@ export default class Order extends Component {
                     <TouchableOpacity style={{marginTop:10,height:height*0.15,borderBottomColor: '#aaa',borderBottomWidth: 0.5}}>
                         <Text style={{fontWeight:'bold'}}>其他支付方式></Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
+
+                    <ConfirmModal ref="tipModal2"
+		                animationType='slide'        //弹出框出现消失的运动形式  
+　　　　　　　　　　     confirmFunc={()=>{this._addorder()}}　//确认按钮按下需要执行的操作　　
+                        cancel={()=>{this._cancerorder()}}
+	                 />
+                    <TouchableOpacity style={styles.button} 
+                    onPress={()=>{this. _cancerorder()}}>
                         <Text style={{color:'#fff',fontWeight:'bold',fontSize:14}}>确认预定 ￥{this.props.data.price}</Text>
                     </TouchableOpacity>
                 </View>

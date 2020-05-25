@@ -63,6 +63,7 @@ export default class PostComment extends Component {
                                 console.log(err);
                             })
                             fetch('http://zy.eatclub.wang:3000/changeorder?state=3&createtime='+this.props.data.createtime)
+                            
                             Actions.mycomment()
                     })
                     .catch(function (err) {

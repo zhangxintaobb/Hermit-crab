@@ -13,65 +13,79 @@ export default class UnPay extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: [],
+            data:[]
         }
     }
     componentDidMount() {
+        
         AsyncStorage.getItem('user')
             .then((res) => {
                 let data = JSON.parse(res)
                 fetch('http://zy.eatclub.wang:3000/list/order?userid=' + data[0].userid)
                     .then((res) => res.json())
                     .then((res) => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         var arr = []
                         for (let i = 0; i < res.data.length; i++) {
                             if (res.data[i].state == '0') {
                                 arr.push(res.data[i])
+                                // console.log(arr)
                             }
                         }
                         var item = []
-                        // console.log(arr)
+                        
+                        
                         for (let index = 0; index < arr.length; index++) {
                             if (arr[index].type == '0') {
-                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': res.data[index].createtime };
+                                // console.log(arr[index])
+                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime,'number':arr[index].number };
+                                // console.log(str)
                                 fetch('http://zy.eatclub.wang:3000/list/sr/detail?id=' + arr[index].roomid)
                                     .then((res) => res.json())
                                     .then((res) => {
+                                        // console.log(str)
                                         str.name = res.data[0].srname
                                         str.img = res.data[0].img_url
+                                        console.log(this.state.data)
                                         item = this.state.data
+                                        // console.log(item)
                                         item.push(str)
+                                        // console.log(str)
                                         this.setState({
-                                            data: item
+                                            data:item
                                         })
-
+                                        
                                     })
-
-                            } else {
-                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': res.data[index].createtime };
-                                fetch('http://zy.eatclub.wang:3000/list/sr/detail?id=' + arr[index].roomid)
-                                    .then((res) => res.json())
-                                    .then((res) => {
-                                        str.name = res.data[0].officename,
-                                            str.img = res.data[0].img_url,
-                                            str.money = res.data[0].price
+                            }
+                            else{
+                                if (arr[index].type == '1') {
+                                    let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime,'number':arr[index].number };
+                                    fetch('http://zy.eatclub.wang:3000/list/office/detail?id=' + arr[index].roomid)
+                                        .then((res) => res.json())
+                                        .then((res) => {
+                                            str.name = res.data[0].officename
+                                            str.img = res.data[0].img_url
+                                            console.log(this.state.data)
                                             item = this.state.data
                                             item.push(str)
                                             this.setState({
-                                                data: item
+                                                data:item
                                             })
-                                    })
+                                            
+                                        })
+                                    }
                             }
 
-                        }
-
+                        
+                    }
                     })
             })
     }
-    _pay=()=>{
-        fetch('http://zy.eatclub.wang:3000/changeorder?state=2&createtime='+this.state.data.createtime)
-                                    
+    _pay=(time)=>{
+        console.log(this.formatDate(new Date(time)))
+        console.log(time)
+        fetch('http://zy.eatclub.wang:3000/changeorder?state=1&createtime='+time)
+        // Actions.unuse()
     }
     formatDate(now) {
         var year = now.getFullYear();  //取得4位数的年份
@@ -83,12 +97,12 @@ export default class UnPay extends Component {
         return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
     };
     render() {
-        {console.log(this.state.data)}
+        // {console.log(this.state.data)}
         return (
             <ScrollView>
                 <View style={styles.box}>
                     {this.state.data.map((data,i)=>(
-                         <TouchableOpacity style={styles.item} onPress={Actions.orderinfo}>
+                         <TouchableOpacity style={styles.item} >
                          <View style={styles.title}>
                     <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
                              <Text style={{ color: '#ccc' }}>待付款</Text>
@@ -102,13 +116,13 @@ export default class UnPay extends Component {
                              </View>
                              <View style={styles.right}>
                     <Text>下单时间:{this.formatDate(new Date(data.createtime))}</Text>
-                    <Text>数量:{}</Text>
-                    <Text>总价:￥{}</Text>
+                    <Text>数量:{data.number}</Text>
+                    <Text>总价:￥{data.rental}</Text>
                              </View>
                          </View>
                          <View style={styles.foot}>
                          <TouchableOpacity style={styles.button}
-                         onPress={()=>{this._pay()}}>
+                         onPress={()=>{this._pay(data.createtime)}}>
                              <Text>付款</Text>
                          </TouchableOpacity>
                          </View>
