@@ -7,11 +7,12 @@ import {
     Image,
     Dimensions,
     ScrollView,
-    FlatList
+    FlatList,
+    AsyncStorage
 } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { Tabs } from '@ant-design/react-native';
+import { Tabs, SwipeAction } from '@ant-design/react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -24,19 +25,26 @@ export default class index extends Component {
         }
     }
     componentDidMount() {
-        fetch("http://zy.eatclub.wang:3000/list/office")
-            .then((res) => res.json())
+        AsyncStorage.getItem('user')
             .then((res) => {
-                this.setState({
-                    office: res.data
-                });
+                let data = JSON.parse(res);
+                fetch("http://zy.eatclub.wang:3000/list/usercollect/office?userid=" + data[0].userid)
+                    .then((res) => res.json())
+                    .then((res) => {
+                        this.setState({
+                            office: res.data
+                        });
+                    })
+                fetch("http://zy.eatclub.wang:3000/list/usercollect/sr?userid=" + data[0].userid)
+                    .then((res) => res.json())
+                    .then((res) => {
+                        this.setState({
+                            sr: res.data
+                        });
+                    })
             })
-        fetch("http://zy.eatclub.wang:3000/list/sr")
-            .then((res) => res.json())
-            .then((res) => {
-                this.setState({
-                    sr: res.data
-                });
+            .catch(function (err) {
+                console.log(err);
             })
     }
 
@@ -45,9 +53,19 @@ export default class index extends Component {
             { title: '自习室' },
             { title: '办公室' },
         ];
+        const right = [
+            {
+                text: 'Delete',
+                onPress: () => console.log('delete'),
+                style: { backgroundColor: 'red', color: 'white' },
+            },
+        ];
         return (
             <View style={{ flex: 1 }}>
-                <Tabs tabs={tabs}>
+                <Tabs
+                    tabs={tabs}
+                // swipeable="false"
+                >
                     <View style={styles.tabs}>
                         <ScrollView style={{ width: width }}>
                             <FlatList
@@ -55,55 +73,63 @@ export default class index extends Component {
                                 keyExtractor={(item, index) => index}
                                 renderItem={({ item }) =>
                                     <TouchableOpacity style={styles.listitem1} onPress={() => Actions.sr({ 'srid': item.srid })}>
-                                        <Image
-                                            source={{ uri: item.img_url }}
-                                            style={styles.pic}
-                                        />
-                                        <View style={{ flexDirection: 'row' }}>
-                                            <View style={{ width: width * 0.5, marginLeft: 10 }}>
-                                                <Text style={styles.title}>{item.srname}</Text>
-                                                <View style={{ display: 'flex', flexDirection: 'row' }}>
-                                                    <Text style={{ fontSize: 12, color: '#bbb', marginRight: 15 }}>{item.city},{item.region}</Text>
-                                                    <Icon
-                                                        size={15}
-                                                        color={'#f23636'}
-                                                        name="enviromento"
-                                                    />
-                                                    <Text style={{ fontSize: 12, color: '#bbb' }}>距离2KM</Text>
+                                        {/* <SwipeAction
+                                            autoClose
+                                            style={{ backgroundColor: 'transparent' }}
+                                            right={right}
+                                            onOpen={() => console.log('open')}
+                                            onClose={() => console.log('close')}
+                                        > */}
+                                            <Image
+                                                source={{ uri: item.img_url }}
+                                                style={styles.pic}
+                                            />
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <View style={{ width: width * 0.5, marginLeft: 10 }}>
+                                                    <Text style={styles.title}>{item.srname}</Text>
+                                                    <View style={{ display: 'flex', flexDirection: 'row' }}>
+                                                        <Text style={{ fontSize: 12, color: '#bbb', marginRight: 15 }}>{item.city},{item.region}</Text>
+                                                        <Icon
+                                                            size={15}
+                                                            color={'#f23636'}
+                                                            name="enviromento"
+                                                        />
+                                                        <Text style={{ fontSize: 12, color: '#bbb' }}>距离2KM</Text>
+                                                    </View>
+                                                    <View style={{ display: 'flex', flexDirection: 'row', marginTop: 15 }}>
+                                                        <Icon
+                                                            size={20}
+                                                            color={'#f23636'}
+                                                            name="star"
+                                                        />
+                                                        <Icon
+                                                            size={20}
+                                                            color={'#f23636'}
+                                                            name="star"
+                                                        />
+                                                        <Icon
+                                                            size={20}
+                                                            color={'#f23636'}
+                                                            name="star"
+                                                        />
+                                                        <Icon
+                                                            size={20}
+                                                            color={'#f23636'}
+                                                            name="star"
+                                                        />
+                                                        <Icon
+                                                            size={20}
+                                                            color={'#f23636'}
+                                                            name="staro"
+                                                        />
+                                                    </View>
                                                 </View>
-                                                <View style={{ display: 'flex', flexDirection: 'row', marginTop: 15 }}>
-                                                    <Icon
-                                                        size={20}
-                                                        color={'#f23636'}
-                                                        name="star"
-                                                    />
-                                                    <Icon
-                                                        size={20}
-                                                        color={'#f23636'}
-                                                        name="star"
-                                                    />
-                                                    <Icon
-                                                        size={20}
-                                                        color={'#f23636'}
-                                                        name="star"
-                                                    />
-                                                    <Icon
-                                                        size={20}
-                                                        color={'#f23636'}
-                                                        name="star"
-                                                    />
-                                                    <Icon
-                                                        size={20}
-                                                        color={'#f23636'}
-                                                        name="staro"
-                                                    />
+                                                <View style={{ marginLeft: 100 }}>
+                                                    <Text style={styles.price}>￥{item.price}</Text>
+                                                    <Text style={{ marginLeft: 25 }}>/天</Text>
                                                 </View>
                                             </View>
-                                            <View style={{ marginLeft: 100 }}>
-                                                <Text style={styles.price}>￥{item.price}</Text>
-                                                <Text style={{ marginLeft: 25 }}>/天</Text>
-                                            </View>
-                                        </View>
+                                        {/* </SwipeAction> */}
                                     </TouchableOpacity>
                                 }
                             />

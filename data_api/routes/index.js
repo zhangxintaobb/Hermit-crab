@@ -359,7 +359,7 @@ router.get('/createorder', function (req, res) {
   let number = req.query.number;
   let state = req.query.state;
   let rental = req.query.rental;
-  res.conn.query("insert into usercollect(createtime, userid, type, roomid, number, state, rental) values(?, ?, ?, ?, ?, ?, ?)", [createtime, userid, type, roomid, number, state, rental], function (err, result) {
+  res.conn.query("insert into orderinfo(createtime, userid, type, roomid, number, state, rental) values(?, ?, ?, ?, ?, ?, ?)", [createtime, userid, type, roomid, number, state, rental], function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -386,7 +386,7 @@ router.get('/list/order', function (req, res) {
 });
 
 // 获取订单信息
-router.get('/list/order/detail', function(req, res) {
+router.get('/list/order/detail', function (req, res) {
   let createtime = req.query.createtime;
   res.conn.query("select * from orderinfo where createtime = " + createtime, function (err, result) {
     if (err) {
@@ -405,7 +405,7 @@ router.get('/list/order/detail', function(req, res) {
 })
 
 // 改变订单状态
-router.get('/changeorder', function(req, res) {
+router.get('/changeorder', function (req, res) {
   let createtime = req.query.createtime;
   let changetime = req.query.changetime;
   let state = req.query.state;
@@ -464,7 +464,7 @@ router.get('/list/usercomment', function (req, res) {
 router.get('/list/roomcomment', function (req, res) {
   let type = req.query.type;
   let roomid = req.query.userid;
-  res.conn.query("select * from commentinfo where type = ? && roomid = ? ",[type,roomid], function (err, result) {
+  res.conn.query("select * from commentinfo where type = ? && roomid = ? ", [type, roomid], function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -481,7 +481,7 @@ router.get('/list/roomcomment', function (req, res) {
 });
 
 // 获取评论
-router.get('/list/comment/detail', function(req, res) {
+router.get('/list/comment/detail', function (req, res) {
   let createtime = req.query.createtime;
   res.conn.query("select * from commentinfo where createtime = " + createtime, function (err, result) {
     if (err) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, AsyncStorage } from 'react-native'
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { Actions } from "react-native-router-flux";
@@ -21,16 +21,49 @@ export default class Office extends Component {
             .then((res) => {
                 // console.log(res.data[0]);
                 this.setState({
-                    data: res.data[0]
+                    data: res.data[0],
+                    collect: false,
+                    collectIcon: 'hearto'
                 });
                 // console.log(this.state.data)
             })
     }
 
+    _collect = () => {
+        if (this.state.collect) {
+            console.log('已收藏');
+            AsyncStorage.getItem('user')
+                .then((res) => {
+                    let data = JSON.parse(res);
+                    fetch('http://zy.eatclub.wang:3000/delcollect?&roomid=' + this.props.officeid + '&userid=' + data[0].userid + '&type=1')
+                    this.setState({
+                        collect: false,
+                        collectIcon: 'hearto'
+                    })
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+        } else {
+            console.log('未收藏');
+            AsyncStorage.getItem('user')
+                .then((res) => {
+                    let data = JSON.parse(res);
+                    fetch('http://zy.eatclub.wang:3000/addcollect?&roomid=' + this.props.officeid + '&userid=' + data[0].userid + '&type=1')
+                    this.setState({
+                        collect: true,
+                        collectIcon: 'heart'
+                    })
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+        }
+    }
 
     render() {
         return (
-            <View style={{ flex: 1,backgroundColor:'#ffffff', }}>
+            <View style={{ flex: 1, backgroundColor: '#ffffff', }}>
                 <ScrollView>
                     <View style={{ height: width * 0.43, width: width }}>
                         <Swiper
@@ -80,7 +113,7 @@ export default class Office extends Component {
                         <View style={{ marginTop: 15 }}>
                             <View style={{ flexDirection: 'row', marginTop: 10 }}>
                                 <Text style={{ color: '#aaa' }}>评论(25)</Text>
-                                <TouchableOpacity 
+                                <TouchableOpacity
                                     style={{ marginLeft: 280 }}
                                     onPress={() => Actions.comment()}
                                 >
@@ -244,18 +277,18 @@ export default class Office extends Component {
                         />
                         <Text style={{ color: '#2C3E50' }}>客服</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.sbutton}>
+                    <TouchableOpacity style={styles.sbutton} onPress={this._collect}>
                         <Icon
                             size={20}
                             color={'#0099CC'}
-                            name="hearto"
+                            name={this.state.collectIcon}
                             style={{ marginLeft: 3 }}
                         />
                         <Text style={{ color: '#2C3E50' }}>收藏</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.bbutton}
-                        onPress={()=>Actions.order({'data':this.state.data})}
+                        onPress={() => Actions.order({ 'data': this.state.data })}
                     >
                         <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: 14 }}>下单</Text>
                     </TouchableOpacity>
@@ -293,7 +326,7 @@ const styles = StyleSheet.create({
     container: {
         // height:500,
         width: width * 0.9,
-        backgroundColor:'#ffffff',
+        backgroundColor: '#ffffff',
         marginLeft: width * 0.05,
         display: 'flex',
         marginTop: 15
