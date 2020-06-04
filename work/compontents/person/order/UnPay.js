@@ -13,11 +13,11 @@ export default class UnPay extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data:[]
+            data: []
         }
     }
     componentDidMount() {
-        
+
         AsyncStorage.getItem('user')
             .then((res) => {
                 let data = JSON.parse(res)
@@ -33,12 +33,12 @@ export default class UnPay extends Component {
                             }
                         }
                         var item = []
-                        
-                        
+
+
                         for (let index = 0; index < arr.length; index++) {
                             if (arr[index].type == '0') {
                                 // console.log(arr[index])
-                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime,'number':arr[index].number };
+                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime, 'number': arr[index].number };
                                 // console.log(str)
                                 fetch('http://zy.eatclub.wang:3000/list/sr/detail?id=' + arr[index].roomid)
                                     .then((res) => res.json())
@@ -52,14 +52,14 @@ export default class UnPay extends Component {
                                         item.push(str)
                                         // console.log(str)
                                         this.setState({
-                                            data:item
+                                            data: item
                                         })
-                                        
+
                                     })
                             }
-                            else{
+                            else {
                                 if (arr[index].type == '1') {
-                                    let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime,'number':arr[index].number };
+                                    let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime, 'number': arr[index].number };
                                     fetch('http://zy.eatclub.wang:3000/list/office/detail?id=' + arr[index].roomid)
                                         .then((res) => res.json())
                                         .then((res) => {
@@ -69,22 +69,22 @@ export default class UnPay extends Component {
                                             item = this.state.data
                                             item.push(str)
                                             this.setState({
-                                                data:item
+                                                data: item
                                             })
-                                            
+
                                         })
-                                    }
+                                }
                             }
 
-                        
-                    }
+
+                        }
                     })
             })
     }
-    _pay=(time)=>{
+    _pay = (time) => {
         console.log(this.formatDate(new Date(time)))
         console.log(time)
-        fetch('http://zy.eatclub.wang:3000/changeorder?state=1&createtime='+time)
+        fetch('http://zy.eatclub.wang:3000/changeorder?state=1&createtime=' + time)
         // Actions.unuse()
     }
     formatDate(now) {
@@ -101,35 +101,35 @@ export default class UnPay extends Component {
         return (
             <ScrollView>
                 <View style={styles.box}>
-                    {this.state.data.map((data,i)=>(
-                         <TouchableOpacity style={styles.item} >
-                         <View style={styles.title}>
-                    <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
-                             <Text style={{ color: '#ccc' }}>待付款</Text>
-                         </View>
-                         <View style={styles.container}>
-                             <View style={styles.left}>
-                                 <Image
-                                     style={styles.pic}
-                                     source={{ uri: data.img }}
-                                 />
-                             </View>
-                             <View style={styles.right}>
-                    <Text>下单时间:{this.formatDate(new Date(data.createtime))}</Text>
-                    <Text>数量:{data.number}</Text>
-                    <Text>总价:￥{data.rental}</Text>
-                             </View>
-                         </View>
-                         <View style={styles.foot}>
-                         <TouchableOpacity style={styles.button}
-                         onPress={()=>{this._pay(data.createtime)}}>
-                             <Text>付款</Text>
-                         </TouchableOpacity>
-                         </View>
-                         
-                     </TouchableOpacity>
+                    {this.state.data.map((data, i) => (
+                        <TouchableOpacity style={styles.item} onPress={() => Actions.orderdetail({ 'createtime': data.createtime })}>
+                            <View style={styles.title}>
+                                <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
+                                <Text style={{ color: '#ccc' }}>待付款</Text>
+                            </View>
+                            <View style={styles.container}>
+                                <View style={styles.left}>
+                                    <Image
+                                        style={styles.pic}
+                                        source={{ uri: data.img }}
+                                    />
+                                </View>
+                                <View style={styles.right}>
+                                    <Text>下单时间:{this.formatDate(new Date(data.createtime))}</Text>
+                                    <Text>数量:{data.number}</Text>
+                                    <Text>总价:￥{data.rental}</Text>
+                                </View>
+                            </View>
+                            <View style={styles.foot}>
+                                <TouchableOpacity style={styles.button}
+                                    onPress={() => { this._pay(data.createtime) }}>
+                                    <Text>付款</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                        </TouchableOpacity>
                     ))}
-                   
+
                 </View>
 
             </ScrollView>
@@ -175,9 +175,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    pic:{
-        width:"100%",
-        height:"80%",
+    pic: {
+        width: "100%",
+        height: "80%",
         borderRadius: 10
     },
     right: {
@@ -186,21 +186,21 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        padding:20
+        padding: 20
     },
-    button:{
-        width:80,
-        height:30,
-        borderWidth:1,
-        borderColor:'#ccc',
-        borderRadius:8,
-        alignItems:'center',
-        justifyContent:'center'
+    button: {
+        width: 80,
+        height: 30,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    foot:{
-        width:'100%',
-        height:'24%',
-        alignItems:'flex-end',
-        paddingRight:30
+    foot: {
+        width: '100%',
+        height: '24%',
+        alignItems: 'flex-end',
+        paddingRight: 30
     }
 })

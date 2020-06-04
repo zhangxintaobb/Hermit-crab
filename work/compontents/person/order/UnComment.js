@@ -39,8 +39,8 @@ export default class UnComment extends Component {
                                 fetch('http://zy.eatclub.wang:3000/list/sr/detail?id=' + arr[index].roomid)
                                     .then((res) => res.json())
                                     .then((res) => {
-                                        str.id=res.data[0].srid
-                                        str.t=res.data[0].t
+                                        str.id = res.data[0].srid
+                                        str.t = res.data[0].t
                                         str.name = res.data[0].srname
                                         str.img = res.data[0].img_url
                                         item = this.state.data
@@ -56,15 +56,15 @@ export default class UnComment extends Component {
                                 fetch('http://zy.eatclub.wang:3000/list/office/detail?id=' + arr[index].roomid)
                                     .then((res) => res.json())
                                     .then((res) => {
-                                        str.id=res.data[0].officeid
-                                        str.t=res.data[0].t
+                                        str.id = res.data[0].officeid
+                                        str.t = res.data[0].t
                                         str.name = res.data[0].officename
                                         str.img = res.data[0].img_url
-                                            item = this.state.data
-                                            item.push(str)
-                                            this.setState({
-                                                data: item
-                                            })
+                                        item = this.state.data
+                                        item.push(str)
+                                        this.setState({
+                                            data: item
+                                        })
                                     })
                             }
 
@@ -83,39 +83,39 @@ export default class UnComment extends Component {
         return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
     };
     render() {
-        {console.log(this.state.data)}
+        { console.log(this.state.data) }
         return (
             <ScrollView>
                 <View style={styles.box}>
-                    {this.state.data.map((data,i)=>(
-                         <TouchableOpacity style={styles.item}>
-                         <View style={styles.title}>
-                    <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
-                            
-                         </View>
-                         <View style={styles.container}>
-                             <View style={styles.left}>
-                                 <Image
-                                     style={styles.pic}
-                                     source={{ uri: data.img }}
-                                 />
-                             </View>
-                             <View style={styles.right}>
-                    <Text>下单时间:{this.formatDate(new Date(data.createtime))}</Text>
-                    <Text style={{color:'orange'}}>写下你宝贵的评价吧</Text>
-                             </View>
-                         </View>
-                         <View style={styles.foot}>
-                         <TouchableOpacity 
-                         style={styles.button}
-                         onPress={()=>{Actions.postcomment({ 'data': data })}}>
-                             <Text>评价</Text>
-                         </TouchableOpacity>
-                         </View>
-                         
-                     </TouchableOpacity>
+                    {this.state.data.map((data, i) => (
+                        <TouchableOpacity style={styles.item} onPress={() => Actions.orderdetail({ 'createtime': data.createtime })}>
+                            <View style={styles.title}>
+                                <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
+
+                            </View>
+                            <View style={styles.container}>
+                                <View style={styles.left}>
+                                    <Image
+                                        style={styles.pic}
+                                        source={{ uri: data.img }}
+                                    />
+                                </View>
+                                <View style={styles.right}>
+                                    <Text>下单时间:{this.formatDate(new Date(data.createtime))}</Text>
+                                    <Text style={{ color: 'orange' }}>写下你宝贵的评价吧</Text>
+                                </View>
+                            </View>
+                            <View style={styles.foot}>
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => { Actions.postcomment({ 'data': data }) }}>
+                                    <Text>评价</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                        </TouchableOpacity>
                     ))}
-                   
+
                 </View>
 
             </ScrollView>
@@ -161,9 +161,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    pic:{
-        width:"100%",
-        height:"80%",
+    pic: {
+        width: "100%",
+        height: "80%",
         borderRadius: 10
     },
     right: {
@@ -171,22 +171,22 @@ const styles = StyleSheet.create({
         height: '100%',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        justifyContent:'space-evenly',
-        padding:20
+        justifyContent: 'space-evenly',
+        padding: 20
     },
-    button:{
-        width:80,
-        height:30,
-        borderWidth:1,
-        borderColor:'#ccc',
-        borderRadius:8,
-        alignItems:'center',
-        justifyContent:'center'
+    button: {
+        width: 80,
+        height: 30,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    foot:{
-        width:'100%',
-        height:'24%',
-        alignItems:'flex-end',
-        paddingRight:30
+    foot: {
+        width: '100%',
+        height: '24%',
+        alignItems: 'flex-end',
+        paddingRight: 30
     }
 })

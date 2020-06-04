@@ -34,7 +34,7 @@ export default class UnUse extends Component {
                         // console.log(arr)
                         for (let index = 0; index < arr.length; index++) {
                             if (arr[index].type == '0') {
-                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime,'number':arr[index].number };
+                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime, 'number': arr[index].number };
                                 fetch('http://zy.eatclub.wang:3000/list/sr/detail?id=' + arr[index].roomid)
                                     .then((res) => res.json())
                                     .then((res) => {
@@ -49,7 +49,7 @@ export default class UnUse extends Component {
                                     })
 
                             } else {
-                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime,'number':arr[index].number };
+                                let str = { 'rental': arr[index].rental, 'state': arr[index].state, 'createtime': arr[index].createtime, 'number': arr[index].number };
                                 fetch('http://zy.eatclub.wang:3000/list/office/detail?id=' + arr[index].roomid)
                                     .then((res) => res.json())
                                     .then((res) => {
@@ -57,11 +57,11 @@ export default class UnUse extends Component {
                                         str.name = res.data[0].officename,
                                             str.img = res.data[0].img_url,
                                             str.money = res.data[0].price
-                                            item = this.state.data
-                                            item.push(str)
-                                            this.setState({
-                                                data: item
-                                            })
+                                        item = this.state.data
+                                        item.push(str)
+                                        this.setState({
+                                            data: item
+                                        })
                                     })
                             }
 
@@ -70,8 +70,8 @@ export default class UnUse extends Component {
                     })
             })
     }
-    _use=()=>{
-                                    
+    _use = () => {
+
     }
     formatDate(now) {
         var year = now.getFullYear();  //取得4位数的年份
@@ -88,35 +88,35 @@ export default class UnUse extends Component {
         return (
             <ScrollView>
                 <View style={styles.box}>
-                    {this.state.data.map((data,i)=>(
-                         <TouchableOpacity style={styles.item} >
-                         <View style={styles.title}>
-                    <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
-                             <Text style={{ color: '#ccc' }}>待使用</Text>
-                         </View>
-                         <View style={styles.container}>
-                             <View style={styles.left}>
-                                 <Image
-                                     style={styles.pic}
-                                     source={{ uri: data.img }}
-                                 />
-                             </View>
-                             <View style={styles.right}>
-                    <Text>下单时间:{this.formatDate(new Date(data.createtime))}</Text>
-                    <Text>数量:{data.number}</Text>
-                    <Text>总价:￥{data.rental}</Text>
-                             </View>
-                         </View>
-                         <View style={styles.foot}>
-                         <TouchableOpacity style={styles.button}
-                         onPress={()=>{this._use()}}>
-                             <Text>查看券码</Text>
-                         </TouchableOpacity>
-                         </View>
-                         
-                     </TouchableOpacity>
+                    {this.state.data.map((data, i) => (
+                        <TouchableOpacity style={styles.item} onPress={() => Actions.orderdetail({ 'createtime': data.createtime })}>
+                            <View style={styles.title}>
+                                <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
+                                <Text style={{ color: '#ccc' }}>待使用</Text>
+                            </View>
+                            <View style={styles.container}>
+                                <View style={styles.left}>
+                                    <Image
+                                        style={styles.pic}
+                                        source={{ uri: data.img }}
+                                    />
+                                </View>
+                                <View style={styles.right}>
+                                    <Text>下单时间:{this.formatDate(new Date(data.createtime))}</Text>
+                                    <Text>数量:{data.number}</Text>
+                                    <Text>总价:￥{data.rental}</Text>
+                                </View>
+                            </View>
+                            <View style={styles.foot}>
+                                <TouchableOpacity style={styles.button}
+                                    onPress={() => { this._use() }}>
+                                    <Text>查看券码</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                        </TouchableOpacity>
                     ))}
-                   
+
                 </View>
 
             </ScrollView>
@@ -162,9 +162,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    pic:{
-        width:"100%",
-        height:"80%",
+    pic: {
+        width: "100%",
+        height: "80%",
         borderRadius: 10
     },
     right: {
@@ -173,21 +173,21 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        padding:20
+        padding: 20
     },
-    button:{
-        width:80,
-        height:30,
-        borderWidth:1,
-        borderColor:'#ccc',
-        borderRadius:8,
-        alignItems:'center',
-        justifyContent:'center'
+    button: {
+        width: 80,
+        height: 30,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    foot:{
-        width:'100%',
-        height:'24%',
-        alignItems:'flex-end',
-        paddingRight:30
+    foot: {
+        width: '100%',
+        height: '24%',
+        alignItems: 'flex-end',
+        paddingRight: 30
     }
 })

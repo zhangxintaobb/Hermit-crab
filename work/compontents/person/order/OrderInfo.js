@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
-import { Text, View,Image,TouchableOpacity,StyleSheet,Dimensions } from 'react-native'
+import { Text, View, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window');
 export default class OrderInfo extends Component {
     render() {
         return (
             <TouchableOpacity style={styles.listitem1}>
-                                        <Image
-                                            source={{ uri: this.props.img }}
-                                            style={styles.pic}
-                                        />
-                                        <View style={{ width: width * 0.3, }}>
-                                        </View>
-                                        <View style={{ marginLeft: 10 }}>
-                                            
-                                            <Text>/天</Text>
-                                        </View>
-                                    </TouchableOpacity>
+                <Image
+                    source={{ uri: this.props.img }}
+                    style={styles.pic}
+                />
+                <View style={{ width: width * 0.3, }}>
+                </View>
+                <View style={{ marginLeft: 10 }}>
+
+                    <Text>/天</Text>
+                </View>
+            </TouchableOpacity>
         )
     }
 }

@@ -152,7 +152,7 @@ export default class StudyRoom extends Component {
                                     <View style={{ flexDirection: 'row', marginTop: 10 }}>
                                         <Text style={{ color: '#aaa' }}>{this.state.comment.length}</Text>
                                         <TouchableOpacity
-                                            style={{ marginLeft: 280 }}
+                                            style={{ marginLeft: 350 }}
                                             onPress={() => Actions.comment({ 'srid': this.props.srid })}
                                         >
                                             <Text style={{ color: '#0099CC' }}>查看全部</Text>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, Dimensions, FlatList, AsyncStorage, Image } from 'react-native'
+import { StyleSheet, Dimensions, FlatList, AsyncStorage, Image, TouchableOpacity } from 'react-native'
 import { Container, Content, Text, View, Button, Icon, Left, Right, Body, Segment, Row } from "native-base";
+import {Actions} from 'react-native-router-flux'
 let { width } = Dimensions.get('window');
 export default class AllOrder extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ export default class AllOrder extends Component {
                         // console.log(res.data)
                         for (let index = 0; index < res.data.length; index++) {
                             if (res.data[index].type == '0') {
-                                let str = { 'rental': res.data[index].rental, 'state': res.data[index].state, 'time': res.data[index].createtime,'number':res.data[0].number };
+                                let str = { 'rental': res.data[index].rental, 'state': res.data[index].state, 'time': res.data[index].createtime, 'number': res.data[0].number };
                                 let arr = this.state.otherorder;
                                 arr.push(str);
                                 // console.log(arr)
@@ -136,7 +137,7 @@ export default class AllOrder extends Component {
                                 //     ]}
                                 data={obj}
                                 renderItem={({ item }) =>
-                                    <View style={styles.singleOd}>
+                                    <TouchableOpacity style={styles.singleOd} onPress={() => Actions.orderdetail({ 'createtime': item.time })}>
                                         <View style={styles.singleOdLt}>
                                             <Text style={styles.odTitle}>{item.key}</Text>
                                             <Text>{this.formatDate(new Date(item.time))}</Text>
@@ -150,7 +151,7 @@ export default class AllOrder extends Component {
                                                 source={{ uri: item.img }}
                                             />
                                         </View>
-                                    </View>
+                                    </TouchableOpacity>
 
                                 }
                                 ItemSeparatorComponent={this._renderItemSeparatorComponent}
@@ -168,11 +169,11 @@ export default class AllOrder extends Component {
                             <FlatList
                                 data={secobj}
                                 renderItem={({ item }) =>
-                                    <View style={styles.singleOd}>
+                                    <TouchableOpacity style={styles.singleOd} onPress={() => Actions.orderdetail({ 'createtime': item.time })}>
                                         <View style={styles.singleOdLt}>
                                             <Text style={styles.odTitle}>{item.key}</Text>
                                             <Text>{this.formatDate(new Date(item.time))}</Text>
-                                         <Text>数量：{item.number}</Text>
+                                            <Text>数量：{item.number}</Text>
                                             <Text>订单已完成</Text>
                                             <Text>￥{item.money}</Text>
                                         </View>
@@ -182,7 +183,7 @@ export default class AllOrder extends Component {
                                                 source={{ uri: item.img }}
                                             />
                                         </View>
-                                    </View>
+                                    </TouchableOpacity>
                                 }
                                 ItemSeparatorComponent={this._renderItemSeparatorComponent}
                             />
@@ -193,11 +194,11 @@ export default class AllOrder extends Component {
                             <FlatList
                                 data={thobj}
                                 renderItem={({ item }) =>
-                                    <View style={styles.singleOd}>
+                                    <TouchableOpacity style={styles.singleOd} onPress={() => Actions.orderdetail({ 'createtime': item.time })}>
                                         <View style={styles.singleOdLt}>
                                             <Text style={styles.odTitle}>{item.key}</Text>
                                             <Text>{this.formatDate(new Date(item.time))}</Text>
-                    <Text>数量：{item.number}</Text>
+                                            <Text>数量：{item.number}</Text>
                                             <Text style={{ color: 'red' }}>订单未完成</Text>
                                             <Text>￥{item.money}</Text>
                                         </View>
@@ -207,7 +208,7 @@ export default class AllOrder extends Component {
                                                 source={{ uri: item.img }}
                                             />
                                         </View>
-                                    </View>
+                                    </TouchableOpacity>
                                 }
                                 ItemSeparatorComponent={this._renderItemSeparatorComponent}
                             />

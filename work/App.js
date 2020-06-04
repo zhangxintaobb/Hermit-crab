@@ -51,6 +51,7 @@ import UnPay from './compontents/person/order/UnPay';
 import UnComment from './compontents/person/order/UnComment';
 import OrderInfo from './compontents/person/order/OrderInfo';
 import UnUse from './compontents/person/order/UnUse';
+import OrderDetail from './compontents/person/order/OrderDetail';
 console.disableYellowBox = true;//清除黄色警告
 const App = () => {
   let [isLogin, setLogin] = useState(false);//设置登录状态
@@ -341,6 +342,13 @@ const App = () => {
             key='orderinfo'
             title='订单详情'
             component={OrderInfo}
+            titleStyle={{ flex: 1, textAlign: 'center' }}
+            renderRightButton={<View></View>}
+          />
+          <Scene
+            key='orderdetail'
+            title='订单详情'
+            component={OrderDetail}
             titleStyle={{ flex: 1, textAlign: 'center' }}
             renderRightButton={<View></View>}
           />
